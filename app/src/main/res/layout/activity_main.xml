@@ -14,10 +14,10 @@
         app:menu="@menu/main_navigation"
         />
 
-    <ImageView
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_nike_logo"
+        android:text="سلام دنیا"
         android:layout_gravity="center"
-        android:contentDescription="@string/app_name"/>
+        android:textAppearance="?textAppearanceHeadline6"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
