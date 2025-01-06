@@ -8,16 +8,15 @@
     tools:context=".feature.main.MainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:menu="@menu/main_navigation"
-        />
+        app:menu="@menu/main_navigation" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="سلام دنیا"
-        android:layout_gravity="center"
-        android:textAppearance="?textAppearanceHeadline6"/>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="56dp"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

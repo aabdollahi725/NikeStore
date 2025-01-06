@@ -52,6 +52,8 @@ dependencies {
     
     implementation (libs.rxandroid)
     implementation (libs.timber)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

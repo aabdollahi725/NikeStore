@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.NikeStore" parent="Theme.MaterialComponents.Light.NoActionBar">
+
+        <!--        Primary brand color -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!--        Secondary brand color-->
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <!--        Surface -->
+        <item name="colorOnSurface">@color/black</item>
+
+        <!--        Status bar color-->
+        <item name="android:statusBarColor">@color/gray</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">@color/gray</item>
+
+        <!--        font -->
+        <item name="android:fontFamily">@font/primary_regular</item>
+        <item name="fontFamily">@font/primary_regular</item>
+
+        <!--        layout direction -->
+        <item name="android:layoutDirection">rtl</item>
+
+        <!--        typography-->
+        <item name="textAppearanceHeadline6">@style/TextAppearance.NikeStore.Headline6</item>
+        <!--        <item name="textAppearanceSubtitle1">@style/TextAppearance.NikeStore.Subtitle1</item>-->
+        <!--        <item name="textAppearanceSubtitle2">@style/TextAppearance.NikeStore.Subtitle2</item>-->
+        <item name="textAppearanceBody1">@style/TextAppearance.NikeStore.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.NikeStore.Body2</item>
+        <!--        <item name="textAppearanceButton">@style/TextAppearance.NikeStore.Button</item>-->
+        <!--        <item name="textAppearanceCaption">@style/TextAppearance.NikeStore.Caption</item>-->
+        <!--        <item name="textAppearanceOverline">@style/TextAppearance.NikeStore.Overline</item>-->
+
+        <!--        Bottom navigation -->
+        <item name="bottomNavigationStyle">@style/MyBottomNavigation</item>
+    </style>
+</resources>

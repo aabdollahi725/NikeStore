@@ -37,6 +37,7 @@ class App : Application() {
             modules(myModules)
         }
 
-        Timber.plant()
+
+        Timber.plant(Timber.DebugTree())
     }
 }
