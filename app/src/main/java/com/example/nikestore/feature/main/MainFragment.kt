@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.example.nikestore.R
 import com.example.nikestore.common.NikeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 
 class MainFragment : NikeFragment() {
@@ -33,6 +34,10 @@ class MainFragment : NikeFragment() {
                 showProgressIndicator(true)
             else
                 showProgressIndicator(false)
+        }
+
+        mainViewModel.banners.observe(viewLifecycleOwner){
+            Timber.i(it.toString())
         }
     }
 }

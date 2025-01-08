@@ -1,15 +1,13 @@
-package com.example.nikestore.data.repo
+package com.example.nikestore.data.source.product
 
-import com.example.nikestore.data.source.ProductDataSource
-import com.example.nikestore.data.source.ProductLocalDataSource
-import com.example.nikestore.data.source.ProductRemoteDataSource
+import com.example.nikestore.services.http.ApiService
 import com.sevenlearn.nikestore.data.Product
 import io.reactivex.Completable
 import io.reactivex.Single
 
-class ProductRepositoryImpl(val localDataSource:ProductDataSource,val remoteDataSource: ProductDataSource):ProductRepository {
+class ProductRemoteDataSource(val apiService: ApiService) : ProductDataSource {
     override fun getProducts(): Single<List<Product>> {
-        return remoteDataSource.getProducts()
+        return apiService.getProducts()
     }
 
     override fun getFavoriteProducts(): Single<List<Product>> {

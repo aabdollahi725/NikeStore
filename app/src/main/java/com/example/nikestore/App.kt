@@ -1,10 +1,13 @@
 package com.example.nikestore
 
 import android.app.Application
-import com.example.nikestore.data.repo.ProductRepository
-import com.example.nikestore.data.repo.ProductRepositoryImpl
-import com.example.nikestore.data.source.ProductLocalDataSource
-import com.example.nikestore.data.source.ProductRemoteDataSource
+import com.example.nikestore.data.repo.banner.BannerRepository
+import com.example.nikestore.data.repo.banner.BannerRepositoryImpl
+import com.example.nikestore.data.repo.product.ProductRepository
+import com.example.nikestore.data.repo.product.ProductRepositoryImpl
+import com.example.nikestore.data.source.banner.BannerRemoteDataSource
+import com.example.nikestore.data.source.product.ProductLocalDataSource
+import com.example.nikestore.data.source.product.ProductRemoteDataSource
 import com.example.nikestore.feature.main.MainViewModel
 import com.example.nikestore.services.http.createInstanceFromApiService
 import org.koin.android.ext.koin.androidContext
@@ -27,8 +30,11 @@ class App : Application() {
                 ProductRepositoryImpl(ProductLocalDataSource(), ProductRemoteDataSource(get()))
             }
 
+            factory <BannerRepository>{
+                BannerRepositoryImpl(BannerRemoteDataSource(get()))
+            }
             viewModel {
-                MainViewModel(get())
+                MainViewModel(get(),get())
             }
         }
 

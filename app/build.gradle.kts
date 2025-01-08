@@ -45,15 +45,22 @@ dependencies {
     implementation(libs.koin.android)
 
     //retrofit
-    implementation (libs.retrofit)
-    implementation (libs.adapter.rxjava2)
-    implementation (libs.converter.gson)
+    implementation(libs.retrofit)
+    implementation(libs.adapter.rxjava2)
+    implementation(libs.converter.gson)
 
-    
-    implementation (libs.rxandroid)
-    implementation (libs.timber)
+
+    implementation(libs.rxandroid)
+    implementation(libs.timber)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+    //view pager 2
+    implementation(libs.androidx.viewpager2)
+
+    //coil
+    implementation(libs.coil)
+    implementation(libs.coil.network.okhttp)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

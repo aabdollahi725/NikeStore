@@ -36,5 +36,10 @@
 
         <!--        Bottom navigation -->
         <item name="bottomNavigationStyle">@style/MyBottomNavigation</item>
+
+        <!--        divider color-->
+        <item name="dividerColor">@color/gray</item>
+
+        <item name="android:textColorSecondary">@color/darkGray</item>
     </style>
 </resources>

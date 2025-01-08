@@ -1,4 +1,4 @@
-package com.example.nikestore.data.source
+package com.example.nikestore.data.source.product
 
 import com.sevenlearn.nikestore.data.Product
 import io.reactivex.Completable
