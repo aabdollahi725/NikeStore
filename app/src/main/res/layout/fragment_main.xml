@@ -22,7 +22,7 @@
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="46dp"
+                android:layout_height="48dp"
                 android:drawableStart="@drawable/ic_search"
                 android:hint="@string/main_searchEditText_hint"
                 android:drawablePadding="12dp"
