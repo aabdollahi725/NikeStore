@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.nikestore.view.NikeImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/imageView_main"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    app:roundedCornerRadius="12dp"
+    tools:context=".feature.main.BannerFragment" />

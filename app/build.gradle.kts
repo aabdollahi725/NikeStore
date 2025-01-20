@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id ("kotlin-parcelize")
 }
 
 android {
@@ -61,6 +62,10 @@ dependencies {
     //coil
     implementation(libs.coil)
     implementation(libs.coil.network.okhttp)
+
+    implementation(libs.androidx.baselibrary)
+    implementation(libs.dotsindicator)
+    implementation (libs.fresco)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

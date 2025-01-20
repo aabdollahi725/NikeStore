@@ -35,6 +35,37 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/background_search_edittext"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPager2_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    />
+                <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                    android:id="@+id/dots_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:dotsColor="#E0DCDC"
+                    app:dotsCornerRadius="8dp"
+                    app:dotsSize="5dp"
+                    app:dotsSpacing="3dp"
+                    app:dotsWidthFactor="4"
+                    app:selectedDotColor="@color/black"
+                    app:progressMode="false"
+                    android:layoutDirection="ltr"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="12dp"
+                    />
+
+            </FrameLayout>
+
+
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

@@ -9,7 +9,10 @@ import com.example.nikestore.data.source.banner.BannerRemoteDataSource
 import com.example.nikestore.data.source.product.ProductLocalDataSource
 import com.example.nikestore.data.source.product.ProductRemoteDataSource
 import com.example.nikestore.feature.main.MainViewModel
+import com.example.nikestore.services.ImageLoadingService
+import com.example.nikestore.services.FrescoImageLoadingService
 import com.example.nikestore.services.http.createInstanceFromApiService
+import com.facebook.drawee.backends.pipeline.Fresco
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.module.dsl.viewModel
@@ -26,15 +29,20 @@ class App : Application() {
                 createInstanceFromApiService()
             }
 
-            factory <ProductRepository>{
+            factory<ProductRepository> {
                 ProductRepositoryImpl(ProductLocalDataSource(), ProductRemoteDataSource(get()))
             }
 
-            factory <BannerRepository>{
+            factory<BannerRepository> {
                 BannerRepositoryImpl(BannerRemoteDataSource(get()))
             }
+
+            single<ImageLoadingService> {
+                FrescoImageLoadingService()
+            }
+
             viewModel {
-                MainViewModel(get(),get())
+                MainViewModel(get(), get())
             }
         }
 
@@ -43,6 +51,8 @@ class App : Application() {
             modules(myModules)
         }
 
+//        initialize Fresco image loading library
+        Fresco.initialize(this)
 
         Timber.plant(Timber.DebugTree())
     }
