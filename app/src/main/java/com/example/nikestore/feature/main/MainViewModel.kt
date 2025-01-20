@@ -28,16 +28,16 @@ class MainViewModel(productRepository: ProductRepository, bannerRepository: Bann
 
     init {
         progressBar.value = true
-//        productRepository.getProducts()
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .doFinally { progressBar.value = false }
-//            .subscribe(object : NikeSingleObserver<List<Product>>(compositeDisposable) {
-//                override fun onSuccess(t: List<Product>) {
-//                    _products.value=t
-//                }
-//
-//            })
+        productRepository.getProducts()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doFinally { progressBar.value = false }
+            .subscribe(object : NikeSingleObserver<List<Product>>(compositeDisposable) {
+                override fun onSuccess(t: List<Product>) {
+                    _products.value=t
+                }
+
+            })
 
         bannerRepository.getBanners().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

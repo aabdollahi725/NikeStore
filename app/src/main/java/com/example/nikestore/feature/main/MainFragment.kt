@@ -7,19 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.nikestore.R
 import com.example.nikestore.common.NikeFragment
+import com.sevenlearn.nikestore.common.convertDpToPixel
 import com.sevenlearn.nikestore.common.createBanners
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 
 class MainFragment : NikeFragment() {
 
     val mainViewModel: MainViewModel by viewModel()
     lateinit var handler: Handler
-    var currentPage=0
+    var currentPage = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +35,10 @@ class MainFragment : NikeFragment() {
 
         handler = Handler(Looper.myLooper()!!)
 
+        mainViewModel.products.observe(viewLifecycleOwner){
+            Timber.i(it.toString())
+        }
+
         mainViewModel.progressBar.observe(viewLifecycleOwner) {
             if (it)
                 showProgressIndicator(true)
@@ -46,22 +51,25 @@ class MainFragment : NikeFragment() {
             val viewPager2 = view.findViewById<ViewPager2>(R.id.viewPager2_main)
             val adapter = BannerAdapter(this, createBanners())
             viewPager2.adapter = adapter
+            val layoutParams = viewPager2.layoutParams
+            layoutParams.height =(((viewPager2.width - convertDpToPixel(16F, requireContext())) * 173) / 328).toInt()
+            viewPager2.layoutParams=layoutParams
 
-            val runnable =object :Runnable {
+            val runnable = object : Runnable {
                 override fun run() {
-                    if(currentPage==viewPager2.adapter?.itemCount?.minus(1)){
-                        currentPage=0
-                    }
-                    else{
+                    if (currentPage == viewPager2.adapter?.itemCount?.minus(1)) {
+                        currentPage = 0
+                    } else {
                         currentPage++
                     }
 
-                    viewPager2.currentItem=currentPage
+                    viewPager2.currentItem = currentPage
 
-                    handler.postDelayed(this,5000)                }
+                    handler.postDelayed(this, 5000)
+                }
             }
 
-            viewPager2.postDelayed(runnable,5000)
+            viewPager2.postDelayed(runnable, 5000)
 
             val dotsIndicator = view.findViewById<DotsIndicator>(R.id.dots_indicator)
             dotsIndicator.attachTo(viewPager2)
