@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".feature.main.MainFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -17,55 +18,114 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="56dp"
-                android:src="@drawable/ic_nike_logo"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_nike_logo" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/background_search_edittext"
                 android:drawableStart="@drawable/ic_search"
-                android:hint="@string/main_searchEditText_hint"
                 android:drawablePadding="12dp"
+                android:hint="@string/main_searchEditText_hint"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:textSize="15sp"
-                android:textColorHint="?android:textColorSecondary"
                 android:textColor="?colorOnSurface"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/background_search_edittext"/>
+                android:textColorHint="?android:textColorSecondary"
+                android:textSize="15sp" />
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp">
+                android:layout_marginTop="16dp">
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/viewPager2_main"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    />
+                    android:layout_height="match_parent" />
+
                 <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
                     android:id="@+id/dots_indicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="12dp"
                     app:dotsColor="#E0DCDC"
                     app:dotsCornerRadius="8dp"
                     app:dotsSize="5dp"
                     app:dotsSpacing="3dp"
                     app:dotsWidthFactor="4"
-                    app:selectedDotColor="@color/black"
                     app:progressMode="false"
-                    android:layoutDirection="ltr"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:layout_marginBottom="12dp"
-                    />
-
+                    app:selectedDotColor="@color/black" />
             </FrameLayout>
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginTop="6dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/newestProducts"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    android:layout_gravity="center_vertical|start"
+                    android:textColor="?android:textColorSecondary" />
 
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/seeAll"
+                    android:layout_gravity="center_vertical|end"/>
+            </FrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/newestProductsRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:layout_marginTop="6dp"
+                android:clipToPadding="false"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginTop="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/popularProducts"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    android:layout_gravity="center_vertical|start"
+                    android:textColor="?android:textColorSecondary" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/seeAll"
+                    android:layout_gravity="center_vertical|end"/>
+            </FrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/popularProductsRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="24dp"
+                android:clipToPadding="false"/>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

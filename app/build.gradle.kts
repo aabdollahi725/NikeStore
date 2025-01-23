@@ -66,6 +66,7 @@ dependencies {
     implementation(libs.androidx.baselibrary)
     implementation(libs.dotsindicator)
     implementation (libs.fresco)
+    implementation(libs.androidx.dynamicanimation)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

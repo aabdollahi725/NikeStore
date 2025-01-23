@@ -7,17 +7,17 @@
         <item name="android:fontFamily">@font/primary_bold</item>
         <item name="fontFamily">@font/primary_bold</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">?colorOnSurface</item>
     </style>
 
     <style name="TextAppearance.NikeStore.Body1" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">?colorOnSurface</item>
     </style>
 
     <style name="TextAppearance.NikeStore.Body2" parent="TextAppearance.MaterialComponents.Body2">
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">?colorOnSurface</item>
     </style>
 
 <!--    <style name="TextAppearance.NikeStore.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">-->

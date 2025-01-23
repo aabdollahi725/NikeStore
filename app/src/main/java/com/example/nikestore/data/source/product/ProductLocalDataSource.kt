@@ -1,11 +1,11 @@
 package com.example.nikestore.data.source.product
 
-import com.sevenlearn.nikestore.data.Product
+import com.example.nikestore.data.Product
 import io.reactivex.Completable
 import io.reactivex.Single
 
 class ProductLocalDataSource: ProductDataSource {
-    override fun getProducts(): Single<List<Product>> {
+    override fun getProducts(sort:Int): Single<List<Product>> {
         TODO("Not yet implemented")
     }
 

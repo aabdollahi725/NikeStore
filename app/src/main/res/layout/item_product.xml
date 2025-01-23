@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="176dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:paddingBottom="12dp">
+
+    <com.example.nikestore.view.NikeImageView
+        android:id="@+id/productIv"
+        android:layout_width="0dp"
+        android:layout_height="186dp"
+        app:roundedCornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/titleTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:minLines="2"
+        android:layout_marginStart="8dp"
+        android:textAppearance="?textAppearanceBody1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/productIv"
+        app:layout_constraintTop_toBottomOf="@+id/productIv"
+        tools:text="کفش نایکی" />
+
+    <TextView
+        android:id="@+id/previousTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?textAppearanceBody2"
+        android:textColor="?android:textColorSecondary"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="@+id/titleTv"
+        app:layout_constraintTop_toBottomOf="@+id/titleTv"
+        tools:text="20500" />
+
+    <TextView
+        android:id="@+id/currentPriceTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?textAppearanceBody1"
+        app:layout_constraintStart_toStartOf="@+id/previousTv"
+        app:layout_constraintTop_toBottomOf="@+id/previousTv"
+        android:layout_marginTop="2dp"
+        tools:text="20620" />
+
+    <ImageView
+        android:id="@+id/favoriteBtn"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_favorites"
+        android:background="@drawable/background_favorite"
+        android:scaleType="centerInside"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

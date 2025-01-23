@@ -1,4 +1,4 @@
-package com.sevenlearn.nikestore.data
+package com.example.nikestore.data
 
 data class Product(
     val discount: Int,
@@ -9,3 +9,8 @@ data class Product(
     val status: Int,
     val title: String
 )
+
+const val SORT_NEWEST=0
+const val SORT_POPULAR=1
+const val SORT_DESC=2
+const val SORT_ASC=3

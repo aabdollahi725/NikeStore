@@ -1,19 +1,27 @@
 package com.example.nikestore.feature.main
 
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_DRAGGING
+import androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_IDLE
 import com.example.nikestore.R
 import com.example.nikestore.common.NikeFragment
+import com.example.nikestore.data.Product
 import com.sevenlearn.nikestore.common.convertDpToPixel
 import com.sevenlearn.nikestore.common.createBanners
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 
 class MainFragment : NikeFragment() {
@@ -33,10 +41,27 @@ class MainFragment : NikeFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val newestProductsRv: RecyclerView = view.findViewById(R.id.newestProductsRv)
+        val popularProductsRv: RecyclerView = view.findViewById(R.id.popularProductsRv)
+
+        newestProductsRv.layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        popularProductsRv.layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+
+        val popularProductsAdapter: ProductAdapter = get()
+        val newestProductsAdapter: ProductAdapter = get()
+        newestProductsRv.adapter = newestProductsAdapter
+        popularProductsRv.adapter = popularProductsAdapter
+
         handler = Handler(Looper.myLooper()!!)
 
-        mainViewModel.products.observe(viewLifecycleOwner){
-            Timber.i(it.toString())
+        mainViewModel.newestProducts.observe(viewLifecycleOwner) {
+            newestProductsAdapter.products = it as ArrayList<Product>
+        }
+
+        mainViewModel.popularProducts.observe(viewLifecycleOwner) {
+            popularProductsAdapter.products = it as ArrayList<Product>
         }
 
         mainViewModel.progressBar.observe(viewLifecycleOwner) {
@@ -50,10 +75,6 @@ class MainFragment : NikeFragment() {
         mainViewModel.banners.observe(viewLifecycleOwner) {
             val viewPager2 = view.findViewById<ViewPager2>(R.id.viewPager2_main)
             val adapter = BannerAdapter(this, createBanners())
-            viewPager2.adapter = adapter
-            val layoutParams = viewPager2.layoutParams
-            layoutParams.height =(((viewPager2.width - convertDpToPixel(16F, requireContext())) * 173) / 328).toInt()
-            viewPager2.layoutParams=layoutParams
 
             val runnable = object : Runnable {
                 override fun run() {
@@ -65,11 +86,32 @@ class MainFragment : NikeFragment() {
 
                     viewPager2.currentItem = currentPage
 
-                    handler.postDelayed(this, 5000)
+                    handler.postDelayed(this, 6000)
                 }
+
             }
 
-            viewPager2.postDelayed(runnable, 5000)
+            viewPager2.postDelayed(runnable, 6000)
+
+            viewPager2.registerOnPageChangeCallback(object : OnPageChangeCallback() {
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) {
+                    super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                    handler.removeCallbacks(runnable)
+                    currentPage = position
+                    handler.postDelayed(runnable,6000)
+                }
+            })
+
+            viewPager2.adapter = adapter
+
+            val layoutParams = viewPager2.layoutParams
+            layoutParams.height =
+                (((viewPager2.width - convertDpToPixel(32F, requireContext())) * 173) / 328).toInt()
+            viewPager2.layoutParams = layoutParams
 
             val dotsIndicator = view.findViewById<DotsIndicator>(R.id.dots_indicator)
             dotsIndicator.attachTo(viewPager2)

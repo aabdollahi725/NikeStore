@@ -23,6 +23,7 @@ navigationUiKtx = "2.8.5"
 viewpager2 = "1.1.0"
 databindingCommon = "8.8.0"
 baselibrary = "3.2.0-alpha11"
+dynamicanimation = "1.0.0"
 
 [libraries]
 adapter-rxjava2 = { module = "com.squareup.retrofit2:adapter-rxjava2", version.ref = "retrofit" }
@@ -50,6 +51,7 @@ androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navi
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 androidx-databinding-common = { group = "androidx.databinding", name = "databinding-common", version.ref = "databindingCommon" }
 androidx-baselibrary = { group = "androidx.databinding", name = "baseLibrary", version.ref = "baselibrary" }
+androidx-dynamicanimation = { group = "androidx.dynamicanimation", name = "dynamicanimation", version.ref = "dynamicanimation" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

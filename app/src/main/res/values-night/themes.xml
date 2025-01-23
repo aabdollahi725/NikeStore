@@ -21,9 +21,6 @@
         <item name="android:fontFamily">@font/primary_regular</item>
         <item name="fontFamily">@font/primary_regular</item>
 
-        <!--        layout direction -->
-        <item name="android:layoutDirection">rtl</item>
-
         <!--        typography-->
         <item name="textAppearanceHeadline6">@style/TextAppearance.NikeStore.Headline6</item>
         <!--        <item name="textAppearanceSubtitle1">@style/TextAppearance.NikeStore.Subtitle1</item>-->
@@ -41,5 +38,7 @@
         <item name="dividerColor">@color/gray</item>
 
         <item name="android:textColorSecondary">@color/darkGray</item>
+        <item name="android:lineSpacingExtra">6dp</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 </resources>
