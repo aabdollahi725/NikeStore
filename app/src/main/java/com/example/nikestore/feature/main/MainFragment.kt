@@ -1,5 +1,6 @@
 package com.example.nikestore.feature.main
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -15,8 +16,10 @@ import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_DRAGGING
 import androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_IDLE
 import com.example.nikestore.R
+import com.example.nikestore.common.EXTRA_KEY_DATA
 import com.example.nikestore.common.NikeFragment
 import com.example.nikestore.data.Product
+import com.example.nikestore.feature.product.ProductDetailActivity
 import com.sevenlearn.nikestore.common.convertDpToPixel
 import com.sevenlearn.nikestore.common.createBanners
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
@@ -24,7 +27,7 @@ import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class MainFragment : NikeFragment() {
+class MainFragment : NikeFragment(),ProductAdapter.ProductOnClickListener {
 
     val mainViewModel: MainViewModel by viewModel()
     lateinit var handler: Handler
@@ -51,6 +54,9 @@ class MainFragment : NikeFragment() {
 
         val popularProductsAdapter: ProductAdapter = get()
         val newestProductsAdapter: ProductAdapter = get()
+        newestProductsAdapter.productOnClickListener=this
+        popularProductsAdapter.productOnClickListener=this
+
         newestProductsRv.adapter = newestProductsAdapter
         popularProductsRv.adapter = popularProductsAdapter
 
@@ -116,5 +122,13 @@ class MainFragment : NikeFragment() {
             val dotsIndicator = view.findViewById<DotsIndicator>(R.id.dots_indicator)
             dotsIndicator.attachTo(viewPager2)
         }
+    }
+
+    override fun onClick(product: Product) {
+
+
+        startActivity(Intent(requireContext(),ProductDetailActivity::class.java).apply {
+            putExtra(EXTRA_KEY_DATA,product)
+        })
     }
 }

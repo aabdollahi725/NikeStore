@@ -10,6 +10,7 @@ import com.example.nikestore.data.source.product.ProductLocalDataSource
 import com.example.nikestore.data.source.product.ProductRemoteDataSource
 import com.example.nikestore.feature.main.MainViewModel
 import com.example.nikestore.feature.main.ProductAdapter
+import com.example.nikestore.feature.product.ProductDetailViewModel
 import com.example.nikestore.services.ImageLoadingService
 import com.example.nikestore.services.FrescoImageLoadingService
 import com.example.nikestore.services.http.createInstanceFromApiService

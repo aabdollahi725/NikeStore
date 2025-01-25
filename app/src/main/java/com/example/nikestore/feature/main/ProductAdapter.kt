@@ -22,6 +22,8 @@ class ProductAdapter(val imageLoadingService: ImageLoadingService) : Adapter<Pro
             notifyDataSetChanged()
         }
 
+    var productOnClickListener:ProductOnClickListener?=null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         return ProductViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_product,parent,false))
     }
@@ -49,8 +51,12 @@ class ProductAdapter(val imageLoadingService: ImageLoadingService) : Adapter<Pro
             imageLoadingService.load(productIv,product.image)
             itemView.implementSpringAnimationTrait()
             itemView.setOnClickListener {
-
+                productOnClickListener?.onClick(product)
             }
         }
+    }
+
+    interface ProductOnClickListener{
+        fun onClick(product: Product)
     }
 }
