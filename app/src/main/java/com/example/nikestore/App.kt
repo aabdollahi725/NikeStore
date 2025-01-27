@@ -49,6 +49,10 @@ class App : Application() {
             viewModel {
                 MainViewModel(get(), get())
             }
+
+            viewModel{
+                ProductDetailViewModel(get())
+            }
         }
 
         startKoin {

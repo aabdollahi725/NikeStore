@@ -10,13 +10,14 @@ import com.example.nikestore.view.scroll.ObservableScrollViewCallbacks
 import com.example.nikestore.view.scroll.ScrollState
 import com.sevenlearn.nikestore.common.formatPrice
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class ProductDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProductDetailBinding
 
-    private val productDetailViewModel: ProductDetailViewModel by viewModels()
+    private val productDetailViewModel: ProductDetailViewModel by viewModel()
     private val imageLoadingService: ImageLoadingService by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +37,7 @@ class ProductDetailActivity : AppCompatActivity() {
         binding.observableScrollView.addScrollViewCallbacks(object :ObservableScrollViewCallbacks{
             override fun onScrollChanged(scrollY: Int, firstScroll: Boolean, dragging: Boolean) {
                 val productIvHeight=binding.productIv.height
+                binding.productIv.translationY=scrollY.toFloat()/2
                 binding.toolbarView.alpha=scrollY.toFloat()/productIvHeight.toFloat()
             }
 

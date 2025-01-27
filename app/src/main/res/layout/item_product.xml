@@ -36,7 +36,7 @@
         android:id="@+id/previousTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?textAppearanceBody2"
+        android:textAppearance="?textAppearanceBody1"
         android:textColor="?android:textColorSecondary"
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="@+id/titleTv"

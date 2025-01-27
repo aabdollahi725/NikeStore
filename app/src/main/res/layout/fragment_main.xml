@@ -65,67 +65,65 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
                 android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:layout_marginTop="6dp">
+                android:paddingEnd="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/newestProducts"
-                    android:textAppearance="?textAppearanceHeadline6"
                     android:layout_gravity="center_vertical|start"
-                    android:textColor="?android:textColorSecondary" />
+                    android:text="@string/newestProducts"
+                    android:textAppearance="?textAppearanceHeadline6" />
 
                 <com.google.android.material.button.MaterialButton
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/seeAll"
-                    android:layout_gravity="center_vertical|end"/>
+                    android:layout_gravity="center_vertical|end"
+                    android:text="@string/seeAll" />
             </FrameLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/newestProductsRv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
                 android:layout_marginTop="6dp"
-                android:clipToPadding="false"/>
+                android:clipToPadding="false"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
                 android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:layout_marginTop="6dp">
+                android:paddingEnd="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/popularProducts"
-                    android:textAppearance="?textAppearanceHeadline6"
                     android:layout_gravity="center_vertical|start"
-                    android:textColor="?android:textColorSecondary" />
+                    android:text="@string/popularProducts"
+                    android:textAppearance="?textAppearanceHeadline6" />
 
                 <com.google.android.material.button.MaterialButton
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/seeAll"
-                    android:layout_gravity="center_vertical|end"/>
+                    android:layout_gravity="center_vertical|end"
+                    android:text="@string/seeAll" />
             </FrameLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/popularProductsRv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
                 android:layout_marginTop="6dp"
                 android:layout_marginBottom="24dp"
-                android:clipToPadding="false"/>
+                android:clipToPadding="false"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
