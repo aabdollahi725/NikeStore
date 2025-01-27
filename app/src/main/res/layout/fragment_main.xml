@@ -45,7 +45,7 @@
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/viewPager2_main"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="200dp" />
 
                 <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
                     android:id="@+id/dots_indicator"

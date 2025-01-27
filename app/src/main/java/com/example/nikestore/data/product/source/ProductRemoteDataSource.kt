@@ -1,16 +1,16 @@
-package com.example.nikestore.data.source.product
+package com.example.nikestore.data.product.source
 
 import com.example.nikestore.services.http.ApiService
-import com.example.nikestore.data.Product
+import com.example.nikestore.data.product.Product
 import io.reactivex.Completable
 import io.reactivex.Single
 
 class ProductRemoteDataSource(val apiService: ApiService) : ProductDataSource {
-    override fun getProducts(sort:Int): Single<List<Product>> {
+    override fun getAll(sort:Int): Single<List<Product>> {
         return apiService.getProducts(sort.toString())
     }
 
-    override fun getFavoriteProducts(): Single<List<Product>> {
+    override fun getFavorites(): Single<List<Product>> {
         TODO("Not yet implemented")
     }
 
@@ -18,7 +18,7 @@ class ProductRemoteDataSource(val apiService: ApiService) : ProductDataSource {
         TODO("Not yet implemented")
     }
 
-    override fun addFavoriteProduct(): Completable {
+    override fun addToFavorites(): Completable {
         TODO("Not yet implemented")
     }
 }

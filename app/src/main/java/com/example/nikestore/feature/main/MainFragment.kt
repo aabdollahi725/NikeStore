@@ -1,24 +1,20 @@
 package com.example.nikestore.feature.main
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
-import androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_DRAGGING
-import androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_IDLE
 import com.example.nikestore.R
 import com.example.nikestore.common.EXTRA_KEY_DATA
 import com.example.nikestore.common.NikeFragment
-import com.example.nikestore.data.Product
+import com.example.nikestore.data.product.Product
 import com.example.nikestore.feature.product.ProductDetailActivity
 import com.sevenlearn.nikestore.common.convertDpToPixel
 import com.sevenlearn.nikestore.common.createBanners
@@ -27,7 +23,7 @@ import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class MainFragment : NikeFragment(),ProductAdapter.ProductOnClickListener {
+class MainFragment : NikeFragment(), ProductAdapter.ProductOnClickListener {
 
     val mainViewModel: MainViewModel by viewModel()
     lateinit var handler: Handler
@@ -54,8 +50,8 @@ class MainFragment : NikeFragment(),ProductAdapter.ProductOnClickListener {
 
         val popularProductsAdapter: ProductAdapter = get()
         val newestProductsAdapter: ProductAdapter = get()
-        newestProductsAdapter.productOnClickListener=this
-        popularProductsAdapter.productOnClickListener=this
+        newestProductsAdapter.productOnClickListener = this
+        popularProductsAdapter.productOnClickListener = this
 
         newestProductsRv.adapter = newestProductsAdapter
         popularProductsRv.adapter = popularProductsAdapter
@@ -108,16 +104,19 @@ class MainFragment : NikeFragment(),ProductAdapter.ProductOnClickListener {
                     super.onPageScrolled(position, positionOffset, positionOffsetPixels)
                     handler.removeCallbacks(runnable)
                     currentPage = position
-                    handler.postDelayed(runnable,6000)
+                    handler.postDelayed(runnable, 6000)
                 }
             })
 
             viewPager2.adapter = adapter
 
+            //todo bug fix this functionality
+            /*
             val layoutParams = viewPager2.layoutParams
             layoutParams.height =
                 (((viewPager2.width - convertDpToPixel(32F, requireContext())) * 173) / 328).toInt()
             viewPager2.layoutParams = layoutParams
+*/
 
             val dotsIndicator = view.findViewById<DotsIndicator>(R.id.dots_indicator)
             dotsIndicator.attachTo(viewPager2)
@@ -127,8 +126,8 @@ class MainFragment : NikeFragment(),ProductAdapter.ProductOnClickListener {
     override fun onClick(product: Product) {
 
 
-        startActivity(Intent(requireContext(),ProductDetailActivity::class.java).apply {
-            putExtra(EXTRA_KEY_DATA,product)
+        startActivity(Intent(requireContext(), ProductDetailActivity::class.java).apply {
+            putExtra(EXTRA_KEY_DATA, product)
         })
     }
 }

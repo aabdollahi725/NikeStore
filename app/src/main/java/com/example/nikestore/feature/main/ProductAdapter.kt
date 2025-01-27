@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.nikestore.R
-import com.example.nikestore.data.Product
+import com.example.nikestore.data.product.Product
 import com.example.nikestore.services.ImageLoadingService
 import com.example.nikestore.view.NikeImageView
 import com.sevenlearn.nikestore.common.formatPrice

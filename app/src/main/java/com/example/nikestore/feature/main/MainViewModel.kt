@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.nikestore.common.NikeSingleObserver
 import com.example.nikestore.common.NikeViewModel
-import com.example.nikestore.data.Banner
-import com.example.nikestore.data.repo.banner.BannerRepository
-import com.example.nikestore.data.repo.product.ProductRepository
-import com.example.nikestore.data.Product
-import com.example.nikestore.data.SORT_NEWEST
-import com.example.nikestore.data.SORT_POPULAR
+import com.example.nikestore.data.banner.Banner
+import com.example.nikestore.data.banner.repo.BannerRepository
+import com.example.nikestore.data.product.repo.ProductRepository
+import com.example.nikestore.data.product.Product
+import com.example.nikestore.data.product.SORT_NEWEST
+import com.example.nikestore.data.product.SORT_POPULAR
 import com.sevenlearn.nikestore.common.createProducts
 import com.sevenlearn.nikestore.common.createProducts2
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -34,7 +34,7 @@ class MainViewModel(productRepository: ProductRepository, bannerRepository: Bann
 
     init {
         progressBar.value = true
-        productRepository.getProducts(SORT_NEWEST)
+        productRepository.getAll(SORT_NEWEST)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doFinally { progressBar.value = false }
@@ -48,7 +48,7 @@ class MainViewModel(productRepository: ProductRepository, bannerRepository: Bann
                 }
             })
 
-        productRepository.getProducts(SORT_POPULAR)
+        productRepository.getAll(SORT_POPULAR)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : NikeSingleObserver<List<Product>>(compositeDisposable) {
@@ -61,7 +61,7 @@ class MainViewModel(productRepository: ProductRepository, bannerRepository: Bann
                 }
             })
 
-        bannerRepository.getBanners().subscribeOn(Schedulers.io())
+        bannerRepository.getAll().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doFinally{progressBar.value=false}
             .subscribe(object : NikeSingleObserver<List<Banner>>(compositeDisposable) {

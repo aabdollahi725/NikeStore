@@ -1,11 +1,11 @@
-package com.example.nikestore.data.source.banner
+package com.example.nikestore.data.banner.source
 
-import com.example.nikestore.data.Banner
+import com.example.nikestore.data.banner.Banner
 import com.example.nikestore.services.http.ApiService
 import io.reactivex.Single
 
 class BannerRemoteDataSource(val apiService: ApiService) : BannerDataSource {
-    override fun getBanners(): Single<List<Banner>> {
+    override fun getAll(): Single<List<Banner>> {
         return apiService.getBanners()
     }
 }

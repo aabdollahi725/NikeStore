@@ -1,4 +1,4 @@
-package com.example.nikestore.data
+package com.example.nikestore.data.product
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

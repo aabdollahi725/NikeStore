@@ -1,18 +1,21 @@
 package com.example.nikestore
 
 import android.app.Application
-import com.example.nikestore.data.repo.banner.BannerRepository
-import com.example.nikestore.data.repo.banner.BannerRepositoryImpl
-import com.example.nikestore.data.repo.product.ProductRepository
-import com.example.nikestore.data.repo.product.ProductRepositoryImpl
-import com.example.nikestore.data.source.banner.BannerRemoteDataSource
-import com.example.nikestore.data.source.product.ProductLocalDataSource
-import com.example.nikestore.data.source.product.ProductRemoteDataSource
+import com.example.nikestore.data.banner.repo.BannerRepository
+import com.example.nikestore.data.banner.repo.BannerRepositoryImpl
+import com.example.nikestore.data.banner.source.BannerRemoteDataSource
+import com.example.nikestore.data.comment.repo.CommentRepository
+import com.example.nikestore.data.comment.repo.CommentRepositoryImpl
+import com.example.nikestore.data.comment.source.CommentRemoteDataSource
+import com.example.nikestore.data.product.repo.ProductRepository
+import com.example.nikestore.data.product.repo.ProductRepositoryImpl
+import com.example.nikestore.data.product.source.ProductLocalDataSource
+import com.example.nikestore.data.product.source.ProductRemoteDataSource
 import com.example.nikestore.feature.main.MainViewModel
 import com.example.nikestore.feature.main.ProductAdapter
 import com.example.nikestore.feature.product.ProductDetailViewModel
-import com.example.nikestore.services.ImageLoadingService
 import com.example.nikestore.services.FrescoImageLoadingService
+import com.example.nikestore.services.ImageLoadingService
 import com.example.nikestore.services.http.createInstanceFromApiService
 import com.facebook.drawee.backends.pipeline.Fresco
 import org.koin.android.ext.koin.androidContext
@@ -46,12 +49,16 @@ class App : Application() {
             factory <ProductAdapter> {
                 ProductAdapter(get())
             }
+
+            factory <CommentRepository>{
+                CommentRepositoryImpl(CommentRemoteDataSource(get()))
+            }
             viewModel {
                 MainViewModel(get(), get())
             }
 
             viewModel{
-                ProductDetailViewModel(get())
+                ProductDetailViewModel(get(),get())
             }
         }
 

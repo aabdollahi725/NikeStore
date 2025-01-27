@@ -1,6 +1,5 @@
 package com.sevenlearn.nikestore.common
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources
 import android.text.SpannableString
@@ -11,10 +10,11 @@ import android.view.View
 import androidx.dynamicanimation.animation.DynamicAnimation
 import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.dynamicanimation.animation.SpringForce
-import com.example.nikestore.data.Banner
-import com.example.nikestore.data.Product
+import com.example.nikestore.data.banner.Banner
+import com.example.nikestore.data.comment.Author
+import com.example.nikestore.data.comment.Comment
+import com.example.nikestore.data.product.Product
 import timber.log.Timber
-import java.util.Locale
 
 fun convertDpToPixel(dp: Float, context: Context?): Float {
     return if (context != null) {
@@ -82,6 +82,26 @@ fun View.implementSpringAnimationTrait() {
     }
 }
 
+fun createComments():ArrayList<Comment>{
+    val comment1=Comment(1,"عالیه از همه نظر ارزش خریدن داره","وقتی بدستم رسید خوشحال شدم از نظر ظاهری و کیفیت عالی هس","۳۱ فروردین",
+        Author("ali@gamil.com")
+    )
+
+    val comment2=Comment(2,"کاملا راحت","شیک ، راحت ، کیفیت خوب","21 خرداد",
+        Author("mahdi725@gamil.com")
+    )
+
+    val comment3=Comment(3,"خرید مطمئن","خیلی شیک و عالیه پام توش خیلی راحته توصیه میکنم حتما بخرید","9 مرداد",
+        Author("ebadi99@gamil.com")
+    )
+
+    val comment4=Comment(4,"یک کتونی چهار فصل","از خریدم راضیم و واقعا برای تمامی فصول سال مناسبه و میتونید همیشه ازش استفاده کنید","10 اردیبهشت",
+        Author("aabdollahi725@gamil.com")
+    )
+
+    return arrayListOf(comment1,comment2,comment3,comment4)
+
+}
 fun createProducts(): ArrayList<Product> {
     val product2 = Product(
         id = 440,
@@ -265,9 +285,9 @@ fun createProducts2(): ArrayList<Product> {
 }
 
 fun createBanners():MutableList<Banner>{
-    val banner1=Banner(1001,"https://images.lifestyleasia.com/wp-content/uploads/sites/6/2020/08/03154422/2020_RTT_Sustainability_Zero-Collection_RN_GROUP_06539_R2_hd_1600-1600x900.jpg",2,"0")
-    val banner2=Banner(1002,"https://5.imimg.com/data5/SELLER/Default/2022/12/PL/IQ/XV/91293069/nike-men-sport-shoes.jpg",2,"0")
-    val banner3=Banner(1003,"https://d26oc3sg82pgk3.cloudfront.net/files/media/edit/image/58252/article_full%401x.jpg",2,"0")
+    val banner1= Banner(1001,"https://images.lifestyleasia.com/wp-content/uploads/sites/6/2020/08/03154422/2020_RTT_Sustainability_Zero-Collection_RN_GROUP_06539_R2_hd_1600-1600x900.jpg",2,"0")
+    val banner2= Banner(1002,"https://e1.pxfuel.com/desktop-wallpaper/340/14/desktop-wallpaper-air-force-1-nike-air-force-one.jpg",2,"0")
+    val banner3= Banner(1003,"https://wallpapers.com/images/featured/4k-nike-4jlwk1qxozddo3t6.jpg",2,"0")
     val banners= mutableListOf(banner1,banner2,banner3)
     return banners
 }

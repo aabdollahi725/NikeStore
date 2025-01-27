@@ -7,5 +7,5 @@
     android:id="@+id/imageView_main"
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
-    app:roundedCornerRadius="12dp"
+    app:roundedCornerRadius="8dp"
     tools:context=".feature.main.BannerFragment" />

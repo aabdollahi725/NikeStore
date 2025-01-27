@@ -1,13 +1,15 @@
 package com.example.nikestore.services.http
 
-import com.example.nikestore.data.Banner
-import com.example.nikestore.data.Product
+import com.example.nikestore.data.banner.Banner
+import com.example.nikestore.data.comment.Comment
+import com.example.nikestore.data.product.Product
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.Headers
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface ApiService {
@@ -17,6 +19,10 @@ interface ApiService {
 
     @GET("banner/slider")
     fun getBanners():Single<List<Banner>>
+
+    @GET("/comment/list")
+    fun getComments(@Query("product_id")productId:Int):Single<List<Comment>>
+
 }
 
 fun createInstanceFromApiService():ApiService{
