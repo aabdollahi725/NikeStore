@@ -6,10 +6,12 @@ import android.graphics.Shader
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.Window
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.children
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
@@ -31,7 +33,19 @@ abstract class NikeFragment : Fragment(), NikeView{
 
 abstract class NikeActivity : AppCompatActivity(), NikeView{
     override val rootView: CoordinatorLayout?
-        get() = window.decorView.rootView as CoordinatorLayout
+        get() {
+           val viewGroup= window.decorView.findViewById(android.R.id.content) as ViewGroup
+            if(viewGroup !is CoordinatorLayout){
+                viewGroup.children.forEach {
+                    if(it is CoordinatorLayout)
+                        return it
+                }
+                throw IllegalStateException("RootView must be instance of Coordinator Layout")
+            }
+            else{
+                return  viewGroup
+            }
+        }
 
     override val viewContext: Context?
         get() = this

@@ -1,16 +1,18 @@
 package com.example.nikestore.feature.product
 
+import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup.MarginLayoutParams
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.marginBottom
 import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.nikestore.common.EXTRA_KEY_DATA
+import com.example.nikestore.common.NikeActivity
 import com.example.nikestore.data.comment.Comment
 import com.example.nikestore.databinding.ActivityProductDetailBinding
+import com.example.nikestore.feature.product.comment.CommentAdapter
+import com.example.nikestore.feature.product.comment.CommentListActivity
 import com.example.nikestore.services.ImageLoadingService
 import com.example.nikestore.view.scroll.ObservableScrollViewCallbacks
 import com.example.nikestore.view.scroll.ScrollState
@@ -20,22 +22,18 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
-class ProductDetailActivity : AppCompatActivity() {
+class ProductDetailActivity : NikeActivity() {
 
     private lateinit var binding: ActivityProductDetailBinding
 
     private val productDetailViewModel: ProductDetailViewModel by viewModel()
     private val imageLoadingService: ImageLoadingService by inject()
+    val commentAdapter= CommentAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProductDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val commentRv=binding.commentsRv
-        val commentAdapter=CommentAdapter()
-        commentRv.adapter=commentAdapter
-        commentRv.layoutManager=LinearLayoutManager(this, RecyclerView.VERTICAL,false)
 
         productDetailViewModel.productLiveData.observe(this) {
             imageLoadingService.load(binding.productIv, it.image)
@@ -46,15 +44,35 @@ class ProductDetailActivity : AppCompatActivity() {
             binding.previousPriceTv.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
         }
 
+        productDetailViewModel.progressBar.observe(/* owner = */ this){
+                showProgressIndicator(it)
+        }
+
         productDetailViewModel.commentsLiveData.observe(this){
             commentAdapter.comments= it as ArrayList<Comment>
             if(it.size>3){
                 binding.showAllCommentsBtn.visibility= View.VISIBLE
+                binding.showAllCommentsBtn.setOnClickListener {
+                    startActivity(Intent(this,CommentListActivity::class.java).apply {
+                        putExtra(EXTRA_KEY_DATA,commentAdapter.comments)
+                    })
+                }
             }
             else{
-                commentRv.updatePadding(bottom = convertDpToPixel(108F,this).toInt())
+                binding.commentsRv.updatePadding(bottom = convertDpToPixel(108F,this).toInt())
             }
         }
+
+
+
+        initViews()
+
+    }
+
+    private fun initViews(){
+
+        binding.commentsRv.adapter=commentAdapter
+        binding.commentsRv.layoutManager=LinearLayoutManager(this, RecyclerView.VERTICAL,false)
 
         binding.observableScrollView.addScrollViewCallbacks(object :ObservableScrollViewCallbacks{
             override fun onScrollChanged(scrollY: Int, firstScroll: Boolean, dragging: Boolean) {

@@ -10,6 +10,7 @@ import com.example.nikestore.data.product.repo.ProductRepository
 import com.example.nikestore.data.product.Product
 import com.example.nikestore.data.product.SORT_NEWEST
 import com.example.nikestore.data.product.SORT_POPULAR
+import com.sevenlearn.nikestore.common.asyncNetWorkRequest
 import com.sevenlearn.nikestore.common.createProducts
 import com.sevenlearn.nikestore.common.createProducts2
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -35,8 +36,7 @@ class MainViewModel(productRepository: ProductRepository, bannerRepository: Bann
     init {
         progressBar.value = true
         productRepository.getAll(SORT_NEWEST)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .asyncNetWorkRequest()
             .doFinally { progressBar.value = false }
             .subscribe(object : NikeSingleObserver<List<Product>>(compositeDisposable) {
                 override fun onSuccess(t: List<Product>) {
@@ -49,8 +49,7 @@ class MainViewModel(productRepository: ProductRepository, bannerRepository: Bann
             })
 
         productRepository.getAll(SORT_POPULAR)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .asyncNetWorkRequest()
             .subscribe(object : NikeSingleObserver<List<Product>>(compositeDisposable) {
                 override fun onSuccess(t: List<Product>) {
                 }
@@ -61,8 +60,7 @@ class MainViewModel(productRepository: ProductRepository, bannerRepository: Bann
                 }
             })
 
-        bannerRepository.getAll().subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+        bannerRepository.getAll().asyncNetWorkRequest()
             .doFinally{progressBar.value=false}
             .subscribe(object : NikeSingleObserver<List<Banner>>(compositeDisposable) {
                 override fun onSuccess(t: List<Banner>) {

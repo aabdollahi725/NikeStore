@@ -14,6 +14,10 @@ import com.example.nikestore.data.banner.Banner
 import com.example.nikestore.data.comment.Author
 import com.example.nikestore.data.comment.Comment
 import com.example.nikestore.data.product.Product
+import io.reactivex.Scheduler
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
 fun convertDpToPixel(dp: Float, context: Context?): Float {
@@ -99,7 +103,22 @@ fun createComments():ArrayList<Comment>{
         Author("aabdollahi725@gamil.com")
     )
 
-    return arrayListOf(comment1,comment2,comment3,comment4)
+    val comment5=Comment(5,"عالیه از همه نظر ارزش خریدن داره","وقتی بدستم رسید خوشحال شدم از نظر ظاهری و کیفیت عالی هس","۳۱ فروردین",
+        Author("ali@gamil.com")
+    )
+
+    val comment6=Comment(6,"کاملا راحت","شیک ، راحت ، کیفیت خوب","21 خرداد",
+        Author("mahdi725@gamil.com")
+    )
+
+    val comment7=Comment(7,"خرید مطمئن","خیلی شیک و عالیه پام توش خیلی راحته توصیه میکنم حتما بخرید","9 مرداد",
+        Author("ebadi99@gamil.com")
+    )
+
+    val comment8=Comment(8,"یک کتونی چهار فصل","از خریدم راضیم و واقعا برای تمامی فصول سال مناسبه و میتونید همیشه ازش استفاده کنید","10 اردیبهشت",
+        Author("aabdollahi725@gamil.com")
+    )
+    return arrayListOf(comment1,comment2,comment3,comment4,comment5,comment6,comment7,comment8)
 
 }
 fun createProducts(): ArrayList<Product> {
@@ -290,4 +309,8 @@ fun createBanners():MutableList<Banner>{
     val banner3= Banner(1003,"https://wallpapers.com/images/featured/4k-nike-4jlwk1qxozddo3t6.jpg",2,"0")
     val banners= mutableListOf(banner1,banner2,banner3)
     return banners
+}
+
+fun <T> Single<T>.asyncNetWorkRequest():Single<T>{
+return subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 }

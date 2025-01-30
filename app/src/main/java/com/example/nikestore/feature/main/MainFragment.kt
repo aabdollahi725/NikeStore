@@ -16,7 +16,6 @@ import com.example.nikestore.common.EXTRA_KEY_DATA
 import com.example.nikestore.common.NikeFragment
 import com.example.nikestore.data.product.Product
 import com.example.nikestore.feature.product.ProductDetailActivity
-import com.sevenlearn.nikestore.common.convertDpToPixel
 import com.sevenlearn.nikestore.common.createBanners
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import org.koin.android.ext.android.get
@@ -67,10 +66,7 @@ class MainFragment : NikeFragment(), ProductAdapter.ProductOnClickListener {
         }
 
         mainViewModel.progressBar.observe(viewLifecycleOwner) {
-            if (it)
-                showProgressIndicator(true)
-            else
-                showProgressIndicator(false)
+            showProgressIndicator(it)
         }
 
 

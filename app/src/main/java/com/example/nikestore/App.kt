@@ -14,6 +14,7 @@ import com.example.nikestore.data.product.source.ProductRemoteDataSource
 import com.example.nikestore.feature.main.MainViewModel
 import com.example.nikestore.feature.main.ProductAdapter
 import com.example.nikestore.feature.product.ProductDetailViewModel
+import com.example.nikestore.feature.product.comment.CommentListViewModel
 import com.example.nikestore.services.FrescoImageLoadingService
 import com.example.nikestore.services.ImageLoadingService
 import com.example.nikestore.services.http.createInstanceFromApiService
@@ -59,6 +60,10 @@ class App : Application() {
 
             viewModel{
                 ProductDetailViewModel(get(),get())
+            }
+
+            viewModel{
+                CommentListViewModel(get())
             }
         }
 

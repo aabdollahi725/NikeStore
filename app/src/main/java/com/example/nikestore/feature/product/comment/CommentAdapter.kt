@@ -1,4 +1,4 @@
-package com.example.nikestore.feature.product
+package com.example.nikestore.feature.product.comment
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.nikestore.R
 import com.example.nikestore.data.comment.Comment
 
-class CommentAdapter : Adapter<CommentAdapter.CommentViewHolder>() {
+class CommentAdapter(val showAll: Boolean=false) : Adapter<CommentAdapter.CommentViewHolder>() {
 
     var comments = ArrayList<Comment>()
         set(value) {
@@ -24,7 +24,7 @@ class CommentAdapter : Adapter<CommentAdapter.CommentViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return if(comments.size>3) 3 else comments.size
+       return if(comments.size>3 && !showAll) 3 else comments.size
     }
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {

@@ -23,13 +23,8 @@
 
         <!--        typography-->
         <item name="textAppearanceHeadline6">@style/TextAppearance.NikeStore.Headline6</item>
-        <!--        <item name="textAppearanceSubtitle1">@style/TextAppearance.NikeStore.Subtitle1</item>-->
-        <!--        <item name="textAppearanceSubtitle2">@style/TextAppearance.NikeStore.Subtitle2</item>-->
         <item name="textAppearanceBody1">@style/TextAppearance.NikeStore.Body1</item>
         <item name="textAppearanceBody2">@style/TextAppearance.NikeStore.Body2</item>
-        <!--        <item name="textAppearanceButton">@style/TextAppearance.NikeStore.Button</item>-->
-        <!--        <item name="textAppearanceCaption">@style/TextAppearance.NikeStore.Caption</item>-->
-        <!--        <item name="textAppearanceOverline">@style/TextAppearance.NikeStore.Overline</item>-->
 
         <!--        Bottom navigation -->
         <item name="bottomNavigationStyle">@style/MyBottomNavigation</item>
@@ -37,8 +32,14 @@
         <!--        divider color-->
         <item name="dividerColor">@color/gray</item>
 
+        <!--        text color secondary-->
         <item name="android:textColorSecondary">@color/darkGray</item>
+
+        <!--        Appbar layout style-->
+        <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Surface</item>
+
         <item name="android:lineSpacingExtra">6dp</item>
+
         <item name="android:includeFontPadding">false</item>
     </style>
 
