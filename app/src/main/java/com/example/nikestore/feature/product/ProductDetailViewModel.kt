@@ -10,8 +10,6 @@ import com.example.nikestore.data.comment.repo.CommentRepository
 import com.example.nikestore.data.product.Product
 import com.sevenlearn.nikestore.common.asyncNetWorkRequest
 import com.sevenlearn.nikestore.common.createComments
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
 class ProductDetailViewModel(
@@ -24,11 +22,11 @@ class ProductDetailViewModel(
     val commentsLiveData = MutableLiveData<List<Comment>>()
 
     init {
-        progressBar.value=true
+        progressBarLiveData.value=true
         productLiveData.value = savedStateHandle[EXTRA_KEY_DATA]
         repository.getAll(424).asyncNetWorkRequest()
             .doFinally{
-                progressBar.value=false
+                progressBarLiveData.value=false
             }
             .subscribe(object : NikeSingleObserver<List<Comment>>(compositeDisposable) {
                 override fun onSuccess(t: List<Comment>) {

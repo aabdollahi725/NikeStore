@@ -1,4 +1,4 @@
-package com.example.nikestore.feature.main
+package com.example.nikestore.feature.common
 
 import android.graphics.Paint
 import android.view.LayoutInflater
@@ -14,18 +14,39 @@ import com.example.nikestore.view.NikeImageView
 import com.sevenlearn.nikestore.common.formatPrice
 import com.sevenlearn.nikestore.common.implementSpringAnimationTrait
 
-class ProductAdapter(val imageLoadingService: ImageLoadingService) : Adapter<ProductAdapter.ProductViewHolder>() {
+const val VIEW_TYPE_ROUND = 0
+const val VIEW_TYPE_SMALL = 1
+const val VIEW_TYPE_LARGE = 2
 
-    var products=ArrayList<Product>()
+class ProductAdapter(
+    var viewType: Int = VIEW_TYPE_ROUND,
+    val imageLoadingService: ImageLoadingService
+) : Adapter<ProductAdapter.ProductViewHolder>() {
+
+    var products = ArrayList<Product>()
         set(value) {
-            field=value
+            field = value
             notifyDataSetChanged()
         }
 
-    var productOnClickListener:ProductOnClickListener?=null
+    var productOnClickListener: ProductOnClickListener? = null
+
+    override fun getItemViewType(position: Int): Int {
+        return viewType
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        return ProductViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_product,parent,false))
+        val layoutResId =
+            when (viewType) {
+                VIEW_TYPE_ROUND -> R.layout.item_product_round
+                VIEW_TYPE_LARGE -> R.layout.item_product_large
+                VIEW_TYPE_SMALL -> R.layout.item_product_small
+                else -> throw IllegalStateException("View type is not valid")
+
+            }
+        return ProductViewHolder(
+            LayoutInflater.from(parent.context).inflate(layoutResId, parent, false)
+        )
     }
 
     override fun getItemCount(): Int {
@@ -46,9 +67,9 @@ class ProductAdapter(val imageLoadingService: ImageLoadingService) : Adapter<Pro
         fun bindProduct(product: Product) {
             titleTv.text = product.title
             previousPriceTv.text = formatPrice(product.previous_price)
-            previousPriceTv.paintFlags=Paint.STRIKE_THRU_TEXT_FLAG
+            previousPriceTv.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             currentPriceTv.text = formatPrice(product.price)
-            imageLoadingService.load(productIv,product.image)
+            imageLoadingService.load(productIv, product.image)
             itemView.implementSpringAnimationTrait()
             itemView.setOnClickListener {
                 productOnClickListener?.onClick(product)
@@ -56,7 +77,7 @@ class ProductAdapter(val imageLoadingService: ImageLoadingService) : Adapter<Pro
         }
     }
 
-    interface ProductOnClickListener{
+    interface ProductOnClickListener {
         fun onClick(product: Product)
     }
 }

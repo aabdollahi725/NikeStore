@@ -1,4 +1,4 @@
-package com.example.nikestore.feature.main
+package com.example.nikestore.feature.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,16 +15,24 @@ import com.example.nikestore.R
 import com.example.nikestore.common.EXTRA_KEY_DATA
 import com.example.nikestore.common.NikeFragment
 import com.example.nikestore.data.product.Product
+import com.example.nikestore.data.product.SORT_NEWEST
+import com.example.nikestore.data.product.SORT_POPULAR
+import com.example.nikestore.feature.common.ProductAdapter
+import com.example.nikestore.feature.common.VIEW_TYPE_ROUND
+import com.example.nikestore.feature.list.ProductListActivity
 import com.example.nikestore.feature.product.ProductDetailActivity
+import com.google.android.material.button.MaterialButton
 import com.sevenlearn.nikestore.common.createBanners
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import org.koin.android.ext.android.get
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 
-class MainFragment : NikeFragment(), ProductAdapter.ProductOnClickListener {
+class HomeFragment : NikeFragment(), ProductAdapter.ProductOnClickListener {
 
-    val mainViewModel: MainViewModel by viewModel()
+    val homeViewModel: HomeViewModel by viewModel()
     lateinit var handler: Handler
     var currentPage = 0
 
@@ -33,7 +41,7 @@ class MainFragment : NikeFragment(), ProductAdapter.ProductOnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,8 +55,8 @@ class MainFragment : NikeFragment(), ProductAdapter.ProductOnClickListener {
         popularProductsRv.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
 
-        val popularProductsAdapter: ProductAdapter = get()
-        val newestProductsAdapter: ProductAdapter = get()
+        val popularProductsAdapter: ProductAdapter = get { parametersOf(VIEW_TYPE_ROUND) }
+        val newestProductsAdapter: ProductAdapter = get {  parametersOf(VIEW_TYPE_ROUND) }
         newestProductsAdapter.productOnClickListener = this
         popularProductsAdapter.productOnClickListener = this
 
@@ -57,20 +65,20 @@ class MainFragment : NikeFragment(), ProductAdapter.ProductOnClickListener {
 
         handler = Handler(Looper.myLooper()!!)
 
-        mainViewModel.newestProducts.observe(viewLifecycleOwner) {
+        homeViewModel.newestProducts.observe(viewLifecycleOwner) {
             newestProductsAdapter.products = it as ArrayList<Product>
         }
 
-        mainViewModel.popularProducts.observe(viewLifecycleOwner) {
+        homeViewModel.popularProducts.observe(viewLifecycleOwner) {
             popularProductsAdapter.products = it as ArrayList<Product>
         }
 
-        mainViewModel.progressBar.observe(viewLifecycleOwner) {
+        homeViewModel.progressBarLiveData.observe(viewLifecycleOwner) {
             showProgressIndicator(it)
         }
 
 
-        mainViewModel.banners.observe(viewLifecycleOwner) {
+        homeViewModel.banners.observe(viewLifecycleOwner) {
             val viewPager2 = view.findViewById<ViewPager2>(R.id.viewPager2_main)
             val adapter = BannerAdapter(this, createBanners())
 
@@ -116,14 +124,28 @@ class MainFragment : NikeFragment(), ProductAdapter.ProductOnClickListener {
 
             val dotsIndicator = view.findViewById<DotsIndicator>(R.id.dots_indicator)
             dotsIndicator.attachTo(viewPager2)
+
+            val showLatestProducts=view.findViewById<MaterialButton>(R.id.showLatestProducts)
+            showLatestProducts.setOnClickListener {
+                goToProductListActivity(SORT_NEWEST)
+            }
+
+            val showPopularProducts=view.findViewById<MaterialButton>(R.id.showPopularProducts)
+            showPopularProducts.setOnClickListener {
+                goToProductListActivity(SORT_POPULAR)
+            }
         }
     }
 
     override fun onClick(product: Product) {
-
-
         startActivity(Intent(requireContext(), ProductDetailActivity::class.java).apply {
             putExtra(EXTRA_KEY_DATA, product)
+        })
+    }
+
+    fun goToProductListActivity( sort:Int){
+        startActivity(Intent(requireContext(), ProductListActivity::class.java).apply {
+            putExtra(EXTRA_KEY_DATA, sort)
         })
     }
 }

@@ -11,8 +11,9 @@ import com.example.nikestore.data.product.repo.ProductRepository
 import com.example.nikestore.data.product.repo.ProductRepositoryImpl
 import com.example.nikestore.data.product.source.ProductLocalDataSource
 import com.example.nikestore.data.product.source.ProductRemoteDataSource
-import com.example.nikestore.feature.main.MainViewModel
-import com.example.nikestore.feature.main.ProductAdapter
+import com.example.nikestore.feature.list.ProductListViewModel
+import com.example.nikestore.feature.home.HomeViewModel
+import com.example.nikestore.feature.common.ProductAdapter
 import com.example.nikestore.feature.product.ProductDetailViewModel
 import com.example.nikestore.feature.product.comment.CommentListViewModel
 import com.example.nikestore.services.FrescoImageLoadingService
@@ -47,15 +48,15 @@ class App : Application() {
                 FrescoImageLoadingService()
             }
 
-            factory <ProductAdapter> {
-                ProductAdapter(get())
+            factory <ProductAdapter> { (viewType:Int)->
+                ProductAdapter(viewType,get())
             }
 
             factory <CommentRepository>{
                 CommentRepositoryImpl(CommentRemoteDataSource(get()))
             }
             viewModel {
-                MainViewModel(get(), get())
+                HomeViewModel(get(), get())
             }
 
             viewModel{
@@ -64,6 +65,10 @@ class App : Application() {
 
             viewModel{
                 CommentListViewModel(get())
+            }
+
+            viewModel{
+                ProductListViewModel(get(),get())
             }
         }
 

@@ -1,4 +1,4 @@
-package com.example.nikestore.feature.main
+package com.example.nikestore.feature.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,10 +13,8 @@ import com.example.nikestore.data.product.SORT_POPULAR
 import com.sevenlearn.nikestore.common.asyncNetWorkRequest
 import com.sevenlearn.nikestore.common.createProducts
 import com.sevenlearn.nikestore.common.createProducts2
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
-class MainViewModel(productRepository: ProductRepository, bannerRepository: BannerRepository) :
+class HomeViewModel(productRepository: ProductRepository, bannerRepository: BannerRepository) :
     NikeViewModel() {
 
     private val _newestProducts = MutableLiveData<List<Product>>()
@@ -34,10 +32,10 @@ class MainViewModel(productRepository: ProductRepository, bannerRepository: Bann
     val error = MutableLiveData<String>()
 
     init {
-        progressBar.value = true
+        progressBarLiveData.value = true
         productRepository.getAll(SORT_NEWEST)
             .asyncNetWorkRequest()
-            .doFinally { progressBar.value = false }
+            .doFinally { progressBarLiveData.value = false }
             .subscribe(object : NikeSingleObserver<List<Product>>(compositeDisposable) {
                 override fun onSuccess(t: List<Product>) {
                 }
@@ -61,7 +59,7 @@ class MainViewModel(productRepository: ProductRepository, bannerRepository: Bann
             })
 
         bannerRepository.getAll().asyncNetWorkRequest()
-            .doFinally{progressBar.value=false}
+            .doFinally{progressBarLiveData.value=false}
             .subscribe(object : NikeSingleObserver<List<Banner>>(compositeDisposable) {
                 override fun onSuccess(t: List<Banner>) {
                     _banners.value=t

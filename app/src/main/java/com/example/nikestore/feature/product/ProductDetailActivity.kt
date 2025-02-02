@@ -28,7 +28,7 @@ class ProductDetailActivity : NikeActivity() {
 
     private val productDetailViewModel: ProductDetailViewModel by viewModel()
     private val imageLoadingService: ImageLoadingService by inject()
-    val commentAdapter= CommentAdapter()
+    private val commentAdapter= CommentAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +44,7 @@ class ProductDetailActivity : NikeActivity() {
             binding.previousPriceTv.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
         }
 
-        productDetailViewModel.progressBar.observe(/* owner = */ this){
+        productDetailViewModel.progressBarLiveData.observe(/* owner = */ this){
                 showProgressIndicator(it)
         }
 
@@ -63,7 +63,9 @@ class ProductDetailActivity : NikeActivity() {
             }
         }
 
-
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
 
         initViews()
 

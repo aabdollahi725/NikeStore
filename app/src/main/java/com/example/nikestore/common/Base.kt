@@ -1,13 +1,9 @@
 package com.example.nikestore.common
 
 import android.content.Context
-import android.graphics.RenderEffect
-import android.graphics.Shader
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -16,7 +12,6 @@ import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.transition.Visibility
 import coil3.load
 import coil3.request.transformations
 import coil3.transform.CircleCropTransformation
@@ -75,7 +70,7 @@ interface NikeView {
 abstract class NikeViewModel : ViewModel() {
 
     val compositeDisposable = CompositeDisposable()
-    val progressBar = MutableLiveData<Boolean>()
+    val progressBarLiveData = MutableLiveData<Boolean>()
 
     override fun onCleared() {
         compositeDisposable.clear()

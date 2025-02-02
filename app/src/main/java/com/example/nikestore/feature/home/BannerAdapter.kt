@@ -1,4 +1,4 @@
-package com.example.nikestore.feature.main
+package com.example.nikestore.feature.home
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter

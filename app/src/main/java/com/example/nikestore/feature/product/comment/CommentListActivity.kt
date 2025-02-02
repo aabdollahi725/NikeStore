@@ -30,5 +30,6 @@ class CommentListActivity :NikeActivity(){
         commentListViewModel.commentsLiveData.observe(this){
             commentAdapter.comments= it as ArrayList<Comment>
         }
+
     }
 }

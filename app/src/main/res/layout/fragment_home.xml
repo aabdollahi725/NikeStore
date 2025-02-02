@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.main.MainFragment">
+    tools:context=".feature.home.HomeFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -77,6 +77,7 @@
                     android:textAppearance="?textAppearanceHeadline6" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/showLatestProducts"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -108,6 +109,7 @@
                     android:textAppearance="?textAppearanceHeadline6" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/showPopularProducts"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

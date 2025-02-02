@@ -13,9 +13,11 @@
         android:textAppearance="?textAppearanceHeadline6" />
     <ImageView
         android:id="@+id/backBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:scaleType="centerInside"
         android:src="@drawable/ic_back"
+        android:background="?selectableItemBackgroundBorderless"
         android:layout_gravity="start|center_vertical"
         android:layout_marginStart="16dp"/>
 </FrameLayout>

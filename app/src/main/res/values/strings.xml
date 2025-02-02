@@ -14,4 +14,15 @@
     <string name="addComment">ثبت نظر</string>
     <string name="addToCart">افزودن به سبد خرید</string>
     <string name="showAllComments">همه نظرات</string>
+    <string name="productList">لیست محصولات</string>
+    <string name="sort">مرتب سازی</string>
+    <string name="sortPriceHighToLow">گران ترین</string>
+    <string name="sortPriceLowToHigh">ارزان ترین</string>
+
+    <string-array name="sortTitlesArray">
+        <item >@string/newestProducts</item>
+        <item >@string/popularProducts</item>
+        <item >@string/sortPriceHighToLow</item>
+        <item >@string/sortPriceLowToHigh</item>
+    </string-array>
 </resources>
