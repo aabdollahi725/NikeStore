@@ -63,10 +63,6 @@ dependencies {
     //view pager 2
     implementation(libs.androidx.viewpager2)
 
-    //coil
-    implementation(libs.coil)
-    implementation(libs.coil.network.okhttp)
-
     implementation(libs.androidx.baselibrary)
     implementation(libs.dotsindicator)
     implementation (libs.fresco)

@@ -4,17 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.children
-import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import coil3.load
-import coil3.request.transformations
-import coil3.transform.CircleCropTransformation
 import com.example.nikestore.R
 import io.reactivex.disposables.CompositeDisposable
 
@@ -29,7 +24,7 @@ abstract class NikeFragment : Fragment(), NikeView{
 abstract class NikeActivity : AppCompatActivity(), NikeView{
     override val rootView: CoordinatorLayout?
         get() {
-           val viewGroup= window.decorView.findViewById(android.R.id.content) as ViewGroup
+           val viewGroup: ViewGroup = window.decorView.findViewById(android.R.id.content)
             if(viewGroup !is CoordinatorLayout){
                 viewGroup.children.forEach {
                     if(it is CoordinatorLayout)
@@ -76,16 +71,4 @@ abstract class NikeViewModel : ViewModel() {
         compositeDisposable.clear()
         super.onCleared()
     }
-}
-
-// extension for image view
-// extension for imageview
-fun ImageView.loadCircularImage(url: String) = this.load(url) {
-    transformations(CircleCropTransformation())
-}
-
-// binding adapter for xml layouts
-@BindingAdapter("load_circular_image")
-fun loadCircularImage(view: ImageView, url: String) {
-    view.loadCircularImage(url)
 }

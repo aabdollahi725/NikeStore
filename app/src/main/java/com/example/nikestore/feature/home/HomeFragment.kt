@@ -25,12 +25,11 @@ import com.google.android.material.button.MaterialButton
 import com.sevenlearn.nikestore.common.createBanners
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import org.koin.android.ext.android.get
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 
-class HomeFragment : NikeFragment(), ProductAdapter.ProductOnClickListener {
+class HomeFragment : NikeFragment(), ProductAdapter.ProductOnClickListener, View.OnClickListener {
 
     val homeViewModel: HomeViewModel by viewModel()
     lateinit var handler: Handler
@@ -56,7 +55,7 @@ class HomeFragment : NikeFragment(), ProductAdapter.ProductOnClickListener {
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
 
         val popularProductsAdapter: ProductAdapter = get { parametersOf(VIEW_TYPE_ROUND) }
-        val newestProductsAdapter: ProductAdapter = get {  parametersOf(VIEW_TYPE_ROUND) }
+        val newestProductsAdapter: ProductAdapter = get { parametersOf(VIEW_TYPE_ROUND) }
         newestProductsAdapter.productOnClickListener = this
         popularProductsAdapter.productOnClickListener = this
 
@@ -125,15 +124,11 @@ class HomeFragment : NikeFragment(), ProductAdapter.ProductOnClickListener {
             val dotsIndicator = view.findViewById<DotsIndicator>(R.id.dots_indicator)
             dotsIndicator.attachTo(viewPager2)
 
-            val showLatestProducts=view.findViewById<MaterialButton>(R.id.showLatestProducts)
-            showLatestProducts.setOnClickListener {
-                goToProductListActivity(SORT_NEWEST)
-            }
+            val showLatestProducts = view.findViewById<MaterialButton>(R.id.showLatestProducts)
+            showLatestProducts.setOnClickListener(this)
 
-            val showPopularProducts=view.findViewById<MaterialButton>(R.id.showPopularProducts)
-            showPopularProducts.setOnClickListener {
-                goToProductListActivity(SORT_POPULAR)
-            }
+            val showPopularProducts = view.findViewById<MaterialButton>(R.id.showPopularProducts)
+            showPopularProducts.setOnClickListener(this)
         }
     }
 
@@ -143,9 +138,12 @@ class HomeFragment : NikeFragment(), ProductAdapter.ProductOnClickListener {
         })
     }
 
-    fun goToProductListActivity( sort:Int){
+    override fun onClick(v: View?) {
         startActivity(Intent(requireContext(), ProductListActivity::class.java).apply {
-            putExtra(EXTRA_KEY_DATA, sort)
+            putExtra(
+                EXTRA_KEY_DATA,
+                if (v?.id == R.id.showPopularProducts) SORT_POPULAR else SORT_NEWEST
+            )
         })
     }
 }
