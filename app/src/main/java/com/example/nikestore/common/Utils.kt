@@ -35,8 +35,8 @@ fun formatPrice(
     price: Number,
     unitRelativeSizeFactor: Float = 0.7f
 ): SpannableString {
-    val newPrice=String.format("%,d",price)
-    val currencyLabel="تومان"
+    val newPrice = String.format("%,d", price)
+    val currencyLabel = "تومان"
     val spannableString = SpannableString("$newPrice $currencyLabel")
     spannableString.setSpan(
         RelativeSizeSpan(unitRelativeSizeFactor),
@@ -64,6 +64,7 @@ fun View.implementSpringAnimationTrait() {
                 scaleYAnim.start()
 
             }
+
             MotionEvent.ACTION_UP,
             MotionEvent.ACTION_CANCEL -> {
                 scaleXAnim.cancel()
@@ -81,236 +82,10 @@ fun View.implementSpringAnimationTrait() {
 
             }
         }
-
         false
     }
 }
 
-fun createComments():ArrayList<Comment>{
-    val comment1=Comment(1,"عالیه از همه نظر ارزش خریدن داره","وقتی بدستم رسید خوشحال شدم از نظر ظاهری و کیفیت عالی هس","۳۱ فروردین",
-        Author("ali@gamil.com")
-    )
-
-    val comment2=Comment(2,"کاملا راحت","شیک ، راحت ، کیفیت خوب","21 خرداد",
-        Author("mahdi725@gamil.com")
-    )
-
-    val comment3=Comment(3,"خرید مطمئن","خیلی شیک و عالیه پام توش خیلی راحته توصیه میکنم حتما بخرید","9 مرداد",
-        Author("ebadi99@gamil.com")
-    )
-
-    val comment4=Comment(4,"یک کتونی چهار فصل","از خریدم راضیم و واقعا برای تمامی فصول سال مناسبه و میتونید همیشه ازش استفاده کنید","10 اردیبهشت",
-        Author("aabdollahi725@gamil.com")
-    )
-
-    val comment5=Comment(5,"عالیه از همه نظر ارزش خریدن داره","وقتی بدستم رسید خوشحال شدم از نظر ظاهری و کیفیت عالی هس","۳۱ فروردین",
-        Author("ali@gamil.com")
-    )
-
-    val comment6=Comment(6,"کاملا راحت","شیک ، راحت ، کیفیت خوب","21 خرداد",
-        Author("mahdi725@gamil.com")
-    )
-
-    val comment7=Comment(7,"خرید مطمئن","خیلی شیک و عالیه پام توش خیلی راحته توصیه میکنم حتما بخرید","9 مرداد",
-        Author("ebadi99@gamil.com")
-    )
-
-    val comment8=Comment(8,"یک کتونی چهار فصل","از خریدم راضیم و واقعا برای تمامی فصول سال مناسبه و میتونید همیشه ازش استفاده کنید","10 اردیبهشت",
-        Author("aabdollahi725@gamil.com")
-    )
-    return arrayListOf(comment1,comment2,comment3,comment4,comment5,comment6,comment7,comment8)
-
-}
-fun createProducts(): ArrayList<Product> {
-    val product2 = Product(
-        id = 440,
-        title = "نایک فلیکس ران مدل ZoomX",
-        price = 2491411,
-        discount = 23,
-        image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/e5cc9ab3-5c10-43fa-b007-5bb4fcfc07d9/NIKE+FREE+METCON+6.png",
-        status = 1,
-        previous_price = 2491388
-    )
-    val product3 = Product(
-        id = 432,
-        title = "نایک ایر زوم",
-        price = 2465825,
-        discount = 14,
-        image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/3fa2eedd-f437-4b7b-b389-b2add0ee59e0/SABRINA+2.png",
-        status = 1,
-        previous_price = 2465811
-    )
-    val product4 = Product(
-        id = 433,
-        title = "نایک ترایل رانر",
-        price = 4605005,
-        discount = 29,
-        image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/be57a430-8d83-4546-901f-47dc2cd9de7c/PEGASUS+PLUS.png",
-        status = 1,
-        previous_price = 4604976
-    )
-    val product5 = Product(
-        id = 434,
-        title = "نایک وایپر ۳",
-        price = 2220002,
-        discount = 22,
-        image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/pexd96bxgbyteo2xziaf/AIR+VAPORMAX+PLUS.png",
-        status = 1,
-        previous_price = 2219980
-    )
-    val product6 = Product(
-        id = 435,
-        title = "نایک موشن",
-        price = 1146512,
-        discount = 30,
-        image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/wgxfbsoi6ruiakenoscv/NIKE+SHOX+TL.png",
-        status = 1,
-        previous_price = 1146482
-    )
-    val product7 = Product(
-        id = 437,
-        title = "نایک پریسیژن",
-        price = 1214037,
-        discount = 27,
-        image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/4f37fca8-6bce-43e7-ad07-f57ae3c13142/AIR+FORCE+1+%2707.png",
-        status = 1,
-        previous_price = 1214010
-    )
-    val product8 = Product(
-        id = 438,
-        title = "نایک مترو ران",
-        price = 1880809,
-        discount = 5,
-        image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/fdef08d5-ddf9-493e-8e27-8aab37447b78/NIKE+DUNK+LOW+RETRO.png",
-        status = 1,
-        previous_price = 1880804
-    )
-    val product9 = Product(
-        id = 439,
-        title = "نایک گریویتی",
-        price = 3975416,
-        discount = 26,
-        image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/89525e32-aeaf-4a53-8248-90536633f346/AIR+MAX+90.png",
-        status = 1,
-        previous_price = 3975390
-    )
-    val product10 = Product(
-        id = 436,
-        title = "کتانی نایک سیگما",
-        price = 3286646,
-        discount = 22,
-        image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/aee6b5e9-a5ee-4bc3-8427-3095ade69faf/AIR+MAX+270.png",
-        status = 1,
-        previous_price = 3286624
-    )
-
-    return arrayListOf(product2,product3,product4,product5,product6,product7,product8,product9,product10)
-}
-
-fun createProducts2(): ArrayList<Product> {
-    val product2 = Product(
-        id = 440,
-        title = "نایک فلیکس ران",
-        price = 2491411,
-        discount = 23,
-        image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/3fa2eedd-f437-4b7b-b389-b2add0ee59e0/SABRINA+2.png",
-        status = 1,
-        previous_price = 2491388
-    )
-    val product3 = Product(
-        id = 432,
-        title = "نایک ایر زوم",
-        price = 2465825,
-        discount = 14,
-        image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/e5cc9ab3-5c10-43fa-b007-5bb4fcfc07d9/NIKE+FREE+METCON+6.png",
-        status = 1,
-        previous_price = 2465811
-    )
-    val product4 = Product(
-        id = 433,
-        title = "نایک ترایل رانر",
-        price = 4605005,
-        discount = 29,
-        image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/be57a430-8d83-4546-901f-47dc2cd9de7c/PEGASUS+PLUS.png",
-        status = 1,
-        previous_price = 4604976
-    )
-    val product5 = Product(
-        id = 434,
-        title = "نایک وایپر ۳",
-        price = 2220002,
-        discount = 22,
-        image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/pexd96bxgbyteo2xziaf/AIR+VAPORMAX+PLUS.png",
-        status = 1,
-        previous_price = 2219980
-    )
-    val product6 = Product(
-        id = 435,
-        title = "نایک موشن",
-        price = 1146512,
-        discount = 30,
-        image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/wgxfbsoi6ruiakenoscv/NIKE+SHOX+TL.png",
-        status = 1,
-        previous_price = 1146482
-    )
-    val product7 = Product(
-        id = 437,
-        title = "نایک پریسیژن",
-        price = 1214037,
-        discount = 27,
-        image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/4f37fca8-6bce-43e7-ad07-f57ae3c13142/AIR+FORCE+1+%2707.png",
-        status = 1,
-        previous_price = 1214010
-    )
-    val product8 = Product(
-        id = 438,
-        title = "نایک مترو ران",
-        price = 1880809,
-        discount = 5,
-        image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/fdef08d5-ddf9-493e-8e27-8aab37447b78/NIKE+DUNK+LOW+RETRO.png",
-        status = 1,
-        previous_price = 1880804
-    )
-    val product9 = Product(
-        id = 439,
-        title = "نایک گریویتی",
-        price = 3975416,
-        discount = 26,
-        image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/89525e32-aeaf-4a53-8248-90536633f346/AIR+MAX+90.png",
-        status = 1,
-        previous_price = 3975390
-    )
-    val product10 = Product(
-        id = 436,
-        title = "کتانی نایک سیگما",
-        price = 3286646,
-        discount = 22,
-        image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/aee6b5e9-a5ee-4bc3-8427-3095ade69faf/AIR+MAX+270.png",
-        status = 1,
-        previous_price = 3286624
-    )
-
-    return arrayListOf(
-        product2,
-        product3,
-        product4,
-        product5,
-        product6,
-        product7,
-        product8,
-        product9,
-        product10
-    )
-}
-
-fun createBanners():MutableList<Banner>{
-    val banner1= Banner(1001,"https://images.lifestyleasia.com/wp-content/uploads/sites/6/2020/08/03154422/2020_RTT_Sustainability_Zero-Collection_RN_GROUP_06539_R2_hd_1600-1600x900.jpg",2,"0")
-    val banner2= Banner(1002,"https://e1.pxfuel.com/desktop-wallpaper/340/14/desktop-wallpaper-air-force-1-nike-air-force-one.jpg",2,"0")
-    val banner3= Banner(1003,"https://wallpapers.com/images/featured/4k-nike-4jlwk1qxozddo3t6.jpg",2,"0")
-    val banners= mutableListOf(banner1,banner2,banner3)
-    return banners
-}
-
-fun <T> Single<T>.asyncNetWorkRequest():Single<T>{
-return subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+fun <T> Single<T>.asyncNetWorkRequest(): Single<T> {
+    return subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 }

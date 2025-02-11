@@ -22,7 +22,6 @@ import com.example.nikestore.feature.common.VIEW_TYPE_ROUND
 import com.example.nikestore.feature.list.ProductListActivity
 import com.example.nikestore.feature.product.ProductDetailActivity
 import com.google.android.material.button.MaterialButton
-import com.sevenlearn.nikestore.common.createBanners
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -79,7 +78,7 @@ class HomeFragment : NikeFragment(), ProductAdapter.ProductOnClickListener, View
 
         homeViewModel.banners.observe(viewLifecycleOwner) {
             val viewPager2 = view.findViewById<ViewPager2>(R.id.viewPager2_main)
-            val adapter = BannerAdapter(this, createBanners())
+            val adapter = BannerAdapter(this,it )
 
             val runnable = object : Runnable {
                 override fun run() {

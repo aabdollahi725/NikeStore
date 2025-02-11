@@ -11,7 +11,9 @@
     <com.example.nikestore.view.scroll.ObservableScrollView
         android:id="@+id/observableScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="124dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,8 +66,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:textStyle="normal"
                     android:textAppearance="?textAppearanceHeadline6"
+                    android:textStyle="normal"
                     app:layout_constraintEnd_toEndOf="@+id/previousPriceTv"
                     app:layout_constraintTop_toBottomOf="@+id/previousPriceTv"
                     tools:text="70000 تومان" />
@@ -100,8 +102,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|center_vertical"
-                    android:textStyle="bold"
-                    android:text="@string/addComment" />
+                    android:text="@string/addComment"
+                    android:textStyle="bold" />
             </FrameLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -111,24 +113,46 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/background_comment"
-                tools:listitem="@layout/item_comment"
-                />
+                tools:listitem="@layout/item_comment" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/showAllCommentsBtn"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/showAllComments"
-                tools:visibility="visible"
                 android:visibility="gone"
                 app:cornerRadius="2dp"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="124dp"
-                android:layout_marginTop="4dp"
-                />
+                tools:visibility="visible" />
+
+            <LinearLayout
+                android:id="@+id/commentsEmptyState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="150dp"
+                    android:scaleType="fitXY"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/empty_state" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/commentsEmptyState"
+                    android:textColor="?android:textColorSecondary"
+                    android:textAppearance="?textAppearanceBody1" />
+
+            </LinearLayout>
+
         </LinearLayout>
     </com.example.nikestore.view.scroll.ObservableScrollView>
 
@@ -149,9 +173,9 @@
             android:id="@+id/backBtn"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:scaleType="centerInside"
             android:layout_gravity="center_vertical|start"
             android:layout_marginStart="16dp"
+            android:scaleType="centerInside"
             android:src="@drawable/ic_back" />
 
     </FrameLayout>
@@ -192,8 +216,7 @@
             android:layout_marginBottom="24dp"
             android:gravity="center"
             android:text="@string/addToCart"
-            android:textAppearance="?textAppearanceHeadline6"
-            />
+            android:textAppearance="?textAppearanceHeadline6" />
     </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

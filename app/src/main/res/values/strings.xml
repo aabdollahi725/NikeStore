@@ -16,11 +16,14 @@
     <string name="sort">مرتب سازی</string>
     <string name="sortPriceHighToLow">گران ترین</string>
     <string name="sortPriceLowToHigh">ارزان ترین</string>
+    <string name="addToCart_success">محصول به سبد خرید افزوده شد</string>
+    <string name="commentsEmptyState">اولین نفری باشید که نظر می دهید!</string>
+    <string name="unknownError">اتصال خود را بررسی و دوباره امتحان کنید</string>
 
     <string-array name="sortTitlesArray">
-        <item >@string/newestProducts</item>
-        <item >@string/popularProducts</item>
-        <item >@string/sortPriceHighToLow</item>
-        <item >@string/sortPriceLowToHigh</item>
+        <item>@string/newestProducts</item>
+        <item>@string/popularProducts</item>
+        <item>@string/sortPriceHighToLow</item>
+        <item>@string/sortPriceLowToHigh</item>
     </string-array>
 </resources>

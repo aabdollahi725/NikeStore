@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.dotsindicator)
     implementation (libs.fresco)
     implementation(libs.androidx.dynamicanimation)
+    implementation(libs.eventbus)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

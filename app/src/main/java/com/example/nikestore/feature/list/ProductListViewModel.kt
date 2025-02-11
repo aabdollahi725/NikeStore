@@ -9,13 +9,12 @@ import com.example.nikestore.common.NikeViewModel
 import com.example.nikestore.data.product.Product
 import com.example.nikestore.data.product.repo.ProductRepository
 import com.sevenlearn.nikestore.common.asyncNetWorkRequest
-import com.sevenlearn.nikestore.common.createProducts
 
 class ProductListViewModel(
     val repository: ProductRepository, savedStateHandle: SavedStateHandle,
 ) : NikeViewModel() {
 
-    val productsLiveData = MutableLiveData<List<Product>>()
+    var productsLiveData = MutableLiveData<List<Product>>()
     var selectedSortLiveData=MutableLiveData<Int>()
     val sortTitles= arrayOf(R.string.newestProducts,R.string.popularProducts,R.string.sortPriceHighToLow,R.string.sortPriceLowToHigh)
     var sort:Int=savedStateHandle[EXTRA_KEY_DATA]!!
@@ -33,10 +32,7 @@ class ProductListViewModel(
             }
             .subscribe(object : NikeSingleObserver<List<Product>>(compositeDisposable) {
                 override fun onSuccess(t: List<Product>) {
-                }
-
-                override fun onError(e: Throwable) {
-                    productsLiveData.value = createProducts()
+                    productsLiveData.value=t
                 }
             })
     }

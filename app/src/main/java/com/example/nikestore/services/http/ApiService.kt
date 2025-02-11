@@ -1,8 +1,10 @@
 package com.example.nikestore.services.http
 
 import com.example.nikestore.data.banner.Banner
+import com.example.nikestore.data.cart.AddToCarTResponse
 import com.example.nikestore.data.comment.Comment
 import com.example.nikestore.data.product.Product
+import com.google.gson.JsonObject
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -20,9 +22,11 @@ interface ApiService {
     @GET("banner/slider")
     fun getBanners():Single<List<Banner>>
 
-    @GET("/comment/list")
+    @GET("comment/list")
     fun getComments(@Query("product_id")productId:Int):Single<List<Comment>>
 
+    @POST("cart/add")
+    fun addToCart(@Body jsonObject: JsonObject):Single<AddToCarTResponse>
 }
 
 fun createInstanceFromApiService():ApiService{

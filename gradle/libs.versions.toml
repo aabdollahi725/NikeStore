@@ -1,6 +1,7 @@
 [versions]
 agp = "8.8.0"
 dotsindicator = "5.1.0"
+eventbus = "3.3.1"
 fresco = "3.6.0"
 koinAndroid = "4.0.1"
 kotlin = "2.1.0"
@@ -27,6 +28,7 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 dotsindicator = { module = "com.tbuonomo:dotsindicator", version.ref = "dotsindicator" }
+eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
 fresco = { module = "com.facebook.fresco:fresco", version.ref = "fresco" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

@@ -41,6 +41,8 @@
         <item name="android:lineSpacingExtra">6dp</item>
 
         <item name="android:includeFontPadding">false</item>
+
+        <item name="snackbarStyle">@style/Widget.NikeStore.Snackbar</item>
     </style>
 
     <style name="Theme.NikeStore" parent="Base.Theme.NikeStore" />
@@ -56,5 +58,15 @@
 
     <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerSize">8dp</item>
+    </style>
+    
+    
+    <style name="Widget.NikeStore.Snackbar" parent="Widget.MaterialComponents.Snackbar">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.NikeStore.Snackbar</item>
+        <item name="backgroundOverlayColorAlpha">1</item>
+    </style>
+    
+    <style name="ThemeOverlay.NikeStore.Snackbar" parent="">
+        <item name="colorOnSurface">@color/blue</item>
     </style>
 </resources>

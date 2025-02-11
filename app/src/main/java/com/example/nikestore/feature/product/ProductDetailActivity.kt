@@ -4,11 +4,14 @@ import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.nikestore.R
 import com.example.nikestore.common.EXTRA_KEY_DATA
 import com.example.nikestore.common.NikeActivity
+import com.example.nikestore.common.NikeCompletableObserver
 import com.example.nikestore.data.comment.Comment
 import com.example.nikestore.databinding.ActivityProductDetailBinding
 import com.example.nikestore.feature.product.comment.CommentAdapter
@@ -16,8 +19,13 @@ import com.example.nikestore.feature.product.comment.CommentListActivity
 import com.example.nikestore.services.ImageLoadingService
 import com.example.nikestore.view.scroll.ObservableScrollViewCallbacks
 import com.example.nikestore.view.scroll.ScrollState
+import com.google.android.material.snackbar.Snackbar
 import com.sevenlearn.nikestore.common.convertDpToPixel
 import com.sevenlearn.nikestore.common.formatPrice
+import io.reactivex.Completable
+import io.reactivex.CompletableObserver
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -58,13 +66,9 @@ class ProductDetailActivity : NikeActivity() {
                     })
                 }
             }
-            else{
-                binding.commentsRv.updatePadding(bottom = convertDpToPixel(108F,this).toInt())
+            else if(it.isEmpty()){
+                binding.commentsEmptyState.visibility=View.VISIBLE
             }
-        }
-
-        binding.backBtn.setOnClickListener {
-            finish()
         }
 
         initViews()
@@ -91,5 +95,20 @@ class ProductDetailActivity : NikeActivity() {
                 Timber.i("")
             }
         })
+
+        binding.addToCartFab.setOnClickListener {
+            productDetailViewModel.addToCart()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : NikeCompletableObserver(productDetailViewModel.compositeDisposable) {
+                    override fun onComplete() {
+                        showSnackBar(getString(R.string.addToCart_success))
+                    }
+                })
+        }
+
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
     }
 }
