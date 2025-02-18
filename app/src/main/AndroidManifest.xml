@@ -18,7 +18,9 @@
 
         <activity
             android:name=".feature.auth.AuthActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Nike.AuthTheme"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".feature.list.ProductListActivity"
             android:exported="false" />

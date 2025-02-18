@@ -1,6 +1,7 @@
 package com.example.nikestore
 
 import android.app.Application
+import android.content.SharedPreferences
 import com.example.nikestore.data.banner.repo.BannerRepository
 import com.example.nikestore.data.banner.repo.BannerRepositoryImpl
 import com.example.nikestore.data.banner.source.BannerRemoteDataSource
@@ -14,6 +15,12 @@ import com.example.nikestore.data.product.repo.ProductRepository
 import com.example.nikestore.data.product.repo.ProductRepositoryImpl
 import com.example.nikestore.data.product.source.ProductLocalDataSource
 import com.example.nikestore.data.product.source.ProductRemoteDataSource
+import com.example.nikestore.data.user.TokenContainer
+import com.example.nikestore.data.user.repo.UserRepo
+import com.example.nikestore.data.user.repo.UserRepoImpl
+import com.example.nikestore.data.user.source.UserLocalDataSource
+import com.example.nikestore.data.user.source.UserRemoteDataSource
+import com.example.nikestore.feature.auth.AuthViewModel
 import com.example.nikestore.feature.common.ProductAdapter
 import com.example.nikestore.feature.home.HomeViewModel
 import com.example.nikestore.feature.list.ProductListViewModel
@@ -23,6 +30,7 @@ import com.example.nikestore.services.FrescoImageLoadingService
 import com.example.nikestore.services.ImageLoadingService
 import com.example.nikestore.services.http.createInstanceFromApiService
 import com.facebook.drawee.backends.pipeline.Fresco
+import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.module.dsl.viewModel
@@ -33,6 +41,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
 
         val myModules = module {
             single {
@@ -62,6 +71,13 @@ class App : Application() {
             factory<CartRepo>{
                 CartRepoImpl(CartRemoteDataSource(get()))
             }
+
+            single <SharedPreferences>{
+                this@App.getSharedPreferences("app_settings", MODE_PRIVATE)
+            }
+            single<UserRepo>{
+                UserRepoImpl(UserRemoteDataSource(get()), UserLocalDataSource(get()))
+            }
             viewModel {
                 HomeViewModel(get(), get())
             }
@@ -77,6 +93,10 @@ class App : Application() {
             viewModel{
                 ProductListViewModel(get(),get())
             }
+
+            viewModel {
+                AuthViewModel(get())
+            }
         }
 
         startKoin {
@@ -88,5 +108,8 @@ class App : Application() {
         Fresco.initialize(this)
 
         Timber.plant(Timber.DebugTree())
+
+        val userRepo:UserRepo=get()
+        userRepo.loadToken()
     }
 }

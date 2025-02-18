@@ -65,13 +65,14 @@ class ProductListActivity : NikeActivity(), ProductAdapter.ProductOnClickListene
         }
 
         binding.sortView.setOnClickListener {
-            val dialog = MaterialAlertDialogBuilder(this,R.style.ThemeOverlay_App_MaterialAlertDialog)
-                .setSingleChoiceItems(
-                    R.array.sortTitlesArray, productListViewModel.sort
-                ) { dialog, which ->
-                    productListViewModel.onSelectedSortChangedByUser(which)
-                    dialog.dismiss()
-                }.setTitle(getString(R.string.sort))
+            val dialog =
+                MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_App_MaterialAlertDialog)
+                    .setSingleChoiceItems(
+                        R.array.sortTitlesArray, productListViewModel.sort
+                    ) { dialog, which ->
+                        productListViewModel.onSelectedSortChangedByUser(which)
+                        dialog.dismiss()
+                    }.setTitle(getString(R.string.sort))
 
             dialog.show()
         }

@@ -15,20 +15,26 @@ class ProductListViewModel(
 ) : NikeViewModel() {
 
     var productsLiveData = MutableLiveData<List<Product>>()
-    var selectedSortLiveData=MutableLiveData<Int>()
-    val sortTitles= arrayOf(R.string.newestProducts,R.string.popularProducts,R.string.sortPriceHighToLow,R.string.sortPriceLowToHigh)
-    var sort:Int=savedStateHandle[EXTRA_KEY_DATA]!!
+    var selectedSortLiveData = MutableLiveData<Int>()
+    val sortTitles = arrayOf(
+        R.string.newestProducts,
+        R.string.popularProducts,
+        R.string.sortPriceHighToLow,
+        R.string.sortPriceLowToHigh
+    )
+    var sort: Int = savedStateHandle[EXTRA_KEY_DATA]!!
+
     init {
         getProducts(sort)
-        selectedSortLiveData.value= sortTitles[sort]
+        selectedSortLiveData.value = sortTitles[sort]
     }
 
-    fun getProducts(sort: Int) {
-        progressBarLiveData.value = true
+    fun getProducts(sort:Int) {
+        progressBarLiveData.value=true
         repository.getAll(sort)
             .asyncNetWorkRequest()
             .doFinally {
-                progressBarLiveData.value = false
+                progressBarLiveData.value=false
             }
             .subscribe(object : NikeSingleObserver<List<Product>>(compositeDisposable) {
                 override fun onSuccess(t: List<Product>) {
@@ -37,9 +43,9 @@ class ProductListViewModel(
             })
     }
 
-    fun onSelectedSortChangedByUser(sort:Int){
+    fun onSelectedSortChangedByUser(sort: Int){
         this.sort=sort
-        this.selectedSortLiveData.value=sortTitles[sort]
+        selectedSortLiveData.value=sortTitles[sort]
         getProducts(sort)
     }
 }

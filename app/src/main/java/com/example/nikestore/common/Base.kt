@@ -2,16 +2,12 @@ package com.example.nikestore.common
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
@@ -23,7 +19,6 @@ import io.reactivex.disposables.CompositeDisposable
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import kotlin.contracts.contract
 
 abstract class NikeFragment : Fragment(), NikeView {
     override val rootView: CoordinatorLayout?
@@ -98,6 +93,12 @@ interface NikeView {
         }
     }
 
+    fun showToast(text: String, duration: Int = Toast.LENGTH_SHORT) {
+        viewContext?.let {
+            Toast.makeText(it, text, duration).show()
+        }
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun showError(nikeException: NikeException) {
         viewContext?.let {
@@ -108,7 +109,7 @@ interface NikeView {
 
                 NikeException.Type.AUTH -> {
                     it.startActivity(Intent(it, AuthActivity::class.java))
-                    Toast.makeText(it, nikeException.serverMessage, Toast.LENGTH_SHORT).show()
+                    nikeException.serverMessage?.let { it1 -> showToast(it1, Toast.LENGTH_SHORT) }
                 }
             }
         }

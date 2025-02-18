@@ -133,23 +133,23 @@
                 android:id="@+id/commentsEmptyState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:layout_gravity="center_horizontal"
                 android:orientation="vertical"
-                android:layout_gravity="center_horizontal">
+                android:visibility="gone">
 
                 <ImageView
                     android:layout_width="200dp"
                     android:layout_height="150dp"
-                    android:scaleType="fitXY"
                     android:layout_gravity="center_horizontal"
+                    android:scaleType="fitXY"
                     android:src="@drawable/empty_state" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/commentsEmptyState"
-                    android:textColor="?android:textColorSecondary"
-                    android:textAppearance="?textAppearanceBody1" />
+                    android:textAppearance="?textAppearanceBody1"
+                    android:textColor="?android:textColorSecondary" />
 
             </LinearLayout>
 
@@ -207,8 +207,9 @@
         android:layout_gravity="bottom"
         android:background="?colorOnSecondary">
 
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        <include
             android:id="@+id/addToCartFab"
+            layout="@layout/add_to_cart_fab"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginStart="32dp"

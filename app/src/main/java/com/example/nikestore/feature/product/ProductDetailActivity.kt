@@ -20,6 +20,7 @@ import com.example.nikestore.services.ImageLoadingService
 import com.example.nikestore.view.scroll.ObservableScrollViewCallbacks
 import com.example.nikestore.view.scroll.ScrollState
 import com.google.android.material.snackbar.Snackbar
+import com.sevenlearn.nikestore.common.asyncNetWorkRequest
 import com.sevenlearn.nikestore.common.convertDpToPixel
 import com.sevenlearn.nikestore.common.formatPrice
 import io.reactivex.Completable
@@ -36,7 +37,7 @@ class ProductDetailActivity : NikeActivity() {
 
     private val productDetailViewModel: ProductDetailViewModel by viewModel()
     private val imageLoadingService: ImageLoadingService by inject()
-    private val commentAdapter= CommentAdapter()
+    private val commentAdapter = CommentAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,39 +53,42 @@ class ProductDetailActivity : NikeActivity() {
             binding.previousPriceTv.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
         }
 
-        productDetailViewModel.progressBarLiveData.observe(/* owner = */ this){
-                showProgressIndicator(it)
+        productDetailViewModel.progressBarLiveData.observe(/* owner = */ this) {
+            showProgressIndicator(it)
         }
 
-        productDetailViewModel.commentsLiveData.observe(this){
-            commentAdapter.comments= it as ArrayList<Comment>
-            if(it.size>3){
-                binding.showAllCommentsBtn.visibility= View.VISIBLE
+        productDetailViewModel.commentsLiveData.observe(this) {
+            commentAdapter.comments = it as ArrayList<Comment>
+            if (it.size > 3) {
+                binding.showAllCommentsBtn.visibility = View.VISIBLE
                 binding.showAllCommentsBtn.setOnClickListener {
-                    startActivity(Intent(this,CommentListActivity::class.java).apply {
-                        putExtra(EXTRA_KEY_DATA,commentAdapter.comments)
+                    startActivity(Intent(this, CommentListActivity::class.java).apply {
+                        putExtra(EXTRA_KEY_DATA, commentAdapter.comments)
                     })
                 }
+            } else if (it.isEmpty()) {
+                binding.commentsEmptyState.visibility = View.VISIBLE
             }
-            else if(it.isEmpty()){
-                binding.commentsEmptyState.visibility=View.VISIBLE
-            }
+        }
+
+        productDetailViewModel.addToCartProgressBarLiveData.observe(this) {
+            rootView?.let { it1 -> AddToCartFab(it1).changeFabState(it) }
         }
 
         initViews()
 
     }
 
-    private fun initViews(){
+    private fun initViews() {
 
-        binding.commentsRv.adapter=commentAdapter
-        binding.commentsRv.layoutManager=LinearLayoutManager(this, RecyclerView.VERTICAL,false)
+        binding.commentsRv.adapter = commentAdapter
+        binding.commentsRv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
-        binding.observableScrollView.addScrollViewCallbacks(object :ObservableScrollViewCallbacks{
+        binding.observableScrollView.addScrollViewCallbacks(object : ObservableScrollViewCallbacks {
             override fun onScrollChanged(scrollY: Int, firstScroll: Boolean, dragging: Boolean) {
-                val productIvHeight=binding.productIv.height
-                binding.productIv.translationY=scrollY.toFloat()/2
-                binding.toolbarView.alpha=scrollY.toFloat()/productIvHeight.toFloat()
+                val productIvHeight = binding.productIv.height
+                binding.productIv.translationY = scrollY.toFloat() / 2
+                binding.toolbarView.alpha = scrollY.toFloat() / productIvHeight.toFloat()
             }
 
             override fun onDownMotionEvent() {
@@ -96,11 +100,12 @@ class ProductDetailActivity : NikeActivity() {
             }
         })
 
-        binding.addToCartFab.setOnClickListener {
+        val addToCartFab = findViewById<View>(R.id.addToCartFab)
+        addToCartFab.setOnClickListener {
             productDetailViewModel.addToCart()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : NikeCompletableObserver(productDetailViewModel.compositeDisposable) {
+                .asyncNetWorkRequest()
+                .subscribe(object :
+                    NikeCompletableObserver(productDetailViewModel.compositeDisposable) {
                     override fun onComplete() {
                         showSnackBar(getString(R.string.addToCart_success))
                     }

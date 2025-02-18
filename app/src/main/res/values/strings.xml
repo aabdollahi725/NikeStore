@@ -26,4 +26,13 @@
         <item>@string/sortPriceHighToLow</item>
         <item>@string/sortPriceLowToHigh</item>
     </string-array>
+
+    <string name="loginTitle">ورود به حساب کاربری</string>
+    <string name="loginHint">ایمیل و رمز عبور خود را وارد نمایید</string>
+    <string name="email">ایمیل</string>
+    <string name="password">رمز عبور</string>
+    <string name="login">ورود به حساب</string>
+    <string name="loginScreenQuestion">هنوز ثبت نام نکرده اید؟</string>
+    <string name="signup">ثبت نام</string>
+    <string name="loginSuccess">با موفقیت وارد شدید!</string>
 </resources>

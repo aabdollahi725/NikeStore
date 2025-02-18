@@ -12,5 +12,9 @@ class AuthActivity :NikeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer,LoginFragment())
+            .commit()
     }
 }

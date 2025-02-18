@@ -2,15 +2,21 @@ package com.example.nikestore.services.http
 
 import com.example.nikestore.data.banner.Banner
 import com.example.nikestore.data.cart.AddToCarTResponse
+import com.example.nikestore.data.cart.MessageResponse
 import com.example.nikestore.data.comment.Comment
 import com.example.nikestore.data.product.Product
+import com.example.nikestore.data.user.TokenContainer
+import com.example.nikestore.data.user.TokenResponse
 import com.google.gson.JsonObject
 import io.reactivex.Single
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -27,14 +33,38 @@ interface ApiService {
 
     @POST("cart/add")
     fun addToCart(@Body jsonObject: JsonObject):Single<AddToCarTResponse>
+
+    @POST("auth/token")
+    fun login(@Body jsonObject: JsonObject):Single<TokenResponse>
+
+//    todo استاد احتمالا اشتباه از message response استفاده کردن
+    @POST("user/register")
+    fun signup(@Body jsonObject: JsonObject):Single<MessageResponse>
 }
 
 fun createInstanceFromApiService():ApiService{
+
+    val okHttpClient=OkHttpClient.Builder()
+        .addInterceptor{
+            val oldRequest=it.request()
+            val newRequest=oldRequest.newBuilder()
+            if(TokenContainer.token!=null)
+                newRequest.addHeader("Authorization","Bearer ${TokenContainer.token}")
+
+            newRequest.addHeader("Accept","application/json")
+            newRequest.method(oldRequest.method, oldRequest.body)
+            return@addInterceptor it.proceed(newRequest.build())
+        }
+        .addInterceptor(HttpLoggingInterceptor().apply {
+            setLevel(HttpLoggingInterceptor.Level.BODY)
+        })
+        .build()
 
     val retrofit=Retrofit.Builder()
         .baseUrl("https://fapi.7learn.com/api/v1/")
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .client(okHttpClient)
         .build()
 
     return retrofit.create(ApiService::class.java)

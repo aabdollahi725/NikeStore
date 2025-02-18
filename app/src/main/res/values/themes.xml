@@ -10,6 +10,9 @@
         <item name="colorSecondary">@color/black</item>
         <item name="colorOnSecondary">@color/white</item>
 
+        <!--        error color-->
+        <item name="colorError">@color/red</item>
+
         <!--        Surface -->
         <item name="colorOnSurface">@color/black</item>
 
@@ -22,6 +25,7 @@
         <item name="fontFamily">@font/primary_regular</item>
 
         <!--        typography-->
+        <item name="textAppearanceHeadline5">@style/TextAppearance.NikeStore.Headline5</item>
         <item name="textAppearanceHeadline6">@style/TextAppearance.NikeStore.Headline6</item>
         <item name="textAppearanceBody1">@style/TextAppearance.NikeStore.Body1</item>
         <item name="textAppearanceBody2">@style/TextAppearance.NikeStore.Body2</item>
@@ -59,14 +63,22 @@
     <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerSize">8dp</item>
     </style>
-    
-    
+
+
     <style name="Widget.NikeStore.Snackbar" parent="Widget.MaterialComponents.Snackbar">
         <item name="materialThemeOverlay">@style/ThemeOverlay.NikeStore.Snackbar</item>
         <item name="backgroundOverlayColorAlpha">1</item>
     </style>
-    
+
     <style name="ThemeOverlay.NikeStore.Snackbar" parent="">
         <item name="colorOnSurface">@color/blue</item>
+    </style>
+
+    <style name="Theme.Nike.AuthTheme" parent="Base.Theme.NikeStore">
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowBackground">@color/black</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="android:textColorPrimary">?colorOnSurface</item>
     </style>
 </resources>

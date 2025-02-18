@@ -21,6 +21,7 @@ class ProductDetailViewModel(
 
     val productLiveData = MutableLiveData<Product>()
     val commentsLiveData = MutableLiveData<List<Comment>>()
+    val addToCartProgressBarLiveData=MutableLiveData<Boolean>()
 
     init {
         progressBarLiveData.value = true
@@ -36,6 +37,11 @@ class ProductDetailViewModel(
             })
     }
 
-    fun addToCart(): Completable = cartRepo.addToCart(productLiveData.value!!.id).ignoreElement()
+    fun addToCart(): Completable {
+        addToCartProgressBarLiveData.postValue(true)
+        return cartRepo.addToCart(productLiveData.value!!.id).doFinally {
+            addToCartProgressBarLiveData.postValue(false)
+        }.ignoreElement()
+    }
 
 }

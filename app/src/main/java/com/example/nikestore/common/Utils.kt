@@ -14,6 +14,7 @@ import com.example.nikestore.data.banner.Banner
 import com.example.nikestore.data.comment.Author
 import com.example.nikestore.data.comment.Comment
 import com.example.nikestore.data.product.Product
+import io.reactivex.Completable
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -87,5 +88,9 @@ fun View.implementSpringAnimationTrait() {
 }
 
 fun <T> Single<T>.asyncNetWorkRequest(): Single<T> {
+    return subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+}
+
+fun Completable.asyncNetWorkRequest():Completable{
     return subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 }
