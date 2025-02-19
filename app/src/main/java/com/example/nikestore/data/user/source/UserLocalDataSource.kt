@@ -1,24 +1,20 @@
 package com.example.nikestore.data.user.source
 
 import android.content.SharedPreferences
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.stringPreferencesKey
-import com.example.nikestore.data.cart.MessageResponse
+import com.example.nikestore.data.user.SignupTokenResponse
 import com.example.nikestore.data.user.TokenContainer
-import com.example.nikestore.data.user.TokenResponse
+import com.example.nikestore.data.user.LoginTokenResponse
 import io.reactivex.Single
 
 const val ACCESS_TOKEN="access_token"
 const val REFRESH_TOKEN="refresh_token"
 
 class UserLocalDataSource(val sharedPreferences: SharedPreferences) :UserDataSource{
-    override fun login(username: String, password: String): Single<TokenResponse> {
+    override fun login(username: String, password: String): Single<LoginTokenResponse> {
         TODO("Not yet implemented")
     }
 
-    override fun signup(username: String, password: String): Single<MessageResponse> {
+    override fun signup(username: String, password: String):Single<SignupTokenResponse>{
         TODO("Not yet implemented")
     }
 

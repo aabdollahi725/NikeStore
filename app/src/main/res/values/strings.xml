@@ -28,11 +28,16 @@
     </string-array>
 
     <string name="loginTitle">ورود به حساب کاربری</string>
-    <string name="loginHint">ایمیل و رمز عبور خود را وارد نمایید</string>
+    <string name="authHint">ایمیل و رمز عبور خود را وارد نمایید</string>
     <string name="email">ایمیل</string>
     <string name="password">رمز عبور</string>
     <string name="login">ورود به حساب</string>
     <string name="loginScreenQuestion">هنوز ثبت نام نکرده اید؟</string>
+    <string name="signupScreenQuestion">قبلا ثبت نام کرده اید؟</string>
     <string name="signup">ثبت نام</string>
     <string name="loginSuccess">با موفقیت وارد شدید!</string>
+    <string name="signupTitle">ایجاد حساب کاربری</string>
+    <string name="welcome">به نایک استور خوش آمدید</string>
+    <string name="enterEmailError">ایمیل را وارد کنید</string>
+    <string name="passwordError">رمز عبور حداقل باید 6 رقم باشد</string>
 </resources>

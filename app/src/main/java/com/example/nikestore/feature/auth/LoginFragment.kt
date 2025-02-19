@@ -16,7 +16,8 @@ class LoginFragment : NikeFragment() {
 
     val viewModel: AuthViewModel by viewModel()
     private var _binding: FragmentLoginBinding? = null
-//    get در اینجا چه کار میکنه
+
+    //    get در اینجا چه کار میکنه
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -31,11 +32,17 @@ class LoginFragment : NikeFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.loginSignupBtn.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction().apply {
+                replace(R.id.fragmentContainer, SignupFragment())
+            }.commit()
+        }
+
         binding.loginBtn.setOnClickListener {
-            if (binding.userNameEt.length() != 0 && binding.passwordEt.length() >= 6) {
+            if (binding.loginUserNameEt.length() != 0 && binding.loginPasswordEt.length() >= 6) {
                 viewModel.login(
-                    binding.userNameEt.text.toString(),
-                    binding.passwordEt.text.toString()
+                    binding.loginUserNameEt.text.toString(),
+                    binding.loginPasswordEt.text.toString()
                 )
                     .asyncNetWorkRequest()
                     .subscribe(object : NikeCompletableObserver(viewModel.compositeDisposable) {
@@ -44,29 +51,27 @@ class LoginFragment : NikeFragment() {
                             showToast(getString(R.string.loginSuccess))
                         }
                     })
-            }else if(binding.userNameEt.length()==0 && binding.passwordEt.length()>=6){
-                binding.userNameEtl.error = "ایمیل را وارد کنید"
-            }
-            else if(binding.userNameEt.length()!=0 && binding.passwordEt.length()<6){
-                binding.passwordEtl.error="رمز عبور باید بیش از 6 رقم باشد"
-            }
-            else{
-                binding.userNameEtl.error = "ایمیل را وارد کنید"
-                binding.passwordEtl.error="رمز عبور باید بیش از 6 رقم باشد"
+            } else if (binding.loginUserNameEt.length() == 0 && binding.loginPasswordEt.length() >= 6) {
+                binding.loginUserNameEtl.error = getString(R.string.enterEmailError)
+            } else if (binding.loginUserNameEt.length() != 0 && binding.loginPasswordEt.length() < 6) {
+                binding.loginPasswordEtl.error = getString(R.string.passwordError)
+            } else {
+                binding.loginUserNameEtl.error = getString(R.string.enterEmailError)
+                binding.loginPasswordEtl.error = getString(R.string.passwordError)
             }
         }
 
-        binding.userNameEt.doOnTextChanged { text, start, before, count ->
-            if (text!!.isNotEmpty()&&binding.userNameEtl.error!=null) {
-                binding.userNameEtl.error = null
-        }
-
-        binding.passwordEt.doOnTextChanged { text, start, before, count ->
-            if (text!!.length >= 6&&binding.passwordEtl.error!=null) {
-                binding.passwordEtl.error = null
+        binding.loginPasswordEt.doOnTextChanged { text, start, before, count ->
+            if (text!!.length > 5 && binding.loginPasswordEtl.error != null) {
+                binding.loginPasswordEtl.error = null
             }
         }
-    }
+
+        binding.loginUserNameEt.doOnTextChanged { text, start, before, count ->
+            if (text!!.isNotEmpty() && binding.loginUserNameEtl.error != null) {
+                binding.loginUserNameEtl.error = null
+            }
+        }
     }
 
     override fun onDestroyView() {

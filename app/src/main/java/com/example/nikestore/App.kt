@@ -78,6 +78,10 @@ class App : Application() {
             single<UserRepo>{
                 UserRepoImpl(UserRemoteDataSource(get()), UserLocalDataSource(get()))
             }
+
+            single<UserLocalDataSource>{
+                UserLocalDataSource(get())
+            }
             viewModel {
                 HomeViewModel(get(), get())
             }
