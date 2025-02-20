@@ -80,7 +80,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/loginBtn"
             android:layout_width="@dimen/authViewWidth"
-            android:layout_height="@dimen/authViewHeight"
+            android:layout_height="56dp"
             android:layout_marginTop="16dp"
             android:text="@string/login"
             app:cornerRadius="8dp"
