@@ -40,4 +40,5 @@
     <string name="welcome">به نایک استور خوش آمدید</string>
     <string name="enterEmailError">ایمیل را وارد کنید</string>
     <string name="passwordError">رمز عبور حداقل باید 6 رقم باشد</string>
+    <string name="pay">پرداخت</string>
 </resources>

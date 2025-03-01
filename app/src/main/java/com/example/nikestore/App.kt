@@ -21,6 +21,7 @@ import com.example.nikestore.data.user.repo.UserRepoImpl
 import com.example.nikestore.data.user.source.UserLocalDataSource
 import com.example.nikestore.data.user.source.UserRemoteDataSource
 import com.example.nikestore.feature.auth.AuthViewModel
+import com.example.nikestore.feature.cart.CartViewModel
 import com.example.nikestore.feature.common.ProductAdapter
 import com.example.nikestore.feature.home.HomeViewModel
 import com.example.nikestore.feature.list.ProductListViewModel
@@ -100,6 +101,10 @@ class App : Application() {
 
             viewModel {
                 AuthViewModel(get())
+            }
+
+            viewModel {
+                CartViewModel(get())
             }
         }
 

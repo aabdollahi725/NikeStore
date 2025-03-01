@@ -33,7 +33,7 @@ class ProductListActivity : NikeActivity(), ProductAdapter.ProductOnClickListene
         binding.productListRv.layoutManager = gridLayoutManager
 
         productListViewModel.progressBarLiveData.observe(this) {
-            showProgressIndicator(it)
+            setProgressIndicator(it)
         }
 
         binding.toolbarView.onBackButtonClickListener = View.OnClickListener {

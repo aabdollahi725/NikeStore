@@ -70,7 +70,7 @@ abstract class NikeActivity : AppCompatActivity(), NikeView {
 interface NikeView {
     val rootView: CoordinatorLayout?
     val viewContext: Context?
-    fun showProgressIndicator(showProgress: Boolean) {
+    fun setProgressIndicator(showProgress: Boolean) {
         rootView?.let {
             viewContext?.let { context ->
                 var loadingView = it.findViewById<View>(R.id.loadingView)

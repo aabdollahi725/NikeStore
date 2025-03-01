@@ -72,7 +72,7 @@ class HomeFragment : NikeFragment(), ProductAdapter.ProductOnClickListener, View
         }
 
         homeViewModel.progressBarLiveData.observe(viewLifecycleOwner) {
-            showProgressIndicator(it)
+            setProgressIndicator(it)
         }
 
 

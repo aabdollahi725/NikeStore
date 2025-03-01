@@ -4,8 +4,6 @@ import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nikestore.R
@@ -19,14 +17,8 @@ import com.example.nikestore.feature.product.comment.CommentListActivity
 import com.example.nikestore.services.ImageLoadingService
 import com.example.nikestore.view.scroll.ObservableScrollViewCallbacks
 import com.example.nikestore.view.scroll.ScrollState
-import com.google.android.material.snackbar.Snackbar
 import com.sevenlearn.nikestore.common.asyncNetWorkRequest
-import com.sevenlearn.nikestore.common.convertDpToPixel
 import com.sevenlearn.nikestore.common.formatPrice
-import io.reactivex.Completable
-import io.reactivex.CompletableObserver
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -54,7 +46,7 @@ class ProductDetailActivity : NikeActivity() {
         }
 
         productDetailViewModel.progressBarLiveData.observe(/* owner = */ this) {
-            showProgressIndicator(it)
+            setProgressIndicator(it)
         }
 
         productDetailViewModel.commentsLiveData.observe(this) {

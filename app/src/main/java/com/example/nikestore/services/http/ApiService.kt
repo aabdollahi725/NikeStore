@@ -2,6 +2,9 @@ package com.example.nikestore.services.http
 
 import com.example.nikestore.data.banner.Banner
 import com.example.nikestore.data.cart.AddToCarTResponse
+import com.example.nikestore.data.cart.CartResponse
+import com.example.nikestore.data.cart.CountResponse
+import com.example.nikestore.data.cart.MessageResponse
 import com.example.nikestore.data.user.SignupTokenResponse
 import com.example.nikestore.data.comment.Comment
 import com.example.nikestore.data.product.Product
@@ -37,12 +40,24 @@ interface ApiService {
     @POST("auth/token")
     fun login(@Body jsonObject: JsonObject): Single<LoginTokenResponse>
 
-    //    todo استاد احتمالا اشتباه از message response استفاده کردن
+    //    todo استاد احتمالا اشتباه از message response استفاده کردن: yes in new api
     @POST("user/register")
     fun signup(@Body jsonObject: JsonObject): Single<SignupTokenResponse>
 
     @POST("auth/token")
     fun refreshToken(@Body jsonObject: JsonObject): Call<LoginTokenResponse>
+
+    @GET("cart/list")
+    fun getCartItems():Single<CartResponse>
+
+    @POST("cart/remove")
+    fun removeCartItem(@Body jsonObject: JsonObject):Single<MessageResponse>
+
+    @GET("cart/count")
+    fun getCartCount():Single<CountResponse>
+
+    @POST("cart/changeCount")
+    fun changeCartItemCount(@Body jsonObject: JsonObject):Single<AddToCarTResponse>
 }
 
 fun createInstanceFromApiService(): ApiService {
