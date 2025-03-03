@@ -13,13 +13,12 @@
         android:layout_marginEnd="32dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:gravity="right"
         android:layout_marginStart="16dp"
         android:textAppearance="?textAppearanceBody1"
         app:layout_constraintEnd_toStartOf="@+id/commentDateTv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="خیلی شیک و اسپرته" />
+        tools:text="خیلی شیک و اسپرته به نظرم بهترین انتخابه" />
 
     <TextView
         android:id="@+id/commentDateTv"

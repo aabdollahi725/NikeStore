@@ -1,13 +1,10 @@
 package com.example.nikestore.feature.cart
 
 import androidx.lifecycle.MutableLiveData
-import com.example.nikestore.common.NikeCompletableObserver
 import com.example.nikestore.common.NikeSingleObserver
 import com.example.nikestore.common.NikeViewModel
-import com.example.nikestore.data.cart.AddToCarTResponse
 import com.example.nikestore.data.cart.CartItem
 import com.example.nikestore.data.cart.CartResponse
-import com.example.nikestore.data.cart.MessageResponse
 import com.example.nikestore.data.cart.PurchaseDetail
 import com.example.nikestore.data.cart.repo.CartRepo
 import com.example.nikestore.data.user.TokenContainer
@@ -20,16 +17,16 @@ class CartViewModel(private val repo: CartRepo) : NikeViewModel() {
     val purchaseDetailLiveData = MutableLiveData<PurchaseDetail>()
 
     private fun get() {
-        if(!TokenContainer.token.isNullOrEmpty()){
-            progressBarLiveData.value=true
+        if (!TokenContainer.token.isNullOrEmpty()) {
+            progressBarLiveData.value = true
             repo.get()
                 .asyncNetWorkRequest()
                 .doFinally {
-                    progressBarLiveData.value=false
+                    progressBarLiveData.value = false
                 }
                 .subscribe(object : NikeSingleObserver<CartResponse>(compositeDisposable) {
                     override fun onSuccess(t: CartResponse) {
-                        if(t.cart_items.isNotEmpty()){
+                        if (t.cart_items.isNotEmpty()) {
                             cartItemsLiveData.value = t.cart_items
                             purchaseDetailLiveData.value =
                                 PurchaseDetail(t.payable_price, t.shipping_cost, t.total_price)
@@ -39,47 +36,52 @@ class CartViewModel(private val repo: CartRepo) : NikeViewModel() {
         }
     }
 
-    fun removeCartItem(cartItem: CartItem):Completable{
+    fun removeCartItem(cartItem: CartItem): Completable {
         return repo.remove(cartItem.cart_item_id)
             .doAfterSuccess {
                 updatePurchaseDetail()
             }.ignoreElement()
     }
 
-    fun increaseItemCount(cartItem: CartItem):Completable{
-        var cartItemCount=cartItem.count
-        return repo.changeCount(cartItem.cart_item_id,++cartItemCount)
+    fun increaseItemCount(cartItem: CartItem): Completable {
+        var cartItemCount = cartItem.count
+        return repo.changeCount(cartItem.cart_item_id, ++cartItemCount)
             .doAfterSuccess {
-
+                cartItem.count++
+                updatePurchaseDetail()
             }.ignoreElement()
     }
 
-    fun decreaseItemCount(cartItem: CartItem):Completable{
-        var cartItemCount=cartItem.count
-        return repo.changeCount(cartItem.cart_item_id,--cartItemCount)
-            .doOnSuccess {
-
+    fun decreaseItemCount(cartItem: CartItem): Completable {
+        var cartItemCount = cartItem.count
+        return repo.changeCount(
+            cartItem.cart_item_id, --cartItemCount
+        )
+            .doAfterSuccess {
+                cartItem.count--
+                updatePurchaseDetail()
             }.ignoreElement()
     }
 
-    fun refresh(){
+    fun refresh() {
         get()
     }
 
-    private fun updatePurchaseDetail(){
-        var totalPrice=0
-        var payablePrice=0
-        cartItemsLiveData.value?.let {cartItems->
-            cartItems.forEach {
-                totalPrice+=it.product.price*it.count
-                payablePrice+=(it.product.price-it.product.discount)*it.count
+    private fun updatePurchaseDetail() {
+        var totalPrice = 0
+        var payablePrice = 0
+        cartItemsLiveData.value?.let { cartItems ->
+            purchaseDetailLiveData.value?.let { purchaseDetail ->
+                cartItems.forEach {
+                    totalPrice += it.product.price * it.count
+                    payablePrice += (it.product.price - it.product.discount) * it.count
+                }
+
+                purchaseDetail.total_price = totalPrice
+                purchaseDetail.payable_price = payablePrice
+                purchaseDetailLiveData.postValue(purchaseDetail)
             }
         }
 
-        purchaseDetailLiveData.value?.let {purchaseDetail ->
-            purchaseDetail.total_price=totalPrice
-            purchaseDetail.payable_price=payablePrice
-            purchaseDetailLiveData.postValue(purchaseDetail)
-        }
     }
 }

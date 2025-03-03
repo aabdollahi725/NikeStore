@@ -11,6 +11,8 @@
         <item name="colorSecondary">@color/black</item>
         <item name="colorOnSecondary">@color/white</item>
 
+        <item name="windowBackgroundColorSub">#f8f8f8</item>
+
         <!--        error color-->
         <item name="colorError">@color/red</item>
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?windowBackgroundColorSub"
     tools:context=".feature.cart.CartFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -24,8 +25,13 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cartRv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_purchase_detail"
+        android:paddingTop="4dp"
+        android:clipToPadding="false"
+        android:paddingBottom="100dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton

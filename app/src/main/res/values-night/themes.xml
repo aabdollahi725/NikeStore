@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Base.Theme.NikeStore" parent="Theme.MaterialComponents.Light.NoActionBar">
-
         <!--        Primary brand color -->
         <item name="colorPrimary">@color/blue</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -10,12 +9,17 @@
         <item name="colorSecondary">@color/black</item>
         <item name="colorOnSecondary">@color/white</item>
 
+        <item name="windowBackgroundColorSub">#f8f8f8</item>
+
+        <!--        error color-->
+        <item name="colorError">@color/red</item>
+
         <!--        Surface -->
         <item name="colorOnSurface">@color/black</item>
 
         <!--        Status bar color-->
         <item name="android:statusBarColor">@color/gray</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">@color/gray</item>
+        <item name="android:windowLightStatusBar">true</item>
 
         <!--        font -->
         <item name="android:fontFamily">@font/primary_regular</item>
@@ -42,6 +46,8 @@
         <item name="android:lineSpacingExtra">6dp</item>
 
         <item name="android:includeFontPadding">false</item>
+
+        <item name="snackbarStyle">@style/Widget.NikeStore.Snackbar</item>
     </style>
 
     <style name="Theme.Nike.AuthTheme" parent="Base.Theme.NikeStore">
