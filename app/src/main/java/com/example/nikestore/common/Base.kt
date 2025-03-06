@@ -114,6 +114,22 @@ interface NikeView {
             }
         }
     }
+
+    fun showEmptyState(layoutResId:Int):View?{
+        rootView?.let {rootView->
+            viewContext?.let {
+                var emptyState =rootView.findViewById<View>(R.id.emptyStateRootView)
+                if(emptyState==null){
+                    emptyState=LayoutInflater.from(it).inflate(R.layout.view_empty_state,rootView,false)
+                    rootView.addView(emptyState)
+                }
+                emptyState.visibility=View.VISIBLE
+                return emptyState
+            }
+        }
+
+        return null
+    }
 }
 
 abstract class NikeViewModel : ViewModel() {

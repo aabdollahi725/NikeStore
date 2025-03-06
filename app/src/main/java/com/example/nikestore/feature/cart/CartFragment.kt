@@ -5,16 +5,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.nikestore.R
 import com.example.nikestore.common.EXTRA_KEY_DATA
 import com.example.nikestore.common.NikeCompletableObserver
 import com.example.nikestore.common.NikeFragment
 import com.example.nikestore.data.cart.CartItem
 import com.example.nikestore.data.product.Product
 import com.example.nikestore.databinding.FragmentCartBinding
+import com.example.nikestore.feature.auth.AuthActivity
 import com.example.nikestore.feature.product.ProductDetailActivity
 import com.example.nikestore.services.ImageLoadingService
+import com.google.android.material.button.MaterialButton
 import com.sevenlearn.nikestore.common.asyncNetWorkRequest
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -54,6 +59,26 @@ class CartFragment : NikeFragment(), CartAdapter.CartItemViewCallbacks {
             adapter?.let { cartAdapter ->
                 cartAdapter.purchaseDetail = it
                 cartAdapter.notifyItemChanged(cartAdapter.cartItems.size)
+            }
+        }
+
+        viewModel.emptyStateLiveData.observe(viewLifecycleOwner) {
+            val emptyState = showEmptyState(R.layout.view_empty_state)
+            if (it.mustShow) {
+                emptyState?.let { view ->
+                    view.findViewById<TextView>(R.id.emptyStateMessageTv).text =
+                        getString(it.messageResId)
+                    val ctaBtn = view.findViewById<MaterialButton>(R.id.ctaBtn)
+                    val emptyStateIv = view.findViewById<ImageView>(R.id.emptyStateIv)
+                    if (it.image != 0) emptyStateIv.setImageResource(it.image)
+                    ctaBtn.visibility = if (it.ctaMustShow) View.VISIBLE else View.GONE
+
+                    ctaBtn.setOnClickListener {
+                        startActivity(Intent(requireContext(), AuthActivity::class.java))
+                    }
+                }
+            } else {
+                emptyState?.findViewById<View>(R.id.emptyStateRootView)?.visibility = View.GONE
             }
         }
     }

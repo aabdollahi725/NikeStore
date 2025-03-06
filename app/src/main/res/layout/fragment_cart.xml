@@ -40,7 +40,7 @@
         android:layout_gravity="bottom"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:gravity="center"
         android:text="@string/pay"
         android:textAppearance="?textAppearanceHeadline6" />

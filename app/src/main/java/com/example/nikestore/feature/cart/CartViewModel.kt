@@ -1,20 +1,24 @@
 package com.example.nikestore.feature.cart
 
 import androidx.lifecycle.MutableLiveData
+import com.example.nikestore.R
 import com.example.nikestore.common.NikeSingleObserver
 import com.example.nikestore.common.NikeViewModel
 import com.example.nikestore.data.cart.CartItem
 import com.example.nikestore.data.cart.CartResponse
+import com.example.nikestore.data.cart.EmptyState
 import com.example.nikestore.data.cart.PurchaseDetail
 import com.example.nikestore.data.cart.repo.CartRepo
 import com.example.nikestore.data.user.TokenContainer
 import com.sevenlearn.nikestore.common.asyncNetWorkRequest
 import io.reactivex.Completable
+import timber.log.Timber
 
 class CartViewModel(private val repo: CartRepo) : NikeViewModel() {
 
     val cartItemsLiveData = MutableLiveData<List<CartItem>>()
     val purchaseDetailLiveData = MutableLiveData<PurchaseDetail>()
+    val emptyStateLiveData = MutableLiveData<EmptyState>()
 
     private fun get() {
         if (!TokenContainer.token.isNullOrEmpty()) {
@@ -30,16 +34,24 @@ class CartViewModel(private val repo: CartRepo) : NikeViewModel() {
                             cartItemsLiveData.value = t.cart_items
                             purchaseDetailLiveData.value =
                                 PurchaseDetail(t.payable_price, t.shipping_cost, t.total_price)
+                            emptyStateLiveData.value = EmptyState(false,image = R.drawable.ic_empty_cart)
+                        } else {
+                            emptyStateLiveData.value = EmptyState(true, R.string.cartEmptyState,image = R.drawable.ic_empty_cart)
                         }
                     }
                 })
+        } else {
+            emptyStateLiveData.value = EmptyState(true, R.string.cartLoginEmptyState, true,R.drawable.ic_login)
         }
     }
 
     fun removeCartItem(cartItem: CartItem): Completable {
         return repo.remove(cartItem.cart_item_id)
             .doAfterSuccess {
+                Timber.i(cartItemsLiveData.value?.size.toString())
                 updatePurchaseDetail()
+                if (cartItemsLiveData.value!!.isEmpty())
+                    emptyStateLiveData.postValue(EmptyState(true, R.string.cartEmptyState, image = R.drawable.ic_empty_cart))
             }.ignoreElement()
     }
 

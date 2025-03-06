@@ -47,4 +47,6 @@
     <string name="shippingCost">هزینه ارسال</string>
     <string name="totalPrice">مبلغ کل خرید</string>
     <string name="payablePrice">مبلغ نهایی</string>
+    <string name="cartLoginEmptyState">وارد حساب کاربری خود شوید</string>
+    <string name="cartEmptyState">هیچ خبری اینجا نیست!</string>
 </resources>
