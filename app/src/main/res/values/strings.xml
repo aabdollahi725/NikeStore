@@ -48,5 +48,5 @@
     <string name="totalPrice">مبلغ کل خرید</string>
     <string name="payablePrice">مبلغ نهایی</string>
     <string name="cartLoginEmptyState">وارد حساب کاربری خود شوید</string>
-    <string name="cartEmptyState">هیچ خبری اینجا نیست!</string>
+    <string name="cartEmptyState">هیچ خبری اینجا نیست!\n ابتدا محصولی را به  سبد خرید خود اضافه کنید</string>
 </resources>

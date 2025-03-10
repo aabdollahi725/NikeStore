@@ -34,14 +34,14 @@ class CartViewModel(private val repo: CartRepo) : NikeViewModel() {
                             cartItemsLiveData.value = t.cart_items
                             purchaseDetailLiveData.value =
                                 PurchaseDetail(t.payable_price, t.shipping_cost, t.total_price)
-                            emptyStateLiveData.value = EmptyState(false,image = R.drawable.ic_empty_cart)
+                            emptyStateLiveData.value = EmptyState(false)
                         } else {
-                            emptyStateLiveData.value = EmptyState(true, R.string.cartEmptyState,image = R.drawable.ic_empty_cart)
+                            emptyStateLiveData.value = EmptyState(true, R.string.cartEmptyState)
                         }
                     }
                 })
         } else {
-            emptyStateLiveData.value = EmptyState(true, R.string.cartLoginEmptyState, true,R.drawable.ic_login)
+            emptyStateLiveData.value = EmptyState(true, R.string.cartLoginEmptyState, true)
         }
     }
 
@@ -51,7 +51,7 @@ class CartViewModel(private val repo: CartRepo) : NikeViewModel() {
                 Timber.i(cartItemsLiveData.value?.size.toString())
                 updatePurchaseDetail()
                 if (cartItemsLiveData.value!!.isEmpty())
-                    emptyStateLiveData.postValue(EmptyState(true, R.string.cartEmptyState, image = R.drawable.ic_empty_cart))
+                    emptyStateLiveData.postValue(EmptyState(true, R.string.cartEmptyState))
             }.ignoreElement()
     }
 

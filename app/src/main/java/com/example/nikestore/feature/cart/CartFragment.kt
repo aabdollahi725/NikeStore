@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -63,14 +62,15 @@ class CartFragment : NikeFragment(), CartAdapter.CartItemViewCallbacks {
         }
 
         viewModel.emptyStateLiveData.observe(viewLifecycleOwner) {
-            val emptyState = showEmptyState(R.layout.view_empty_state)
+            val emptyState = showEmptyState(R.layout.view_cart_empty_state)
             if (it.mustShow) {
                 emptyState?.let { view ->
-                    view.findViewById<TextView>(R.id.emptyStateMessageTv).text =
+                    val emptyStateHintTv = view.findViewById<TextView>(R.id.emptyStateMessageTv)
+                    emptyStateHintTv.text =
                         getString(it.messageResId)
+                    emptyStateHintTv.textSize =
+                        if (getString(it.messageResId) == getString(R.string.cartLoginEmptyState)) 18F else 16F
                     val ctaBtn = view.findViewById<MaterialButton>(R.id.ctaBtn)
-                    val emptyStateIv = view.findViewById<ImageView>(R.id.emptyStateIv)
-                    if (it.image != 0) emptyStateIv.setImageResource(it.image)
                     ctaBtn.visibility = if (it.ctaMustShow) View.VISIBLE else View.GONE
 
                     ctaBtn.setOnClickListener {

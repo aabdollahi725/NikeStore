@@ -120,7 +120,7 @@ interface NikeView {
             viewContext?.let {
                 var emptyState =rootView.findViewById<View>(R.id.emptyStateRootView)
                 if(emptyState==null){
-                    emptyState=LayoutInflater.from(it).inflate(R.layout.view_empty_state,rootView,false)
+                    emptyState=LayoutInflater.from(it).inflate(R.layout.view_cart_empty_state,rootView,false)
                     rootView.addView(emptyState)
                 }
                 emptyState.visibility=View.VISIBLE
