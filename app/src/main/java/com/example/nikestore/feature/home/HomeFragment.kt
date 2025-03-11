@@ -20,6 +20,7 @@ import com.example.nikestore.data.product.SORT_POPULAR
 import com.example.nikestore.feature.common.ProductAdapter
 import com.example.nikestore.feature.common.VIEW_TYPE_ROUND
 import com.example.nikestore.feature.list.ProductListActivity
+import com.example.nikestore.feature.main.BannerAdapter
 import com.example.nikestore.feature.product.ProductDetailActivity
 import com.google.android.material.button.MaterialButton
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator

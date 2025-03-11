@@ -1,22 +1,43 @@
-package com.example.nikestore.feature.home
+package com.example.nikestore.feature.main
 
 import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import com.example.nikestore.R
 import com.example.nikestore.common.NikeActivity
+import com.example.nikestore.data.cart.CountResponse
+import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.color.MaterialColors
+import com.sevenlearn.nikestore.common.convertDpToPixel
 import com.sevenlearn.nikestore.common.setupWithNavController
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : NikeActivity() {
     private var currentNavController: LiveData<NavController>? = null
-
+    lateinit var  bottomNavigationView:BottomNavigationView
+    private val viewModel:MainViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        bottomNavigationView = findViewById(R.id.bottomNavigation)
+
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         } // Else, need to wait for onRestoreInstanceState
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onCartItemsCountChangesEvent(countResponse: CountResponse){
+        val badge=bottomNavigationView.getOrCreateBadge(R.id.cart)
+        badge.badgeGravity=BadgeDrawable.TOP_START
+        badge.backgroundColor=MaterialColors.getColor(bottomNavigationView,android.R.attr.colorPrimary)
+        badge.text= countResponse.count.toString()
+        badge.verticalOffset= convertDpToPixel(14.5F,this).toInt()
+        badge.isVisible=countResponse.count>0
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
@@ -31,7 +52,6 @@ class MainActivity : NikeActivity() {
      * Called on first creation and when restoring state.
      */
     private fun setupBottomNavigationBar() {
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigation)
 
         val navGraphIds = listOf(R.navigation.home, R.navigation.cart, R.navigation.profile)
 
@@ -48,5 +68,10 @@ class MainActivity : NikeActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return currentNavController?.value?.navigateUp() ?: false
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getCartItemsCount()
     }
 }

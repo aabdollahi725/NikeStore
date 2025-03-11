@@ -28,7 +28,7 @@
             android:name=".feature.product.comment.CommentListActivity"
             android:exported="false" />
         <activity
-            android:name=".feature.home.MainActivity"
+            android:name=".feature.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

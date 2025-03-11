@@ -1,4 +1,4 @@
-package com.example.nikestore.feature.home
+package com.example.nikestore.feature.main
 
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle

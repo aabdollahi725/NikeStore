@@ -6,12 +6,14 @@ import com.example.nikestore.common.NikeSingleObserver
 import com.example.nikestore.common.NikeViewModel
 import com.example.nikestore.data.cart.CartItem
 import com.example.nikestore.data.cart.CartResponse
+import com.example.nikestore.data.cart.CountResponse
 import com.example.nikestore.data.cart.EmptyState
 import com.example.nikestore.data.cart.PurchaseDetail
 import com.example.nikestore.data.cart.repo.CartRepo
 import com.example.nikestore.data.user.TokenContainer
 import com.sevenlearn.nikestore.common.asyncNetWorkRequest
 import io.reactivex.Completable
+import org.greenrobot.eventbus.EventBus
 import timber.log.Timber
 
 class CartViewModel(private val repo: CartRepo) : NikeViewModel() {
@@ -50,6 +52,13 @@ class CartViewModel(private val repo: CartRepo) : NikeViewModel() {
             .doAfterSuccess {
                 Timber.i(cartItemsLiveData.value?.size.toString())
                 updatePurchaseDetail()
+
+                val cartItemsCount=EventBus.getDefault().getStickyEvent(CountResponse::class.java)
+                cartItemsCount?.let {
+                    it.count--
+                    EventBus.getDefault().postSticky(it)
+                }
+
                 if (cartItemsLiveData.value!!.isEmpty())
                     emptyStateLiveData.postValue(EmptyState(true, R.string.cartEmptyState))
             }.ignoreElement()
