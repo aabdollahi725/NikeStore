@@ -36,7 +36,7 @@ class MainActivity : NikeActivity() {
         badge.badgeGravity=BadgeDrawable.TOP_START
         badge.backgroundColor=MaterialColors.getColor(bottomNavigationView,android.R.attr.colorPrimary)
         badge.text= countResponse.count.toString()
-        badge.verticalOffset= convertDpToPixel(14.5F,this).toInt()
+        badge.verticalOffset= convertDpToPixel(14F,this).toInt()
         badge.isVisible=countResponse.count>0
     }
 
