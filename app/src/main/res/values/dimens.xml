@@ -2,5 +2,6 @@
 <resources>
 
     <dimen name="authViewWidth">270dp</dimen>
+    <dimen name="cornerRadius">8dp</dimen>
 
 </resources>
