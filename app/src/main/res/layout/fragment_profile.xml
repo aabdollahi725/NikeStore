@@ -1,17 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".feature.profile.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="32dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_nike_logo"
+            app:shapeAppearance="@style/Avatar"
+            app:strokeColor="?dividerColor"
+            app:strokeWidth="1dp" />
+
+        <TextView
+            android:id="@+id/usernameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textAppearance="?textAppearanceHeadline6"
+            tools:text="کاربر مهمان" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:divider="@drawable/shape_divider"
+            android:orientation="vertical"
+            android:showDividers="middle|beginning|end">
+
+            <TextView
+                style="@style/ProfileScreenTextViews"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/profileTvsHeight"
+                android:drawableStart="@drawable/ic_favorites_22"
+                android:text="@string/favoritesList" />
+
+            <TextView
+                style="@style/ProfileScreenTextViews"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/profileTvsHeight"
+                android:drawableStart="@drawable/ic_order_history"
+                android:text="@string/orderHistory" />
+
+            <TextView
+                style="@style/ProfileScreenTextViews"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/profileTvsHeight"
+                android:drawableStart="@drawable/ic_settings"
+                android:text="@string/settings" />
+
+            <TextView
+                style="@style/ProfileScreenTextViews"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/profileTvsHeight"
+                tools:drawableStart="@drawable/ic_logout"
+                tools:text="@string/logout" />
+        </LinearLayout>
+    </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profile"
-        android:layout_gravity="center"
-        android:textAppearance="@style/TextAppearance.NikeStore.Headline6"/>
-
-
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="12dp"
+        android:text="@string/version"
+        android:textAppearance="?textAppearanceBody1"
+        app:fontFamily="@font/primary_regular_en_num" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

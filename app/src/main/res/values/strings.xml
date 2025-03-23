@@ -49,4 +49,9 @@
     <string name="payablePrice">مبلغ نهایی</string>
     <string name="cartLoginEmptyState">وارد حساب کاربری خود شوید</string>
     <string name="cartEmptyState">هیچ خبری اینجا نیست!\n ابتدا محصولی را به  سبد خرید خود اضافه کنید</string>
+    <string name="favoritesList">لیست علاقه مندی ها</string>
+    <string name="orderHistory">سوابق سفارش</string>
+    <string name="settings">تنظیمات</string>
+    <string name="logout">خروچ از حساب کاربری</string>
+    <string name="version">نسخه: 1.0.0</string>
 </resources>

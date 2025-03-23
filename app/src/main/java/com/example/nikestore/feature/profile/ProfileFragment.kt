@@ -9,12 +9,6 @@ import com.example.nikestore.common.NikeFragment
 
 
 class ProfileFragment : NikeFragment() {
-    // TODO: Rename and change types of parameters
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
