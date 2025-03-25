@@ -52,6 +52,8 @@
     <string name="favoritesList">لیست علاقه مندی ها</string>
     <string name="orderHistory">سوابق سفارش</string>
     <string name="settings">تنظیمات</string>
-    <string name="logout">خروچ از حساب کاربری</string>
+    <string name="logout">خروج از حساب کاربری</string>
     <string name="version">نسخه: 1.0.0</string>
+    <string name="guest">کاربر مهمان</string>
+    <string name="notifyLogout">از حساب خود خارج شدید</string>
 </resources>

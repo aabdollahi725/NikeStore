@@ -26,7 +26,7 @@
             android:id="@+id/usernameTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:textAppearance="?textAppearanceHeadline6"
             tools:text="کاربر مهمان" />
 
@@ -39,41 +39,53 @@
             android:showDividers="middle|beginning|end">
 
             <TextView
-                style="@style/ProfileScreenTextViews"
+                style="@style/ProfileLinks"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/profileTvsHeight"
+                android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_favorites_22"
                 android:text="@string/favoritesList" />
 
             <TextView
-                style="@style/ProfileScreenTextViews"
+                style="@style/ProfileLinks"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/profileTvsHeight"
+                android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_order_history"
                 android:text="@string/orderHistory" />
 
             <TextView
-                style="@style/ProfileScreenTextViews"
+                style="@style/ProfileLinks"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/profileTvsHeight"
+                android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_settings"
                 android:text="@string/settings" />
 
             <TextView
-                style="@style/ProfileScreenTextViews"
+                android:id="@+id/authTv"
+                style="@style/ProfileLinks"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/profileTvsHeight"
+                android:layout_height="wrap_content"
                 tools:drawableStart="@drawable/ic_logout"
                 tools:text="@string/logout" />
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="12dp"
-        android:text="@string/version"
-        android:textAppearance="?textAppearanceBody1"
-        app:fontFamily="@font/primary_regular_en_num" />
+        android:gravity="center_vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginEnd="12dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/version"
+            android:textAppearance="?textAppearanceBody1" />
+    </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

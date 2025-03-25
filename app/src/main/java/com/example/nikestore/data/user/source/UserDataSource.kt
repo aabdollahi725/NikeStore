@@ -10,4 +10,7 @@ interface UserDataSource {
     fun signup(username:String, password:String):Single<SignupTokenResponse>
     fun loadToken()
     fun saveToken(token:String, refreshToken:String?)
+    fun saveUserName(username: String)
+    fun getUserName():String
+    fun logout()
 }

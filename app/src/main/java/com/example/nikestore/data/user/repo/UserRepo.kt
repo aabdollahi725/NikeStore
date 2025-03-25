@@ -7,4 +7,6 @@ interface UserRepo {
     fun login(username:String, password:String):Completable
     fun signup(username:String, password:String):Completable
     fun loadToken()
+    fun getUserName():String
+    fun logout()
 }
