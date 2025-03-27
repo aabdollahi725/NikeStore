@@ -56,4 +56,6 @@
     <string name="version">نسخه: 1.0.0</string>
     <string name="guest">کاربر مهمان</string>
     <string name="notifyLogout">از حساب خود خارج شدید</string>
+    <string name="theme">ظاهر</string>
+    <string name="darkMode">حالت شب</string>
 </resources>
