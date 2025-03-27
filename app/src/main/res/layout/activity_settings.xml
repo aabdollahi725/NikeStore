@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.example.nikestore.view.NikeToolbar
+            android:id="@+id/toolbarView"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             app:nt_title="@string/settings"/>
@@ -53,6 +54,7 @@
                 />
 
                 <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/darkModeSwitch"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical|end"

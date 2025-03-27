@@ -13,4 +13,6 @@ interface UserDataSource {
     fun saveUserName(username: String)
     fun getUserName():String
     fun logout()
+    fun saveThemeState(isDarkMode: Boolean)
+    fun getThemeState(): Boolean
 }

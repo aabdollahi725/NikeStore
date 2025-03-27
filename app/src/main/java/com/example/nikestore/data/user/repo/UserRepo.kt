@@ -9,4 +9,6 @@ interface UserRepo {
     fun loadToken()
     fun getUserName():String
     fun logout()
+    fun saveThemeState(isDarkMode: Boolean)
+    fun getThemeState(): Boolean
 }

@@ -46,4 +46,12 @@ class UserRemoteDataSource(val apiService: ApiService) : UserDataSource {
     override fun logout() {
         TODO("Not yet implemented")
     }
+
+    override fun saveThemeState(isDarkMode: Boolean) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getThemeState(): Boolean {
+        TODO("Not yet implemented")
+    }
 }

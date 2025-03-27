@@ -1,6 +1,7 @@
 package com.example.nikestore.feature.main
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import com.example.nikestore.R
@@ -13,13 +14,13 @@ import com.sevenlearn.nikestore.common.convertDpToPixel
 import com.sevenlearn.nikestore.common.setupWithNavController
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : NikeActivity() {
     private var currentNavController: LiveData<NavController>? = null
-    lateinit var  bottomNavigationView:BottomNavigationView
-    private val viewModel:MainViewModel by viewModel()
+    lateinit var bottomNavigationView: BottomNavigationView
+    private val viewModel: MainViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,16 +29,19 @@ class MainActivity : NikeActivity() {
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         } // Else, need to wait for onRestoreInstanceState
+
+        AppCompatDelegate.setDefaultNightMode(if (viewModel.isDarkMode) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO)
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onCartItemsCountChangesEvent(countResponse: CountResponse){
-        val badge=bottomNavigationView.getOrCreateBadge(R.id.cart)
-        badge.badgeGravity=BadgeDrawable.TOP_START
-        badge.backgroundColor=MaterialColors.getColor(bottomNavigationView,android.R.attr.colorPrimary)
-        badge.text= countResponse.count.toString()
-        badge.verticalOffset= convertDpToPixel(14F,this).toInt()
-        badge.isVisible=countResponse.count>0
+    fun onCartItemsCountChangesEvent(countResponse: CountResponse) {
+        val badge = bottomNavigationView.getOrCreateBadge(R.id.cart)
+        badge.badgeGravity = BadgeDrawable.TOP_START
+        badge.backgroundColor =
+            MaterialColors.getColor(bottomNavigationView, android.R.attr.colorPrimary)
+        badge.text = countResponse.count.toString()
+        badge.verticalOffset = convertDpToPixel(14F, this).toInt()
+        badge.isVisible = countResponse.count > 0
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {

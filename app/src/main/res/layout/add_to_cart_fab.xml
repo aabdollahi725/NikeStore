@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="56dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:backgroundTint="?colorOnSurface"
+    android:backgroundTint="?colorPrimary"
     app:cardCornerRadius="28dp">
 
     <TextView
@@ -13,14 +13,14 @@
         android:text="@string/addToCart"
         android:layout_gravity="center"
         android:textAppearance="?textAppearanceHeadline6"
-        android:textColor="?colorOnSecondary"
+        android:textColor="?colorOnPrimary"
         />
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="42dp"
         android:layout_height="42dp"
-        android:indeterminateTint="?colorOnSecondary"
+        android:indeterminateTint="?colorOnPrimary"
         android:indeterminateTintMode="src_atop"
         android:visibility="gone"
         android:layout_gravity="center"

@@ -10,6 +10,7 @@ import com.example.nikestore.common.NikeFragment
 import com.example.nikestore.databinding.FragmentProfileBinding
 import com.example.nikestore.feature.auth.AuthActivity
 import com.example.nikestore.feature.main.MainActivity
+import com.example.nikestore.feature.settings.SettingsActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -26,6 +27,13 @@ class ProfileFragment : NikeFragment() {
         // Inflate the layout for this fragment
         _binding=FragmentProfileBinding.inflate(inflater,container,false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.settingsTv.setOnClickListener {
+            startActivity(Intent(requireContext(), SettingsActivity::class.java))
+        }
     }
 
     override fun onResume() {

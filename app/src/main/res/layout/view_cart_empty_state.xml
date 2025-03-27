@@ -12,7 +12,7 @@
         android:id="@+id/emptyStateIv"
         android:layout_width="280dp"
         android:layout_height="280dp"
-        android:src="@drawable/ic_empty_cart"
+        android:src="@drawable/ic_empty_state"
         app:layout_constraintBottom_toTopOf="@+id/emptyStateMessageTv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

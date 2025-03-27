@@ -29,6 +29,7 @@ import com.example.nikestore.feature.main.MainViewModel
 import com.example.nikestore.feature.product.ProductDetailViewModel
 import com.example.nikestore.feature.product.comment.CommentListViewModel
 import com.example.nikestore.feature.profile.ProfileViewModel
+import com.example.nikestore.feature.settings.SettingsViewModel
 import com.example.nikestore.services.FrescoImageLoadingService
 import com.example.nikestore.services.ImageLoadingService
 import com.example.nikestore.services.http.createInstanceFromApiService
@@ -90,7 +91,11 @@ class App : Application() {
             }
 
             viewModel {
-                MainViewModel(get())
+                SettingsViewModel(get())
+            }
+
+            viewModel {
+                MainViewModel(get(),get())
             }
 
             viewModel{

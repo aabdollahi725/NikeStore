@@ -16,9 +16,9 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_marginTop="32dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_nike_logo"
+            android:src="@drawable/ic_person"
             app:shapeAppearance="@style/Avatar"
+            app:contentPadding="12dp"
             app:strokeColor="?dividerColor"
             app:strokeWidth="1dp" />
 
@@ -53,6 +53,7 @@
                 android:text="@string/orderHistory" />
 
             <TextView
+                android:id="@+id/settingsTv"
                 style="@style/ProfileLinks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

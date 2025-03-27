@@ -3,23 +3,24 @@
     <style name="Base.Theme.NikeStore" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!--        Primary brand color -->
         <item name="colorPrimary">@color/blue</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/darkModeWhite</item>
 
         <!--        Secondary brand color-->
-        <item name="colorSecondary">@color/black</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondary">@color/blue</item>
+        <item name="colorOnSecondary">@color/black</item>
 
-        <item name="windowBackgroundColorSub">#f5f5f5</item>
+        <item name="android:colorBackground">@color/black</item>
+        <item name="colorSurface">@color/lightBlack</item>
+        <item name="windowBackgroundColorSub">@color/black</item>
 
         <!--        error color-->
         <item name="colorError">@color/red</item>
 
         <!--        Surface -->
-        <item name="colorOnSurface">@color/black</item>
+        <item name="colorOnSurface">@color/darkModeWhite</item>
 
         <!--        Status bar color-->
-        <item name="android:statusBarColor">@color/gray</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:statusBarColor">@color/black</item>
 
         <!--        font -->
         <item name="android:fontFamily">@font/primary_regular</item>
@@ -35,7 +36,8 @@
         <item name="bottomNavigationStyle">@style/MyBottomNavigation</item>
 
         <!--        divider color-->
-        <item name="dividerColor">@color/gray</item>
+        <item name="dividerColor">@color/lightBlack</item>
+        <item name="cartDividerColor">@color/black</item>
 
         <!--        text color secondary-->
         <item name="android:textColorSecondary">@color/darkGray</item>
@@ -46,15 +48,5 @@
         <item name="android:lineSpacingExtra">6dp</item>
 
         <item name="android:includeFontPadding">false</item>
-
-        <item name="snackbarStyle">@style/Widget.NikeStore.Snackbar</item>
-    </style>
-
-    <style name="Theme.Nike.AuthTheme" parent="Base.Theme.NikeStore">
-        <item name="android:statusBarColor">@color/black</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
-        <item name="android:windowBackground">@color/black</item>
-        <item name="colorOnSurface">@color/white</item>
-        <item name="android:textColorPrimary">?colorOnSurface</item>
     </style>
 </resources>

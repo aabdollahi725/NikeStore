@@ -52,4 +52,14 @@ class UserLocalDataSource(val sharedPreferences: SharedPreferences) : UserDataSo
             clear()
         }
     }
+
+    override fun saveThemeState(isDarkMode: Boolean) {
+        sharedPreferences.edit(){
+            putBoolean("dark_mode_on",isDarkMode)
+        }
+    }
+
+    override fun getThemeState(): Boolean {
+        return sharedPreferences.getBoolean("dark_mode_on",false)
+    }
 }
