@@ -17,6 +17,7 @@ import com.example.nikestore.data.product.Product
 import com.example.nikestore.databinding.FragmentCartBinding
 import com.example.nikestore.feature.auth.AuthActivity
 import com.example.nikestore.feature.product.ProductDetailActivity
+import com.example.nikestore.feature.shipping.ShippingActivity
 import com.example.nikestore.services.ImageLoadingService
 import com.google.android.material.button.MaterialButton
 import com.sevenlearn.nikestore.common.asyncNetWorkRequest
@@ -80,6 +81,12 @@ class CartFragment : NikeFragment(), CartAdapter.CartItemViewCallbacks {
             } else {
                 emptyState?.findViewById<View>(R.id.emptyStateRootView)?.visibility = View.GONE
             }
+        }
+
+        binding.payBtn.setOnClickListener {
+            startActivity(Intent(requireContext(), ShippingActivity::class.java).apply {
+                putExtra(EXTRA_KEY_DATA,viewModel.purchaseDetailLiveData.value)
+            })
         }
     }
 

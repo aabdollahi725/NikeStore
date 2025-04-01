@@ -13,6 +13,7 @@ import com.example.nikestore.common.NikeActivity
 import com.example.nikestore.databinding.ActivityCommentListBinding
 import com.example.nikestore.databinding.ActivitySettingsBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class SettingsActivity : NikeActivity() {
     val viewModel: SettingsViewModel by viewModel()
@@ -27,8 +28,10 @@ class SettingsActivity : NikeActivity() {
             finish()
         }
 
-        if(viewModel.isDarkMode)
+        if(viewModel.isDarkMode){
             binding.darkModeSwitch.isChecked=true
+            Timber.i(viewModel.isDarkMode.toString())
+        }
 
         binding.darkModeSwitch.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener{
             override fun onCheckedChanged(

@@ -58,4 +58,12 @@
     <string name="notifyLogout">از حساب خود خارج شدید</string>
     <string name="theme">ظاهر</string>
     <string name="darkMode">حالت شب</string>
+    <string name="shippingToolbarTitle">تحویل گیرنده و شیوه پرداخت</string>
+    <string name="firstName">نام</string>
+    <string name="lastName">نام خانوادگی</string>
+    <string name="postalCode">کد پستی</string>
+    <string name="phoneNumber">شماره موبایل</string>
+    <string name="address">آدرس</string>
+    <string name="onlinePayment">پرداخت اینترنتی</string>
+    <string name="cashOnDelivery">پرداخت در محل</string>
 </resources>

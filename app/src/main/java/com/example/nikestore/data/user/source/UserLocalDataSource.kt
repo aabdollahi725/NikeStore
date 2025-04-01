@@ -49,7 +49,9 @@ class UserLocalDataSource(val sharedPreferences: SharedPreferences) : UserDataSo
 
     override fun logout() {
         sharedPreferences.edit() {
-            clear()
+            remove("username")
+            remove("access_token")
+            remove("refresh_token")
         }
     }
 
