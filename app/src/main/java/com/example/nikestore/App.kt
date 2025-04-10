@@ -8,6 +8,10 @@ import com.example.nikestore.data.banner.source.BannerRemoteDataSource
 import com.example.nikestore.data.cart.repo.CartRepo
 import com.example.nikestore.data.cart.repo.CartRepoImpl
 import com.example.nikestore.data.cart.source.CartRemoteDataSource
+import com.example.nikestore.data.checkout.repo.OrderRepo
+import com.example.nikestore.data.checkout.repo.OrderRepoImpl
+import com.example.nikestore.data.checkout.source.OrderDataSource
+import com.example.nikestore.data.checkout.source.OrderRemoteDataSource
 import com.example.nikestore.data.comment.repo.CommentRepository
 import com.example.nikestore.data.comment.repo.CommentRepositoryImpl
 import com.example.nikestore.data.comment.source.CommentRemoteDataSource
@@ -22,6 +26,7 @@ import com.example.nikestore.data.user.source.UserLocalDataSource
 import com.example.nikestore.data.user.source.UserRemoteDataSource
 import com.example.nikestore.feature.auth.AuthViewModel
 import com.example.nikestore.feature.cart.CartViewModel
+import com.example.nikestore.feature.checkout.CheckoutViewModel
 import com.example.nikestore.feature.common.ProductAdapter
 import com.example.nikestore.feature.home.HomeViewModel
 import com.example.nikestore.feature.list.ProductListViewModel
@@ -80,13 +85,15 @@ class App : Application() {
             single <SharedPreferences>{
                 this@App.getSharedPreferences("app_settings", MODE_PRIVATE)
             }
+
             single<UserRepo>{
                 UserRepoImpl(UserRemoteDataSource(get()), UserLocalDataSource(get()))
             }
 
-            single<UserLocalDataSource>{
-                UserLocalDataSource(get())
+            single<OrderRepo>{
+                OrderRepoImpl(OrderRemoteDataSource(get()))
             }
+
             viewModel {
                 HomeViewModel(get(), get())
             }
@@ -96,7 +103,11 @@ class App : Application() {
             }
 
             viewModel {
-                ShippingViewModel(get())
+                ShippingViewModel(get(),get())
+            }
+
+            viewModel {
+                CheckoutViewModel(get(),get())
             }
 
             viewModel {

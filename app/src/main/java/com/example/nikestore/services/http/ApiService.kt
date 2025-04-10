@@ -5,6 +5,8 @@ import com.example.nikestore.data.cart.AddToCarTResponse
 import com.example.nikestore.data.cart.CartResponse
 import com.example.nikestore.data.cart.CountResponse
 import com.example.nikestore.data.cart.MessageResponse
+import com.example.nikestore.data.checkout.Checkout
+import com.example.nikestore.data.checkout.SubmitOrderResult
 import com.example.nikestore.data.user.SignupTokenResponse
 import com.example.nikestore.data.comment.Comment
 import com.example.nikestore.data.product.Product
@@ -58,6 +60,12 @@ interface ApiService {
 
     @POST("cart/changeCount")
     fun changeCartItemCount(@Body jsonObject: JsonObject):Single<AddToCarTResponse>
+
+    @POST("order/submit")
+    fun submitOrder(@Body jsonObject: JsonObject): Single<SubmitOrderResult>
+
+    @GET("order/checkout")
+    fun checkoutOrder(@Query("order_id") orderId:Int): Single<Checkout>
 }
 
 fun createInstanceFromApiService(): ApiService {

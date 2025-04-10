@@ -16,6 +16,21 @@
         android:theme="@style/Theme.NikeStore"
         tools:targetApi="31">
         <activity
+            android:name=".feature.favorites.FavoritesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.checkout.CheckoutActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="nike" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".feature.shipping.ShippingActivity"
             android:exported="false" />
         <activity

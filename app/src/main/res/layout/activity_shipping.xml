@@ -29,63 +29,90 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/firstNameEtl"
                 style="@style/ShippingTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/firstName">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/firstNameEt"
                     style="@style/ShippingTextInputEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:text="احمدرضا" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/lastNameEtl"
                 style="@style/ShippingTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/lastName">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/lastNameEt"
                     style="@style/ShippingTextInputEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:text="عبداللهی" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/postalCodeEtl"
                 style="@style/ShippingTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/postalCode">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postalCodeEt"
                     style="@style/ShippingTextInputEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:maxLength="10"
+                    android:text="1234567890" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/mobileEtl"
                 style="@style/ShippingTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/phoneNumber">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mobileEt"
                     style="@style/ShippingTextInputEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:maxLength="11"
+                    android:text="09369019858" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/addressEtl"
                 style="@style/ShippingTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/address">
+                android:hint="@string/address"
+                app:counterTextAppearance="?textAppearanceBody2"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:helperTextEnabled="true"
+                app:helperTextTextAppearance="?textAppearanceBody2"
+                app:helperText="@string/addressRequirement">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/addressEt"
                     style="@style/ShippingTextInputEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="تهران چهارره یافت آباد بلوار معلم خیابان بهار" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <include
@@ -101,25 +128,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:orientation="horizontal"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/onlinePaymentBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="56dp"
+                    android:layout_height="?actionBarSize"
+                    android:layout_marginEnd="16dp"
                     android:text="@string/onlinePayment"
+                    android:textAppearance="?textAppearanceBody1"
                     app:cornerRadius="6dp"
-                    android:layout_marginEnd="16dp"/>
+                    app:fontFamily="@font/primary_bold" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/codBtn"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="56dp"
+                    android:layout_height="?actionBarSize"
                     android:text="@string/cashOnDelivery"
-                    app:cornerRadius="6dp" />
+                    android:textAppearance="?textAppearanceBody1"
+                    app:cornerRadius="6dp"
+                    app:fontFamily="@font/primary_bold" />
 
             </LinearLayout>
         </LinearLayout>

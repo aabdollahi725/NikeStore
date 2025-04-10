@@ -66,4 +66,15 @@
     <string name="address">آدرس</string>
     <string name="onlinePayment">پرداخت اینترنتی</string>
     <string name="cashOnDelivery">پرداخت در محل</string>
+    <string name="checkoutToolbarTitle">رسید پرداخت</string>
+    <string name="returnToHome">بازگشت به صفحه اصلی</string>
+    <string name="orderStatus">وضعیت سفارش</string>
+    <string name="price">مبلغ</string>
+    <string name="paymentSuccess">پرداخت موفق</string>
+    <string name="paymentFailed">پرداخت ناموفق</string>
+    <string name="addressRequirement">آدرس بین 20 تا 50 حرف باشد</string>
+    <string name="enterFirstName">نام را وارد نمایید</string>
+    <string name="enterLastName">نام خانوادگی را وارد نمایید</string>
+    <string name="postalCodeError">کد پستی باید 10 رقم باشد</string>
+    <string name="mobileError">شماره موبایل باید 11 رقم باشد</string>
 </resources>

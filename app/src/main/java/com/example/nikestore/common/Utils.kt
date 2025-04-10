@@ -1,25 +1,24 @@
 package com.sevenlearn.nikestore.common
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Resources
+import android.net.Uri
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
 import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.view.View
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.dynamicanimation.animation.DynamicAnimation
 import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.dynamicanimation.animation.SpringForce
-import com.example.nikestore.data.banner.Banner
-import com.example.nikestore.data.comment.Author
-import com.example.nikestore.data.comment.Comment
-import com.example.nikestore.data.product.Product
 import io.reactivex.Completable
-import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
+import androidx.core.net.toUri
 
 fun convertDpToPixel(dp: Float, context: Context?): Float {
     return if (context != null) {
@@ -91,6 +90,21 @@ fun <T> Single<T>.asyncNetWorkRequest(): Single<T> {
     return subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 }
 
-fun Completable.asyncNetWorkRequest():Completable{
+fun Completable.asyncNetWorkRequest(): Completable {
     return subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+}
+
+fun openUrlInCustomTab(context: Context, url: String) {
+    try {
+        val uri = url.toUri()
+        val intentBuilder = CustomTabsIntent.Builder()
+        intentBuilder.setStartAnimations(context, android.R.anim.fade_in, android.R.anim.fade_out)
+        intentBuilder.setExitAnimations(context, android.R.anim.fade_in, android.R.anim.fade_out)
+        val customTabsIntent = intentBuilder.build()
+        customTabsIntent.intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+        customTabsIntent.launchUrl(context, uri)
+
+    } catch (e: Exception) {
+
+    }
 }

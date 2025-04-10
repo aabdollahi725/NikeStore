@@ -68,6 +68,7 @@ dependencies {
     implementation (libs.fresco)
     implementation(libs.androidx.dynamicanimation)
     implementation(libs.eventbus)
+    implementation(libs.androidx.browser)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
