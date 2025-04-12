@@ -6,6 +6,7 @@ import com.example.nikestore.common.NikeSingleObserver
 import com.example.nikestore.common.NikeViewModel
 import com.example.nikestore.data.product.Product
 import com.example.nikestore.data.product.repo.ProductRepository
+import com.example.nikestore.data.user.repo.UserRepo
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 

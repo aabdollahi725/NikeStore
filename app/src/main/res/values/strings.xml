@@ -77,4 +77,7 @@
     <string name="enterLastName">نام خانوادگی را وارد نمایید</string>
     <string name="postalCodeError">کد پستی باید 10 رقم باشد</string>
     <string name="mobileError">شماره موبایل باید 11 رقم باشد</string>
+    <string name="removeFavoriteItemHint">برای حذف محصول از لیست علاقه مندی ها، انگشت خود را روی آن نگه دارید</string>
+    <string name="iUnderstand">متوجه شدم</string>
+    <string name="tooltip">راهنما</string>
 </resources>
