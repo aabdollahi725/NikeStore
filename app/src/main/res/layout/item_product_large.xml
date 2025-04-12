@@ -60,14 +60,13 @@
 
     <ImageView
         android:id="@+id/favoriteBtn"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
         android:layout_marginStart="14dp"
         android:layout_marginTop="14dp"
-        app:tint="@color/black"
         android:background="@drawable/background_favorite"
-        android:padding="12dp"
+        android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_favorites_18" />
+        app:srcCompat="@drawable/ic_favorites_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

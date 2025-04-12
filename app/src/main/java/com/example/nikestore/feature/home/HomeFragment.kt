@@ -134,6 +134,7 @@ class HomeFragment : NikeFragment(), ProductAdapter.ProductOnClickListener, View
             binding.showLatestProducts.setOnClickListener(this)
 
             binding.showPopularProducts.setOnClickListener(this)
+
         }
     }
 

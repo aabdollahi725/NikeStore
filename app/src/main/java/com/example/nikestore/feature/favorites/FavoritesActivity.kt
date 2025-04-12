@@ -47,4 +47,9 @@ class FavoritesActivity : NikeActivity(), FavoriteAdapter.FavoriteItemEventListe
     override fun onFavoriteItemLongClick(product: Product) {
         viewModel.removeFromFavorites(product)
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getFavoriteProducts()
+    }
 }

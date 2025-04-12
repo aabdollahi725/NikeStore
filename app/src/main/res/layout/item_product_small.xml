@@ -20,8 +20,8 @@
         android:id="@+id/titleTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:ellipsize="end"
         android:maxLines="2"
         android:minLines="2"
@@ -63,6 +63,5 @@
         android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/black"
-        app:srcCompat="@drawable/ic_favorites_18" />
+        app:srcCompat="@drawable/ic_favorites_20" />
 </androidx.constraintlayout.widget.ConstraintLayout>

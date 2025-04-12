@@ -43,7 +43,7 @@ class ProductDetailActivity : NikeActivity() {
             binding.currentPriceTv.text = formatPrice(product.price)
             binding.previousPriceTv.text = formatPrice(product.previous_price)
             binding.previousPriceTv.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-            binding.favoriteBtn.setImageResource(if (product.isFavorite) R.drawable.ic_favorites_black_24 else R.drawable.ic_favorites_24)
+            binding.favoriteBtn.setImageResource(if (product.isFavorite) R.drawable.ic_favorites_fill_24 else R.drawable.ic_favorites_24)
 
             binding.favoriteBtn.setOnClickListener {
                 product.isFavorite = !product.isFavorite
@@ -52,7 +52,7 @@ class ProductDetailActivity : NikeActivity() {
                 }else{
                     productDetailViewModel.removeFromFavorites(product)
                 }
-                binding.favoriteBtn.setImageResource(if (product.isFavorite) R.drawable.ic_favorites_black_24 else R.drawable.ic_favorites_24)
+                binding.favoriteBtn.setImageResource(if (product.isFavorite) R.drawable.ic_favorites_fill_24 else R.drawable.ic_favorites_24)
             }
         }
 

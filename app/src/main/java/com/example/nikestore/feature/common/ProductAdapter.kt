@@ -72,7 +72,7 @@ class ProductAdapter(
             previousPriceTv.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             currentPriceTv.text = formatPrice(product.price)
             imageLoadingService.load(productIv, product.image)
-            favoriteBtn.setImageResource(if (product.isFavorite) R.drawable.ic_favorites_black_18 else R.drawable.ic_favorites_18)
+            favoriteBtn.setImageResource(if (product.isFavorite) R.drawable.ic_favorites_fill_22 else R.drawable.ic_favorites_20)
             itemView.implementSpringAnimationTrait()
             itemView.setOnClickListener {
                 productOnClickListener?.onClick(product)

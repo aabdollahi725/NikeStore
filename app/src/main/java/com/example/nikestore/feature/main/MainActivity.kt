@@ -71,7 +71,7 @@ class MainActivity : NikeActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return currentNavController?.value?.navigateUp() ?: false
+        return currentNavController?.value?.navigateUp() == true
     }
 
     override fun onResume() {
