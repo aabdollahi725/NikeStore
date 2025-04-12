@@ -9,7 +9,7 @@ import com.example.nikestore.R
 import com.example.nikestore.common.NikeCompletableObserver
 import com.example.nikestore.common.NikeFragment
 import com.example.nikestore.databinding.FragmentLoginBinding
-import com.sevenlearn.nikestore.common.asyncNetWorkRequest
+import com.sevenlearn.nikestore.common.asyncRequest
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : NikeFragment() {
@@ -44,7 +44,7 @@ class LoginFragment : NikeFragment() {
                     binding.loginUserNameEt.text.toString(),
                     binding.loginPasswordEt.text.toString()
                 )
-                    .asyncNetWorkRequest()
+                    .asyncRequest()
                     .subscribe(object : NikeCompletableObserver(viewModel.compositeDisposable) {
                         override fun onComplete() {
                             requireActivity().finish()

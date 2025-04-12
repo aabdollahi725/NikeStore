@@ -2,6 +2,7 @@ package com.example.nikestore
 
 import android.app.Application
 import android.content.SharedPreferences
+import androidx.room.Room
 import com.example.nikestore.data.banner.repo.BannerRepository
 import com.example.nikestore.data.banner.repo.BannerRepositoryImpl
 import com.example.nikestore.data.banner.source.BannerRemoteDataSource
@@ -15,6 +16,7 @@ import com.example.nikestore.data.checkout.source.OrderRemoteDataSource
 import com.example.nikestore.data.comment.repo.CommentRepository
 import com.example.nikestore.data.comment.repo.CommentRepositoryImpl
 import com.example.nikestore.data.comment.source.CommentRemoteDataSource
+import com.example.nikestore.data.product.db.AppDataBase
 import com.example.nikestore.data.product.repo.ProductRepository
 import com.example.nikestore.data.product.repo.ProductRepositoryImpl
 import com.example.nikestore.data.product.source.ProductLocalDataSource
@@ -28,6 +30,7 @@ import com.example.nikestore.feature.auth.AuthViewModel
 import com.example.nikestore.feature.cart.CartViewModel
 import com.example.nikestore.feature.checkout.CheckoutViewModel
 import com.example.nikestore.feature.common.ProductAdapter
+import com.example.nikestore.feature.favorites.FavoritesViewModel
 import com.example.nikestore.feature.home.HomeViewModel
 import com.example.nikestore.feature.list.ProductListViewModel
 import com.example.nikestore.feature.main.MainViewModel
@@ -59,7 +62,7 @@ class App : Application() {
             }
 
             factory<ProductRepository> {
-                ProductRepositoryImpl(ProductLocalDataSource(), ProductRemoteDataSource(get()))
+                ProductRepositoryImpl(get<AppDataBase>().productDao(), ProductRemoteDataSource(get()))
             }
 
             factory<BannerRepository> {
@@ -68,6 +71,10 @@ class App : Application() {
 
             single<ImageLoadingService> {
                 FrescoImageLoadingService()
+            }
+
+            single {
+                Room.databaseBuilder(this@App, AppDataBase::class.java,"db_app").build()
             }
 
             factory <ProductAdapter> { (viewType:Int)->
@@ -111,11 +118,15 @@ class App : Application() {
             }
 
             viewModel {
+                FavoritesViewModel(get())
+            }
+
+            viewModel {
                 MainViewModel(get(),get())
             }
 
             viewModel{
-                ProductDetailViewModel(get(),get(),get())
+                ProductDetailViewModel(get(),get(),get(),get())
             }
 
             viewModel{

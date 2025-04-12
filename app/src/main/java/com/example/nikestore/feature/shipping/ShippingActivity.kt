@@ -2,10 +2,7 @@ package com.example.nikestore.feature.shipping
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
-import androidx.core.content.ContextCompat
 import com.example.nikestore.R
 import com.example.nikestore.common.EXTRA_KEY_ID
 import com.example.nikestore.common.NikeActivity
@@ -13,8 +10,7 @@ import com.example.nikestore.common.NikeSingleObserver
 import com.example.nikestore.data.checkout.SubmitOrderResult
 import com.example.nikestore.databinding.ActivityShippingBinding
 import com.example.nikestore.feature.checkout.CheckoutActivity
-import com.google.android.material.color.MaterialColors
-import com.sevenlearn.nikestore.common.asyncNetWorkRequest
+import com.sevenlearn.nikestore.common.asyncRequest
 import com.sevenlearn.nikestore.common.formatPrice
 import com.sevenlearn.nikestore.common.openUrlInCustomTab
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -48,7 +44,7 @@ class ShippingActivity : NikeActivity() {
                     binding.mobileEt.text.toString(),
                     binding.addressEt.text.toString(),
                     if(it.id==R.id.codBtn) PAYMENT_METHOD_COD else PAYMENT_METHOD_ONLINE
-                ).asyncNetWorkRequest()
+                ).asyncRequest()
                     .subscribe(object :
                         NikeSingleObserver<SubmitOrderResult>(viewModel.compositeDisposable) {
                         override fun onSuccess(t: SubmitOrderResult) {

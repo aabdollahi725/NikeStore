@@ -3,14 +3,11 @@ package com.example.nikestore.feature.shipping
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import com.example.nikestore.common.EXTRA_KEY_DATA
-import com.example.nikestore.common.NikeSingleObserver
 import com.example.nikestore.common.NikeViewModel
 import com.example.nikestore.data.cart.PurchaseDetail
 import com.example.nikestore.data.checkout.SubmitOrderResult
 import com.example.nikestore.data.checkout.repo.OrderRepo
-import com.sevenlearn.nikestore.common.asyncNetWorkRequest
 import io.reactivex.Single
-import io.reactivex.SingleObserver
 
 const val PAYMENT_METHOD_COD="cash_on_delivery"
 const val PAYMENT_METHOD_ONLINE="online"

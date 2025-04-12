@@ -4,6 +4,7 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -62,7 +63,8 @@ class ProductAdapter(
         val titleTv: TextView = itemView.findViewById(R.id.titleTv)
         val previousPriceTv: TextView = itemView.findViewById(R.id.previousTv)
         val currentPriceTv: TextView = itemView.findViewById(R.id.currentPriceTv)
-        val productIv: NikeImageView = itemView.findViewById(R.id.productIv)
+        val productIv: NikeImageView = itemView.findViewById(R.id.favoriteProductIv)
+        val favoriteBtn: ImageView = itemView.findViewById(R.id.favoriteBtn)
 
         fun bindProduct(product: Product) {
             titleTv.text = product.title
@@ -70,14 +72,22 @@ class ProductAdapter(
             previousPriceTv.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             currentPriceTv.text = formatPrice(product.price)
             imageLoadingService.load(productIv, product.image)
+            favoriteBtn.setImageResource(if (product.isFavorite) R.drawable.ic_favorites_black_18 else R.drawable.ic_favorites_18)
             itemView.implementSpringAnimationTrait()
             itemView.setOnClickListener {
                 productOnClickListener?.onClick(product)
+            }
+
+            favoriteBtn.setOnClickListener {
+                product.isFavorite = !product.isFavorite
+                notifyItemChanged(bindingAdapterPosition)
+                productOnClickListener?.onFavoriteBtnClick(product)
             }
         }
     }
 
     interface ProductOnClickListener {
         fun onClick(product: Product)
+        fun onFavoriteBtnClick(product: Product)
     }
 }

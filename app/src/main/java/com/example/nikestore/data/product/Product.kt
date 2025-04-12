@@ -1,17 +1,23 @@
 package com.example.nikestore.data.product
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
+@Entity(tableName = "favorites")
 @Parcelize
 data class Product(
-    val discount: Int,
-    val id: Int,
-    val image: String,
-    val previous_price: Int,
-    val price: Int,
-    val status: Int,
-    val title: String
+    var discount: Int,
+    @PrimaryKey(autoGenerate = false)
+    var id: Int,
+    var image: String,
+    var previous_price: Int,
+    var price: Int,
+    var status: Int,
+    var title: String,
+    var isFavorite: Boolean
 ) : Parcelable
 
 const val SORT_NEWEST=0

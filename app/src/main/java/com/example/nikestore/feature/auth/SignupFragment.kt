@@ -1,7 +1,6 @@
 package com.example.nikestore.feature.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import com.example.nikestore.R
 import com.example.nikestore.common.NikeCompletableObserver
 import com.example.nikestore.common.NikeFragment
 import com.example.nikestore.databinding.FragmentSignupBinding
-import com.sevenlearn.nikestore.common.asyncNetWorkRequest
+import com.sevenlearn.nikestore.common.asyncRequest
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignupFragment : NikeFragment() {
@@ -42,7 +41,7 @@ class SignupFragment : NikeFragment() {
                     binding.signupUserNameEt.text.toString(),
                     binding.signupPasswordEt.text.toString()
                 )
-                    .asyncNetWorkRequest()
+                    .asyncRequest()
                     .subscribe(object : NikeCompletableObserver(viewModel.compositeDisposable) {
                         override fun onComplete() {
                             requireActivity().finish()

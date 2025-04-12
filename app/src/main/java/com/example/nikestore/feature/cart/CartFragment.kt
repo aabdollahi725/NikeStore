@@ -20,7 +20,7 @@ import com.example.nikestore.feature.product.ProductDetailActivity
 import com.example.nikestore.feature.shipping.ShippingActivity
 import com.example.nikestore.services.ImageLoadingService
 import com.google.android.material.button.MaterialButton
-import com.sevenlearn.nikestore.common.asyncNetWorkRequest
+import com.sevenlearn.nikestore.common.asyncRequest
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -102,7 +102,7 @@ class CartFragment : NikeFragment(), CartAdapter.CartItemViewCallbacks {
 
     override fun onRemoveBtnClick(cartItem: CartItem) {
         viewModel.removeCartItem(cartItem)
-            .asyncNetWorkRequest()
+            .asyncRequest()
             .subscribe(object : NikeCompletableObserver(viewModel.compositeDisposable) {
                 override fun onComplete() {
                     adapter?.removeItem(cartItem)
@@ -112,7 +112,7 @@ class CartFragment : NikeFragment(), CartAdapter.CartItemViewCallbacks {
 
     override fun onIncreaseBtnClick(cartItem: CartItem) {
         viewModel.increaseItemCount(cartItem)
-            .asyncNetWorkRequest()
+            .asyncRequest()
             .subscribe(object : NikeCompletableObserver(viewModel.compositeDisposable) {
                 override fun onComplete() {
                     adapter?.increaseOrDecreaseItemCount(cartItem)
@@ -127,7 +127,7 @@ class CartFragment : NikeFragment(), CartAdapter.CartItemViewCallbacks {
 
     override fun onDecreaseBtnClick(cartItem: CartItem) {
         viewModel.decreaseItemCount(cartItem)
-            .asyncNetWorkRequest()
+            .asyncRequest()
             .subscribe(object : NikeCompletableObserver(viewModel.compositeDisposable) {
                 override fun onComplete() {
                     adapter?.increaseOrDecreaseItemCount(cartItem)

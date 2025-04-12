@@ -2,6 +2,8 @@ package com.example.nikestore.common
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,6 +61,11 @@ abstract class NikeActivity : AppCompatActivity(), NikeView {
     override fun onStart() {
         super.onStart()
         EventBus.getDefault().register(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        window.decorView.layoutDirection=View.LAYOUT_DIRECTION_RTL
+        super.onCreate(savedInstanceState)
     }
 
     override fun onStop() {

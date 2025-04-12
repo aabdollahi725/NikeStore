@@ -3,7 +3,6 @@ package com.sevenlearn.nikestore.common
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
-import android.net.Uri
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
 import android.util.DisplayMetrics
@@ -86,11 +85,11 @@ fun View.implementSpringAnimationTrait() {
     }
 }
 
-fun <T> Single<T>.asyncNetWorkRequest(): Single<T> {
+fun <T> Single<T>.asyncRequest(): Single<T> {
     return subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 }
 
-fun Completable.asyncNetWorkRequest(): Completable {
+fun Completable.asyncRequest(): Completable {
     return subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 }
 

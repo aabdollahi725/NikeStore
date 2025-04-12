@@ -3,19 +3,24 @@ package com.example.nikestore.feature.product
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import com.example.nikestore.common.EXTRA_KEY_DATA
+import com.example.nikestore.common.NikeCompletableObserver
 import com.example.nikestore.common.NikeSingleObserver
 import com.example.nikestore.common.NikeViewModel
 import com.example.nikestore.data.cart.repo.CartRepo
 import com.example.nikestore.data.comment.Comment
 import com.example.nikestore.data.comment.repo.CommentRepository
 import com.example.nikestore.data.product.Product
-import com.sevenlearn.nikestore.common.asyncNetWorkRequest
+import com.example.nikestore.data.product.repo.ProductRepository
+import com.sevenlearn.nikestore.common.asyncRequest
 import io.reactivex.Completable
+import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 
 class ProductDetailViewModel(
     savedStateHandle: SavedStateHandle,
     commentRepository: CommentRepository,
-    val cartRepo: CartRepo
+    private val cartRepo: CartRepo,
+    private val productRepository: ProductRepository
 ) :
     NikeViewModel() {
 
@@ -26,7 +31,7 @@ class ProductDetailViewModel(
     init {
         progressBarLiveData.value = true
         productLiveData.value = savedStateHandle[EXTRA_KEY_DATA]
-        commentRepository.getAll(productLiveData.value!!.id).asyncNetWorkRequest()
+        commentRepository.getAll(productLiveData.value!!.id).asyncRequest()
             .doFinally {
                 progressBarLiveData.value = false
             }
@@ -42,6 +47,26 @@ class ProductDetailViewModel(
         return cartRepo.addToCart(productLiveData.value!!.id).doFinally {
             addToCartProgressBarLiveData.postValue(false)
         }.ignoreElement()
+    }
+
+    fun addToFavorites(product: Product){
+        productRepository.addToFavorites(product)
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : NikeCompletableObserver(compositeDisposable){
+                override fun onComplete() {
+                    Timber.i("addToFavorites completed")
+                }
+            })
+    }
+
+    fun removeFromFavorites(product: Product){
+        productRepository.deleteFavoriteProduct(product)
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : NikeCompletableObserver(compositeDisposable){
+                override fun onComplete() {
+                    Timber.i("removeFromFavorites completed")
+                }
+            })
     }
 
 }

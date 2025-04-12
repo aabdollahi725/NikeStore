@@ -39,10 +39,11 @@
             android:showDividers="middle|beginning|end">
 
             <TextView
+                android:id="@+id/favoritesListBtn"
                 style="@style/ProfileLinks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_favorites_22"
+                android:drawableStart="@drawable/ic_favorites_24"
                 android:text="@string/favoritesList" />
 
             <TextView
@@ -53,7 +54,7 @@
                 android:text="@string/orderHistory" />
 
             <TextView
-                android:id="@+id/settingsTv"
+                android:id="@+id/settingsBtn"
                 style="@style/ProfileLinks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,7 +62,7 @@
                 android:text="@string/settings" />
 
             <TextView
-                android:id="@+id/authTv"
+                android:id="@+id/authBtn"
                 style="@style/ProfileLinks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

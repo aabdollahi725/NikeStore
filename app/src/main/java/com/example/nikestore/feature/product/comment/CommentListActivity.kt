@@ -14,6 +14,7 @@ class CommentListActivity : NikeActivity() {
     val commentListViewModel: CommentListViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = ActivityCommentListBinding.inflate(layoutInflater)
         setContentView(binding.root)

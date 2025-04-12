@@ -8,7 +8,7 @@
     android:layout_marginBottom="6dp">
 
     <com.example.nikestore.view.NikeImageView
-        android:id="@+id/productIv"
+        android:id="@+id/favoriteProductIv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,7 +53,7 @@
         android:layout_marginBottom="16dp"
         android:textAppearance="?textAppearanceHeadline6"
         android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="@+id/productIv"
+        app:layout_constraintBottom_toBottomOf="@+id/favoriteProductIv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="20620" />
@@ -69,5 +69,5 @@
         android:padding="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_favorites" />
+        app:srcCompat="@drawable/ic_favorites_18" />
 </androidx.constraintlayout.widget.ConstraintLayout>

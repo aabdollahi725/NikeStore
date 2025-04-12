@@ -9,7 +9,7 @@
     android:paddingBottom="12dp">
 
     <com.example.nikestore.view.NikeImageView
-        android:id="@+id/productIv"
+        android:id="@+id/favoriteProductIv"
         android:layout_width="0dp"
         android:layout_height="186dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,8 +28,8 @@
         android:minLines="2"
         android:textAppearance="?textAppearanceBody1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/productIv"
-        app:layout_constraintTop_toBottomOf="@+id/productIv"
+        app:layout_constraintStart_toStartOf="@+id/favoriteProductIv"
+        app:layout_constraintTop_toBottomOf="@+id/favoriteProductIv"
         tools:text="کفش نایکی" />
 
     <TextView
@@ -56,8 +56,8 @@
 
     <ImageView
         android:id="@+id/favoriteBtn"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
         android:layout_marginStart="6dp"
         android:layout_marginTop="6dp"
         android:background="@drawable/background_favorite"
@@ -65,5 +65,5 @@
         app:tint="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_favorites" />
+        app:srcCompat="@drawable/ic_favorites_18" />
 </androidx.constraintlayout.widget.ConstraintLayout>

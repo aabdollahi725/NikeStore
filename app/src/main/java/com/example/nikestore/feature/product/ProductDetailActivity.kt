@@ -17,7 +17,7 @@ import com.example.nikestore.feature.product.comment.CommentListActivity
 import com.example.nikestore.services.ImageLoadingService
 import com.example.nikestore.view.scroll.ObservableScrollViewCallbacks
 import com.example.nikestore.view.scroll.ScrollState
-import com.sevenlearn.nikestore.common.asyncNetWorkRequest
+import com.sevenlearn.nikestore.common.asyncRequest
 import com.sevenlearn.nikestore.common.formatPrice
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -36,13 +36,24 @@ class ProductDetailActivity : NikeActivity() {
         binding = ActivityProductDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        productDetailViewModel.productLiveData.observe(this) {
-            imageLoadingService.load(binding.productIv, it.image)
-            binding.toolbarTitleTv.text = it.title
-            binding.titleTv.text = it.title
-            binding.currentPriceTv.text = formatPrice(it.price)
-            binding.previousPriceTv.text = formatPrice(it.previous_price)
+        productDetailViewModel.productLiveData.observe(this) { product ->
+            imageLoadingService.load(binding.productIv, product.image)
+            binding.toolbarTitleTv.text = product.title
+            binding.titleTv.text = product.title
+            binding.currentPriceTv.text = formatPrice(product.price)
+            binding.previousPriceTv.text = formatPrice(product.previous_price)
             binding.previousPriceTv.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            binding.favoriteBtn.setImageResource(if (product.isFavorite) R.drawable.ic_favorites_black_24 else R.drawable.ic_favorites_24)
+
+            binding.favoriteBtn.setOnClickListener {
+                product.isFavorite = !product.isFavorite
+                if(product.isFavorite){
+                    productDetailViewModel.addToFavorites(product)
+                }else{
+                    productDetailViewModel.removeFromFavorites(product)
+                }
+                binding.favoriteBtn.setImageResource(if (product.isFavorite) R.drawable.ic_favorites_black_24 else R.drawable.ic_favorites_24)
+            }
         }
 
         productDetailViewModel.progressBarLiveData.observe(/* owner = */ this) {
@@ -95,7 +106,7 @@ class ProductDetailActivity : NikeActivity() {
         val addToCartFab = findViewById<View>(R.id.addToCartFab)
         addToCartFab.setOnClickListener {
             productDetailViewModel.addToCart()
-                .asyncNetWorkRequest()
+                .asyncRequest()
                 .subscribe(object :
                     NikeCompletableObserver(productDetailViewModel.compositeDisposable) {
                     override fun onComplete() {

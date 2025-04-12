@@ -11,7 +11,7 @@ import com.example.nikestore.data.cart.EmptyState
 import com.example.nikestore.data.cart.PurchaseDetail
 import com.example.nikestore.data.cart.repo.CartRepo
 import com.example.nikestore.data.user.TokenContainer
-import com.sevenlearn.nikestore.common.asyncNetWorkRequest
+import com.sevenlearn.nikestore.common.asyncRequest
 import io.reactivex.Completable
 import org.greenrobot.eventbus.EventBus
 import timber.log.Timber
@@ -26,7 +26,7 @@ class CartViewModel(private val repo: CartRepo) : NikeViewModel() {
         if (!TokenContainer.token.isNullOrEmpty()) {
             progressBarLiveData.value = true
             repo.get()
-                .asyncNetWorkRequest()
+                .asyncRequest()
                 .doFinally {
                     progressBarLiveData.value = false
                 }

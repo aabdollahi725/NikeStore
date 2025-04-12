@@ -23,6 +23,11 @@ class ProductListActivity : NikeActivity(), ProductAdapter.ProductOnClickListene
     val productListViewModel: ProductListViewModel by viewModel()
     val adapter: ProductAdapter by inject { parametersOf(VIEW_TYPE_SMALL) }
 
+    override fun onResume() {
+        super.onResume()
+        productListViewModel.getProducts(productListViewModel.sort)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProductListBinding.inflate(layoutInflater)
@@ -82,5 +87,9 @@ class ProductListActivity : NikeActivity(), ProductAdapter.ProductOnClickListene
         startActivity(Intent(this, ProductDetailActivity::class.java).apply {
             putExtra(EXTRA_KEY_DATA, product)
         })
+    }
+
+    override fun onFavoriteBtnClick(product: Product) {
+        productListViewModel.addToFavorites(product)
     }
 }

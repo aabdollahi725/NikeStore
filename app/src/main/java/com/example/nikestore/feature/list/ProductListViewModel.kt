@@ -4,11 +4,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import com.example.nikestore.R
 import com.example.nikestore.common.EXTRA_KEY_DATA
+import com.example.nikestore.common.NikeCompletableObserver
 import com.example.nikestore.common.NikeSingleObserver
 import com.example.nikestore.common.NikeViewModel
 import com.example.nikestore.data.product.Product
 import com.example.nikestore.data.product.repo.ProductRepository
-import com.sevenlearn.nikestore.common.asyncNetWorkRequest
+import com.sevenlearn.nikestore.common.asyncRequest
+import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 
 class ProductListViewModel(
     val repository: ProductRepository, savedStateHandle: SavedStateHandle,
@@ -32,7 +35,7 @@ class ProductListViewModel(
     fun getProducts(sort:Int) {
         progressBarLiveData.value=true
         repository.getAll(sort)
-            .asyncNetWorkRequest()
+            .asyncRequest()
             .doFinally {
                 progressBarLiveData.value=false
             }
@@ -41,6 +44,26 @@ class ProductListViewModel(
                     productsLiveData.value=t
                 }
             })
+    }
+
+    fun addToFavorites(product: Product){
+        if(product.isFavorite){
+            repository.addToFavorites(product)
+                .subscribeOn(Schedulers.io())
+                .subscribe(object : NikeCompletableObserver(compositeDisposable){
+                    override fun onComplete() {
+                        Timber.i("addToFavorites completed")
+                    }
+                })
+        }else{
+            repository.deleteFavoriteProduct(product)
+                .subscribeOn(Schedulers.io())
+                .subscribe(object : NikeCompletableObserver(compositeDisposable){
+                    override fun onComplete() {
+                        Timber.i("removeFromFavorites completed")
+                    }
+                })
+        }
     }
 
     fun onSelectedSortChangedByUser(sort: Int){
