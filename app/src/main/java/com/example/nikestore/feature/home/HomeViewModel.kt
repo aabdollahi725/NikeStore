@@ -64,7 +64,7 @@ class HomeViewModel(private val productRepository: ProductRepository, bannerRepo
     }
 
     fun addToFavorites(product: Product){
-        if(product.isFavorite){
+         if(product.isFavorite){
             productRepository.addToFavorites(product)
                 .subscribeOn(Schedulers.io())
                 .subscribe(object : NikeCompletableObserver(compositeDisposable){

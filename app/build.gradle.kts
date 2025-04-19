@@ -75,4 +75,5 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.rxjava2)
+    implementation (libs.recyclerview.swipedecorator)
 }

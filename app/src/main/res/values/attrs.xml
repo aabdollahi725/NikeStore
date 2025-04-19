@@ -2,6 +2,7 @@
 <resources>
     <attr name="dividerColor" format="color"/>
     <attr name="windowBackgroundColorSub" format="color"/>
+    <attr name="favoriteSwipeItemBackground" format="color"/>
     <attr name="cartDividerColor" format="color"/>
     <declare-styleable name="NikeToolbar">
         <attr name="nt_title" format="string"/>

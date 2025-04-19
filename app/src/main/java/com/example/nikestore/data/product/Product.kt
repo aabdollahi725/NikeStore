@@ -17,8 +17,9 @@ data class Product(
     var price: Int,
     var status: Int,
     var title: String,
-    var isFavorite: Boolean
-) : Parcelable
+) : Parcelable{
+    var isFavorite: Boolean=false
+}
 
 const val SORT_NEWEST=0
 const val SORT_POPULAR=1

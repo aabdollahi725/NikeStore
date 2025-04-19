@@ -12,5 +12,4 @@ interface ProductRepository {
 
     fun deleteFavoriteProduct(product: Product):Completable
 
-    fun addToFavorites(product: Product):Completable
-}
+    fun addToFavorites(product: Product):Completable }

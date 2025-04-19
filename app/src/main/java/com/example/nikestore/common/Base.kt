@@ -3,7 +3,6 @@ package com.example.nikestore.common
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -64,7 +63,7 @@ abstract class NikeActivity : AppCompatActivity(), NikeView {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        window.decorView.layoutDirection=View.LAYOUT_DIRECTION_RTL
+        window.decorView.layoutDirection = View.LAYOUT_DIRECTION_RTL
         super.onCreate(savedInstanceState)
     }
 
@@ -94,7 +93,10 @@ interface NikeView {
 
     }
 
-    fun showSnackBar(text: String, duration: Int = Snackbar.LENGTH_SHORT) {
+    fun showSnackBar(
+        text: String,
+        duration: Int = Snackbar.LENGTH_SHORT
+    ) {
         rootView?.let {
             Snackbar.make(it, text, duration).show()
         }
@@ -122,15 +124,15 @@ interface NikeView {
         }
     }
 
-    fun showEmptyState(layoutResId:Int):View?{
-        rootView?.let {rootView->
+    fun showEmptyState(layoutResId: Int): View? {
+        rootView?.let { rootView ->
             viewContext?.let {
-                var emptyState =rootView.findViewById<View>(R.id.emptyStateRootView)
-                if(emptyState==null){
-                    emptyState=LayoutInflater.from(it).inflate(R.layout.view_cart_empty_state,rootView,false)
+                var emptyState = rootView.findViewById<View>(R.id.emptyStateRootView)
+                if (emptyState == null) {
+                    emptyState = LayoutInflater.from(it).inflate(layoutResId, rootView, false)
                     rootView.addView(emptyState)
                 }
-                emptyState.visibility=View.VISIBLE
+                emptyState.visibility = View.VISIBLE
                 return emptyState
             }
         }

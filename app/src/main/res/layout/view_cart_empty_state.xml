@@ -1,46 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/emptyStateRootView"
     android:translationZ="20dp"
+    android:paddingTop="24dp"
+    android:paddingBottom="24dp"
+    android:clipToPadding="false"
     android:background="?windowBackgroundColorSub">
 
-    <ImageView
-        android:id="@+id/emptyStateIv"
-        android:layout_width="280dp"
-        android:layout_height="280dp"
-        android:src="@drawable/ic_empty_state"
-        app:layout_constraintBottom_toTopOf="@+id/emptyStateMessageTv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <TextView
-        android:id="@+id/emptyStateMessageTv"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:gravity="center"
-        android:text="@string/cartLoginEmptyState"
-        android:textAppearance="?textAppearanceHeadline6"
-        app:layout_constraintBottom_toTopOf="@+id/ctaBtn"
-        app:layout_constraintEnd_toEndOf="@+id/emptyStateIv"
-        app:layout_constraintStart_toStartOf="@+id/emptyStateIv"
-        app:layout_constraintTop_toBottomOf="@+id/emptyStateIv" />
+        android:layout_gravity="center">
+        <ImageView
+            android:id="@+id/emptyStateIv"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:src="@drawable/ic_empty_state"
+            app:layout_constraintBottom_toTopOf="@+id/emptyStateMessageTv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/ctaBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/loginTitle"
-        app:cornerRadius="@dimen/cornerRadius"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/emptyStateIv"
-        app:layout_constraintStart_toStartOf="@+id/emptyStateIv"
-        app:layout_constraintTop_toBottomOf="@+id/emptyStateMessageTv" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/emptyStateMessageTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:textAppearance="?textAppearanceHeadline6"
+            tools:text="@string/cartLoginEmptyState"
+            app:layout_constraintBottom_toTopOf="@+id/ctaBtn"
+            app:layout_constraintEnd_toEndOf="@+id/emptyStateIv"
+            app:layout_constraintStart_toStartOf="@+id/emptyStateIv"
+            app:layout_constraintTop_toBottomOf="@+id/emptyStateIv" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ctaBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/loginTitle"
+            app:cornerRadius="@dimen/cornerRadius"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/emptyStateIv"
+            app:layout_constraintStart_toStartOf="@+id/emptyStateIv"
+            app:layout_constraintTop_toBottomOf="@+id/emptyStateMessageTv" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

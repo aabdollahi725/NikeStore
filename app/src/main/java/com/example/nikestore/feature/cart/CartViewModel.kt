@@ -50,7 +50,6 @@ class CartViewModel(private val repo: CartRepo) : NikeViewModel() {
     fun removeCartItem(cartItem: CartItem): Completable {
         return repo.remove(cartItem.cart_item_id)
             .doAfterSuccess {
-                Timber.i(cartItemsLiveData.value?.size.toString())
                 updatePurchaseDetail()
 
                 val cartItemsCount=EventBus.getDefault().getStickyEvent(CountResponse::class.java)
@@ -59,8 +58,10 @@ class CartViewModel(private val repo: CartRepo) : NikeViewModel() {
                     EventBus.getDefault().postSticky(it)
                 }
 
-                if (cartItemsLiveData.value!!.isEmpty())
+                if (cartItemsLiveData.value!!.isEmpty()){
+                    Timber.i(cartItemsLiveData.value?.size.toString())
                     emptyStateLiveData.postValue(EmptyState(true, R.string.cartEmptyState))
+                }
             }.ignoreElement()
     }
 

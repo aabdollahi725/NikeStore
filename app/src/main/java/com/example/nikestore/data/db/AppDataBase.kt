@@ -1,4 +1,4 @@
-package com.example.nikestore.data.product.db
+package com.example.nikestore.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

@@ -3,21 +3,22 @@
     <style name="Base.Theme.NikeStore" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!--        Primary brand color -->
         <item name="colorPrimary">@color/blue</item>
-        <item name="colorOnPrimary">@color/darkModeWhite</item>
+        <item name="colorOnPrimary">@color/gray300</item>
 
         <!--        Secondary brand color-->
         <item name="colorSecondary">@color/blue</item>
         <item name="colorOnSecondary">@color/black</item>
 
+        <item name="favoriteSwipeItemBackground">@color/lightBlack</item>
         <item name="android:colorBackground">@color/black</item>
         <item name="colorSurface">@color/lightBlack</item>
         <item name="windowBackgroundColorSub">@color/black</item>
 
         <!--        error color-->
-        <item name="colorError">@color/red</item>
+        <item name="colorError">@color/red600</item>
 
         <!--        Surface -->
-        <item name="colorOnSurface">@color/darkModeWhite</item>
+        <item name="colorOnSurface">@color/gray300</item>
 
         <!--        Status bar color-->
         <item name="android:statusBarColor">@color/black</item>
@@ -40,7 +41,7 @@
         <item name="cartDividerColor">@color/black</item>
 
         <!--        text color secondary-->
-        <item name="android:textColorSecondary">@color/darkGray</item>
+        <item name="android:textColorSecondary">@color/gray500</item>
 
         <!--        Appbar layout style-->
         <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Surface</item>

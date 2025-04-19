@@ -14,7 +14,7 @@ import com.sevenlearn.nikestore.common.formatPrice
 
 class FavoriteAdapter(
     private val imageLoadingService: ImageLoadingService,
-    private val products: MutableList<Product>,
+    val products: MutableList<Product>,
     private val favoriteItemEventListener: FavoriteItemEventListener
 ) : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
 
@@ -43,19 +43,19 @@ class FavoriteAdapter(
             itemView.setOnClickListener {
                 favoriteItemEventListener.onFavoriteItemClick(product)
             }
-            itemView.setOnLongClickListener(object : View.OnLongClickListener {
-                override fun onLongClick(v: View?): Boolean {
-                    products.remove(product)
-                    notifyItemRemoved(bindingAdapterPosition)
-                    favoriteItemEventListener.onFavoriteItemLongClick(product)
-                    return false
-                }
-            })
         }
     }
 
     interface FavoriteItemEventListener {
         fun onFavoriteItemClick(product: Product)
-        fun onFavoriteItemLongClick(product: Product)
+    }
+
+    fun remove(position:Int,product: Product){
+        products.remove(product)
+        notifyItemRemoved(position)
+    }
+    fun restore(position:Int,product: Product){
+        products.add(position,product)
+        notifyItemInserted(position)
     }
 }

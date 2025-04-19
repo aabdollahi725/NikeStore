@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.NikeStore" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Base.Theme.NikeStore" parent="Theme.MaterialComponents.Light.NoActionBar">
 
         <!--        Primary brand color -->
         <item name="colorPrimary">@color/blue</item>
@@ -10,10 +10,11 @@
         <item name="colorSecondary">@color/blue</item>
         <item name="colorOnSecondary">@color/white</item>
 
-        <item name="windowBackgroundColorSub">#f5f5f5</item>
+        <item name="windowBackgroundColorSub">@color/gray100</item>
+        <item name="favoriteSwipeItemBackground">@color/lightBlack</item>
 
         <!--        error color-->
-        <item name="colorError">@color/red</item>
+        <item name="colorError">@color/red600</item>
 
         <!--        Surface -->
         <item name="colorOnSurface">@color/black</item>
@@ -39,7 +40,7 @@
         <item name="cartDividerColor">?dividerColor</item>
 
         <!--        text color secondary-->
-        <item name="android:textColorSecondary">@color/darkGray</item>
+        <item name="android:textColorSecondary">@color/gray500</item>
 
         <!--        Appbar layout style-->
         <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Surface</item>
