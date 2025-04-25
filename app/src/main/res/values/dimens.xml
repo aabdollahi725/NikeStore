@@ -3,5 +3,7 @@
 
     <dimen name="authViewWidth">270dp</dimen>
     <dimen name="cornerRadius">6dp</dimen>
+    <dimen name="dialogFragmentsCornerRadius">12dp</dimen>
+    <dimen name="textFiledCornerRadius">8dp</dimen>
 
 </resources>

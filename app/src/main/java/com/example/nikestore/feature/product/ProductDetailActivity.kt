@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nikestore.R
 import com.example.nikestore.common.EXTRA_KEY_DATA
+import com.example.nikestore.common.EXTRA_KEY_ID
 import com.example.nikestore.common.NikeActivity
 import com.example.nikestore.common.NikeCompletableObserver
 import com.example.nikestore.data.comment.Comment
 import com.example.nikestore.databinding.ActivityProductDetailBinding
+import com.example.nikestore.feature.product.comment.AddCommentBottomSheetDialog
 import com.example.nikestore.feature.product.comment.CommentAdapter
 import com.example.nikestore.feature.product.comment.CommentListActivity
 import com.example.nikestore.services.ImageLoadingService
@@ -23,7 +25,7 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
-class ProductDetailActivity : NikeActivity() {
+class ProductDetailActivity : NikeActivity(), AddCommentBottomSheetDialog.AddCommentDialogEventListener {
 
     private lateinit var binding: ActivityProductDetailBinding
 
@@ -41,9 +43,15 @@ class ProductDetailActivity : NikeActivity() {
             binding.toolbarTitleTv.text = product.title
             binding.titleTv.text = product.title
             binding.currentPriceTv.text = formatPrice(product.price)
-            binding.previousPriceTv.text = formatPrice(product.previous_price)
+            binding.previousPriceTv.text = formatPrice(product.previousPrice)
             binding.previousPriceTv.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             binding.favoriteBtn.setImageResource(if (product.isFavorite) R.drawable.ic_favorites_fill_24 else R.drawable.ic_favorites_24)
+
+            binding.addComment.setOnClickListener {
+                val addCommentBottomSheet=AddCommentBottomSheetDialog()
+                addCommentBottomSheet.eventListener=this
+                addCommentBottomSheet.show(supportFragmentManager,null)
+            }
 
             binding.favoriteBtn.setOnClickListener {
                 product.isFavorite = !product.isFavorite
@@ -67,6 +75,7 @@ class ProductDetailActivity : NikeActivity() {
                 binding.showAllCommentsBtn.setOnClickListener {
                     startActivity(Intent(this, CommentListActivity::class.java).apply {
                         putExtra(EXTRA_KEY_DATA, commentAdapter.comments)
+                        putExtra(EXTRA_KEY_ID,productDetailViewModel.productLiveData.value?.id)
                     })
                 }
             } else if (it.isEmpty()) {
@@ -118,5 +127,16 @@ class ProductDetailActivity : NikeActivity() {
         binding.backBtn.setOnClickListener {
             finish()
         }
+    }
+
+    override fun onSaveButtonClicked(title: String, content: String) {
+            productDetailViewModel.addComment(title,content,productDetailViewModel.productLiveData.value?.id!!.toInt())
+                .asyncRequest()
+                .subscribe(object : NikeCompletableObserver(productDetailViewModel.compositeDisposable){
+                    override fun onComplete() {
+                        showSnackBar(getString(R.string.commentAdded))
+                    }
+
+                })
     }
 }

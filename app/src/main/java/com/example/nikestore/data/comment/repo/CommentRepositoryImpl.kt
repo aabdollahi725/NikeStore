@@ -2,7 +2,6 @@ package com.example.nikestore.data.comment.repo
 
 import com.example.nikestore.data.comment.Comment
 import com.example.nikestore.data.comment.source.CommentDataSource
-import com.example.nikestore.data.product.Product
 import io.reactivex.Single
 
 class CommentRepositoryImpl(val commentDataSource: CommentDataSource): CommentRepository {
@@ -10,7 +9,6 @@ class CommentRepositoryImpl(val commentDataSource: CommentDataSource): CommentRe
         return commentDataSource.getAll(productId)
     }
 
-    override fun add(title:String,content:String,productId:Int): Single<Comment> {
-        TODO("Not yet implemented")
-    }
+    override fun add(title:String,content:String,productId:Int): Single<Comment> =commentDataSource.add(title,
+        content,productId)
 }

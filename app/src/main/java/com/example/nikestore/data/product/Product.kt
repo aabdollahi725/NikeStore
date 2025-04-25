@@ -1,9 +1,10 @@
 package com.example.nikestore.data.product
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "favorites")
@@ -13,13 +14,14 @@ data class Product(
     @PrimaryKey(autoGenerate = false)
     var id: Int,
     var image: String,
-    var previous_price: Int,
+    @ColumnInfo(name = "previous_price")
+    @SerializedName("previous_price")
+    var previousPrice: Int,
     var price: Int,
     var status: Int,
     var title: String,
-) : Parcelable{
-    var isFavorite: Boolean=false
-}
+    var isFavorite: Boolean
+) : Parcelable
 
 const val SORT_NEWEST=0
 const val SORT_POPULAR=1

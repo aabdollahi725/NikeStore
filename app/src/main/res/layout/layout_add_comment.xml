@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="24dp"
+    android:paddingTop="16dp"
+    android:layoutDirection="rtl"
+    android:paddingEnd="24dp"
+    android:paddingBottom="16dp">
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/addCommentTitle"
+        android:textAppearance="?textAppearanceHeadline6"
+        android:textColor="?colorPrimary" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/commentTitleEtl"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cursorErrorColor="?colorPrimary"
+        android:layout_marginTop="16dp"
+        android:hint="@string/commentTitle"
+        app:boxCornerRadiusBottomEnd="@dimen/textFiledCornerRadius"
+        app:boxCornerRadiusBottomStart="@dimen/textFiledCornerRadius"
+        app:boxCornerRadiusTopEnd="@dimen/textFiledCornerRadius"
+        app:boxCornerRadiusTopStart="@dimen/textFiledCornerRadius">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/commentTitleEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textShortMessage"
+            android:maxLines="1"
+            android:textAppearance="?textAppearanceBody1"
+            android:textColor="?colorOnSurface" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/commentContentEtl"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="16dp"
+        android:hint="@string/enterComment"
+        app:cursorErrorColor="?colorPrimary"
+        app:boxCornerRadiusBottomEnd="@dimen/textFiledCornerRadius"
+        app:boxCornerRadiusBottomStart="@dimen/textFiledCornerRadius"
+        app:boxCornerRadiusTopEnd="@dimen/textFiledCornerRadius"
+        app:boxCornerRadiusTopStart="@dimen/textFiledCornerRadius">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/commentContentEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:maxLines="4"
+            android:minLines="4"
+            android:nestedScrollingEnabled="true"
+            android:textAppearance="?textAppearanceBody1"
+            android:textColor="?colorOnSurface" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/saveCommentBtn"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:text="@string/submitComment"
+        android:textAppearance="?textAppearanceHeadline6"
+        app:cornerRadius="@dimen/cornerRadius" />
+</LinearLayout>

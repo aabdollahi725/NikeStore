@@ -18,7 +18,7 @@ import timber.log.Timber
 
 class ProductDetailViewModel(
     savedStateHandle: SavedStateHandle,
-    commentRepository: CommentRepository,
+    private val commentRepository: CommentRepository,
     private val cartRepo: CartRepo,
     private val productRepository: ProductRepository
 ) :
@@ -26,7 +26,7 @@ class ProductDetailViewModel(
 
     val productLiveData = MutableLiveData<Product>()
     val commentsLiveData = MutableLiveData<List<Comment>>()
-    val addToCartProgressBarLiveData=MutableLiveData<Boolean>()
+    val addToCartProgressBarLiveData = MutableLiveData<Boolean>()
 
     init {
         progressBarLiveData.value = true
@@ -49,24 +49,28 @@ class ProductDetailViewModel(
         }.ignoreElement()
     }
 
-    fun addToFavorites(product: Product){
+    fun addToFavorites(product: Product) {
         productRepository.addToFavorites(product)
             .subscribeOn(Schedulers.io())
-            .subscribe(object : NikeCompletableObserver(compositeDisposable){
+            .subscribe(object : NikeCompletableObserver(compositeDisposable) {
                 override fun onComplete() {
                     Timber.i("addToFavorites completed")
                 }
             })
     }
 
-    fun removeFromFavorites(product: Product){
+    fun removeFromFavorites(product: Product) {
         productRepository.deleteFavoriteProduct(product)
             .subscribeOn(Schedulers.io())
-            .subscribe(object : NikeCompletableObserver(compositeDisposable){
+            .subscribe(object : NikeCompletableObserver(compositeDisposable) {
                 override fun onComplete() {
                     Timber.i("removeFromFavorites completed")
                 }
             })
+    }
+
+    fun addComment(title: String, content: String, productId: Int): Completable {
+        return commentRepository.add(title, content, productId).ignoreElement()
     }
 
 }

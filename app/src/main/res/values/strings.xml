@@ -84,4 +84,11 @@
     <string name="goToProductList">مشاهده محصولات</string>
     <string name="restore">بازگشت</string>
     <string name="removedFromFavorites">از لیست علاقه مندی ها حذف شد</string>
+    <string name="submitComment">ثبت</string>
+    <string name="enterComment">نظر خود را بنویسید…</string>
+    <string name="commentTitle">عنوان نظر</string>
+    <string name="commentAdded">نظر شما با موفقیت ثبت شد</string>
+    <string name="addCommentTitle">ثبت نظر</string>
+    <string name="commentTitleEmptyError">عنوان نظر الزامی است!</string>
+    <string name="commentContentEmptyError">توضیحات نظر الزامی است!</string>
 </resources>

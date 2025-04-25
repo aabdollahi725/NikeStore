@@ -127,7 +127,7 @@ class App : Application() {
             }
 
             viewModel{
-                CommentListViewModel(get())
+                CommentListViewModel(get(),get())
             }
 
             viewModel{

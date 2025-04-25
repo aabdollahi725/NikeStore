@@ -68,7 +68,7 @@ class ProductAdapter(
 
         fun bindProduct(product: Product) {
             titleTv.text = product.title
-            previousPriceTv.text = formatPrice(product.previous_price)
+            previousPriceTv.text = formatPrice(product.previousPrice)
             previousPriceTv.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             currentPriceTv.text = formatPrice(product.price)
             imageLoadingService.load(productIv, product.image)
