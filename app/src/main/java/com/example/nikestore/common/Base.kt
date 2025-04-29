@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.nikestore.R
+import com.example.nikestore.data.cart.EmptyState
 import com.example.nikestore.feature.auth.AuthActivity
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.CompositeDisposable
@@ -145,6 +146,7 @@ abstract class NikeViewModel : ViewModel() {
 
     val compositeDisposable = CompositeDisposable()
     val progressBarLiveData = MutableLiveData<Boolean>()
+    val emptyStateLiveData = MutableLiveData<EmptyState>()
 
     override fun onCleared() {
         compositeDisposable.clear()

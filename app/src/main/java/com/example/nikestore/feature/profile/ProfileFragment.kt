@@ -11,6 +11,7 @@ import com.example.nikestore.databinding.FragmentProfileBinding
 import com.example.nikestore.feature.auth.AuthActivity
 import com.example.nikestore.feature.favorites.FavoritesActivity
 import com.example.nikestore.feature.main.MainActivity
+import com.example.nikestore.feature.order.OrderHistoryActivity
 import com.example.nikestore.feature.settings.SettingsActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -37,6 +38,10 @@ class ProfileFragment : NikeFragment() {
         }
         binding.favoritesListBtn.setOnClickListener {
             startActivity(Intent(requireContext(), FavoritesActivity::class.java))
+        }
+
+        binding.orderHistoryBtn.setOnClickListener {
+            startActivity(Intent(requireContext(), OrderHistoryActivity::class.java))
         }
     }
 

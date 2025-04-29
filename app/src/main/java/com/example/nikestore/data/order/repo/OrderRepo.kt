@@ -1,7 +1,8 @@
-package com.example.nikestore.data.checkout.repo
+package com.example.nikestore.data.order.repo
 
 import com.example.nikestore.data.checkout.Checkout
 import com.example.nikestore.data.checkout.SubmitOrderResult
+import com.example.nikestore.data.order.OrderHistoryItem
 import io.reactivex.Single
 
 interface OrderRepo {
@@ -15,4 +16,6 @@ interface OrderRepo {
     ):Single<SubmitOrderResult>
 
     fun checkout(orderId: Int?):Single<Checkout>
+
+    fun getOrderHistory():Single<List<OrderHistoryItem>>
 }

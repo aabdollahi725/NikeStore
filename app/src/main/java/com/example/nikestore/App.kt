@@ -9,9 +9,9 @@ import com.example.nikestore.data.banner.source.BannerRemoteDataSource
 import com.example.nikestore.data.cart.repo.CartRepo
 import com.example.nikestore.data.cart.repo.CartRepoImpl
 import com.example.nikestore.data.cart.source.CartRemoteDataSource
-import com.example.nikestore.data.checkout.repo.OrderRepo
-import com.example.nikestore.data.checkout.repo.OrderRepoImpl
-import com.example.nikestore.data.checkout.source.OrderRemoteDataSource
+import com.example.nikestore.data.order.repo.OrderRepo
+import com.example.nikestore.data.order.repo.OrderRepoImpl
+import com.example.nikestore.data.order.source.OrderRemoteDataSource
 import com.example.nikestore.data.comment.repo.CommentRepository
 import com.example.nikestore.data.comment.repo.CommentRepositoryImpl
 import com.example.nikestore.data.comment.source.CommentRemoteDataSource
@@ -31,6 +31,7 @@ import com.example.nikestore.feature.favorites.FavoritesViewModel
 import com.example.nikestore.feature.home.HomeViewModel
 import com.example.nikestore.feature.list.ProductListViewModel
 import com.example.nikestore.feature.main.MainViewModel
+import com.example.nikestore.feature.order.OrderHistoryViewModel
 import com.example.nikestore.feature.product.ProductDetailViewModel
 import com.example.nikestore.feature.product.comment.CommentListViewModel
 import com.example.nikestore.feature.profile.ProfileViewModel
@@ -128,6 +129,10 @@ class App : Application() {
 
             viewModel{
                 CommentListViewModel(get(),get())
+            }
+
+            viewModel{
+                OrderHistoryViewModel(get())
             }
 
             viewModel{

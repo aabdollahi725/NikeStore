@@ -38,7 +38,7 @@
 
         <!--        divider color-->
         <item name="dividerColor">@color/lightBlack</item>
-        <item name="cartDividerColor">@color/black</item>
+        <item name="cardViewDividerColor">@color/black</item>
 
         <!--        text color secondary-->
         <item name="android:textColorSecondary">@color/gray500</item>

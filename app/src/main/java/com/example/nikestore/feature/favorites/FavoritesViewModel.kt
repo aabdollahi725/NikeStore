@@ -12,7 +12,6 @@ import timber.log.Timber
 
 class FavoritesViewModel(private val productRepository: ProductRepository) : NikeViewModel() {
     val favoriteProducts = MutableLiveData<List<Product>>()
-    val emptyStateLiveData = MutableLiveData<EmptyState>()
 
     fun getFavoriteProducts() {
         productRepository.getFavorites()

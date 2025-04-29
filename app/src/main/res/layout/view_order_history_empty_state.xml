@@ -2,24 +2,23 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/emptyStateRootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/emptyStateRootView"
-    android:translationZ="20dp"
-    android:paddingTop="24dp"
-    android:paddingBottom="24dp"
     android:clipToPadding="false"
-    android:background="?android:colorBackground">
+    android:paddingTop="24dp"
+    android:paddingBottom="24dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center">
+
         <ImageView
             android:id="@+id/emptyStateIv"
             android:layout_width="280dp"
             android:layout_height="280dp"
-            android:src="@drawable/ic_empty_state"
+            android:src="@drawable/ic_order"
             app:layout_constraintBottom_toTopOf="@+id/emptyStateMessageTv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,14 +29,13 @@
             android:id="@+id/emptyStateMessageTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:gravity="center"
-            android:textAppearance="?textAppearanceHeadline6"
-            tools:text="@string/loginEmptyState"
+            android:textAppearance="?textAppearanceHeadline5"
             app:layout_constraintBottom_toTopOf="@+id/ctaBtn"
             app:layout_constraintEnd_toEndOf="@+id/emptyStateIv"
             app:layout_constraintStart_toStartOf="@+id/emptyStateIv"
-            app:layout_constraintTop_toBottomOf="@+id/emptyStateIv" />
+            app:layout_constraintTop_toBottomOf="@+id/emptyStateIv"
+            tools:text="@string/loginEmptyState" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/ctaBtn"

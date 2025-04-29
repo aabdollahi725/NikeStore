@@ -20,7 +20,6 @@ class CartViewModel(private val repo: CartRepo) : NikeViewModel() {
 
     val cartItemsLiveData = MutableLiveData<List<CartItem>>()
     val purchaseDetailLiveData = MutableLiveData<PurchaseDetail>()
-    val emptyStateLiveData = MutableLiveData<EmptyState>()
 
     private fun get() {
         if (!TokenContainer.token.isNullOrEmpty()) {
@@ -43,7 +42,7 @@ class CartViewModel(private val repo: CartRepo) : NikeViewModel() {
                     }
                 })
         } else {
-            emptyStateLiveData.value = EmptyState(true, R.string.cartLoginEmptyState, true)
+            emptyStateLiveData.value = EmptyState(true, R.string.loginEmptyState, true)
         }
     }
 

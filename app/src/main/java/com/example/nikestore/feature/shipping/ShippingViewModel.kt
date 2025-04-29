@@ -6,7 +6,7 @@ import com.example.nikestore.common.EXTRA_KEY_DATA
 import com.example.nikestore.common.NikeViewModel
 import com.example.nikestore.data.cart.PurchaseDetail
 import com.example.nikestore.data.checkout.SubmitOrderResult
-import com.example.nikestore.data.checkout.repo.OrderRepo
+import com.example.nikestore.data.order.repo.OrderRepo
 import io.reactivex.Single
 
 const val PAYMENT_METHOD_COD="cash_on_delivery"

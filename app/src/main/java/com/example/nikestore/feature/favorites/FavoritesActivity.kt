@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Canvas
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -46,7 +45,7 @@ class FavoritesActivity : NikeActivity(), FavoriteAdapter.FavoriteItemEventListe
         }
 
         binding.helpBtn.setOnClickListener {
-            FavoriteBottomSheetDialog().show(supportFragmentManager, null)
+            FavoriteGuideBottomSheetDialog().show(supportFragmentManager, null)
         }
 
         binding.nikeToolbar.onBackButtonClickListener = View.OnClickListener {

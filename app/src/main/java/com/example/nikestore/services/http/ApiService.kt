@@ -9,6 +9,7 @@ import com.example.nikestore.data.checkout.Checkout
 import com.example.nikestore.data.checkout.SubmitOrderResult
 import com.example.nikestore.data.user.SignupTokenResponse
 import com.example.nikestore.data.comment.Comment
+import com.example.nikestore.data.order.OrderHistoryItem
 import com.example.nikestore.data.product.Product
 import com.example.nikestore.data.user.TokenContainer
 import com.example.nikestore.data.user.LoginTokenResponse
@@ -69,6 +70,9 @@ interface ApiService {
 
     @GET("order/checkout")
     fun checkoutOrder(@Query("order_id") orderId:Int): Single<Checkout>
+
+    @GET("order/list")
+    fun getOrderHistory(): Single<List<OrderHistoryItem>>
 }
 
 fun createInstanceFromApiService(): ApiService {

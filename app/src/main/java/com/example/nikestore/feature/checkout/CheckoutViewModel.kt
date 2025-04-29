@@ -6,7 +6,7 @@ import com.example.nikestore.common.EXTRA_KEY_ID
 import com.example.nikestore.common.NikeSingleObserver
 import com.example.nikestore.common.NikeViewModel
 import com.example.nikestore.data.checkout.Checkout
-import com.example.nikestore.data.checkout.repo.OrderRepo
+import com.example.nikestore.data.order.repo.OrderRepo
 import com.sevenlearn.nikestore.common.asyncRequest
 
 class CheckoutViewModel(orderRepo: OrderRepo, savedStateHandle: SavedStateHandle) :

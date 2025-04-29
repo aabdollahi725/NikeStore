@@ -70,7 +70,7 @@ class CartFragment : NikeFragment(), CartAdapter.CartItemViewCallbacks {
                     emptyStateHintTv.text =
                         getString(it.messageResId)
                     emptyStateHintTv.textSize =
-                        if (getString(it.messageResId) == getString(R.string.cartLoginEmptyState)) 18F else 16F
+                        if (getString(it.messageResId) == getString(R.string.loginEmptyState)) 18F else 16F
                     val ctaBtn = view.findViewById<MaterialButton>(R.id.ctaBtn)
                     ctaBtn.visibility = if (it.ctaMustShow) View.VISIBLE else View.GONE
 

@@ -118,7 +118,7 @@
                 android:text="@string/returnToHome"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/orderHistoryBtn"
+                android:id="@+id/goToOrderHistoryBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="?actionBarSize"
                 android:text="@string/orderHistory"
